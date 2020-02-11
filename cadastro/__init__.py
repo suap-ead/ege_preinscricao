@@ -1,0 +1,1 @@
+# default_app_config = 'pre_cadastro.apps.PreCadastroConfig'
