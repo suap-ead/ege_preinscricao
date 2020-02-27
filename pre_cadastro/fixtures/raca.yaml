@@ -1,0 +1,30 @@
+- model: pre_cadastro.raca
+  pk: 1
+  fields:
+    suap_id: 1
+    titulo: Parda
+- model: pre_cadastro.raca
+  pk: 2
+  fields:
+    suap_id: 2
+    titulo: Preta
+- model: pre_cadastro.raca
+  pk: 3
+  fields:
+    suap_id: 3
+    titulo: Branca
+- model: pre_cadastro.raca
+  pk: 4
+  fields:
+    suap_id: 4
+    titulo: Indígena
+- model: pre_cadastro.raca
+  pk: 5
+  fields:
+    suap_id: 5
+    titulo: Amarela
+- model: pre_cadastro.raca
+  pk: 6
+  fields:
+    suap_id: 7
+    titulo: Não declarado

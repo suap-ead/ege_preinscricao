@@ -9,6 +9,7 @@ from .modelos.zona_residencial import ZonaResidencial
 from .modelos.transporte_publico import TransportePublico
 from .modelos.tipo_sanguineo import TipoSanguineo
 from .modelos.pais_origem import PaisOrigem
+from .modelos.raca import Raca
 from .modelos.candidato import Candidato
 
 @admin.register(Nacionalidade)
@@ -20,6 +21,7 @@ from .modelos.candidato import Candidato
 @admin.register(TransportePublico)
 @admin.register(TipoSanguineo)
 @admin.register(PaisOrigem)
+@admin.register(Raca)
 @admin.register(Candidato)
 
 class CandidatoAdmin(ImportExportModelAdmin):
