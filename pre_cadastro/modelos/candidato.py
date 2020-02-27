@@ -9,6 +9,8 @@ from .transporte_publico import TransportePublico
 from .pais_origem import PaisOrigem
 from .tipo_sanguineo import TipoSanguineo
 from .raca import Raca
+from .nivel_ensino import NivelEnsino
+from .tipo_instituicao import TipoInstituicao
 
 class Candidato(models.Model):
     nome = models.CharField(max_length=350)
@@ -25,6 +27,8 @@ class Candidato(models.Model):
     pais_origem = models.ForeignKey(PaisOrigem, on_delete=models.CASCADE, default=None)
     estado_naturalidade = models.ForeignKey(Estado, related_name="EstadoNaturalidade", on_delete=models.CASCADE, default=None)
     raca = models.ForeignKey(Raca, on_delete=models.CASCADE, default=None)
+    nivel_ensino = models.ForeignKey(NivelEnsino, on_delete=models.CASCADE, default=None)
+    tipo_instituicao = models.ForeignKey(TipoInstituicao, on_delete=models.CASCADE, default=None)
     
     def __str__(self):
         return self.nome

@@ -1,0 +1,20 @@
+- model: pre_cadastro.nivelensino
+  pk: 1
+  fields:
+    suap_id: 1
+    titulo: Fundamental
+- model: pre_cadastro.nivelensino
+  pk: 2
+  fields:
+    suap_id: 3
+    titulo: Graduação
+- model: pre_cadastro.nivelensino
+  pk: 3
+  fields:
+    suap_id: 2
+    titulo: Médio
+- model: pre_cadastro.nivelensino
+  pk: 4
+  fields:
+    suap_id: 4
+    titulo: Pós-Graduação
