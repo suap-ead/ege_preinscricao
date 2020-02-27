@@ -1,5 +1,5 @@
 from import_export import resources
-from .models import Candidato
+from .modelos.candidato import Candidato
 
 class CandidatoResource(resources.ModelResource):
     class Meta:
