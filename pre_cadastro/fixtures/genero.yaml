@@ -1,0 +1,12 @@
+- model: pre_cadastro.sexo
+  pk: 1
+  fields:
+    suap_id: 1
+    titulo: Masculino
+    apelido: M
+- model: pre_cadastro.sexo
+  pk: 2
+  fields:
+    suap_id: 2
+    titulo: Feminino
+    apelido: F
