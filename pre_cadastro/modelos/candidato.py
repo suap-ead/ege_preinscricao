@@ -11,6 +11,7 @@ from .tipo_sanguineo import TipoSanguineo
 from .raca import Raca
 from .nivel_ensino import NivelEnsino
 from .tipo_instituicao import TipoInstituicao
+from .ano_conclusao import AnoConclusao
 
 class Candidato(models.Model):
     nome = models.CharField(max_length=350)
@@ -29,6 +30,7 @@ class Candidato(models.Model):
     raca = models.ForeignKey(Raca, on_delete=models.CASCADE, default=None)
     nivel_ensino = models.ForeignKey(NivelEnsino, on_delete=models.CASCADE, default=None)
     tipo_instituicao = models.ForeignKey(TipoInstituicao, on_delete=models.CASCADE, default=None)
+    ano_conclusao = models.ForeignKey(AnoConclusao, on_delete=models.CASCADE, default=None)
     
     def __str__(self):
         return self.nome
