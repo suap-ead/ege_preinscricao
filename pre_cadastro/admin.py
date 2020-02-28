@@ -13,6 +13,7 @@ from .modelos.raca import Raca
 from .modelos.nivel_ensino import NivelEnsino
 from .modelos.tipo_instituicao import TipoInstituicao
 from .modelos.ano_conclusao import AnoConclusao
+from .modelos.necessidade_especial import NecessidadeEspecial
 from .modelos.candidato import Candidato
 
 @admin.register(Nacionalidade)
@@ -28,6 +29,7 @@ from .modelos.candidato import Candidato
 @admin.register(NivelEnsino)
 @admin.register(TipoInstituicao)
 @admin.register(AnoConclusao)
+@admin.register(NecessidadeEspecial)
 @admin.register(Candidato)
 
 class CandidatoAdmin(ImportExportModelAdmin):
