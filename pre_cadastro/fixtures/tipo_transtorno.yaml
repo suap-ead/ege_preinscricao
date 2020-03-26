@@ -1,0 +1,20 @@
+- model: pre_cadastro.tipotranstorno
+  pk: 1
+  fields:
+    suap_id: 1
+    titulo: Autismo
+- model: pre_cadastro.tipotranstorno
+  pk: 2
+  fields:
+    suap_id: 2
+    titulo: Síndrome de Asperger
+- model: pre_cadastro.tipotranstorno
+  pk: 3
+  fields:
+    suap_id: 3
+    titulo: Síndrome de Rett
+- model: pre_cadastro.tipotranstorno
+  pk: 3
+  fields:
+    suap_id: 3
+    titulo: Transtorno Desintegrativo da Infância

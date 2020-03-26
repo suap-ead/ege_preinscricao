@@ -1,0 +1,290 @@
+- model: pre_cadastro.polo
+  pk: 30
+  fields:
+    suap_id: 30
+    titulo: São Paulo do Potengi - IFRN
+- model: pre_cadastro.polo
+  pk: 31
+  fields:
+    suap_id: 31
+    titulo: Parelhas
+- model: pre_cadastro.polo
+  pk: 32
+  fields:
+    suap_id: 32
+    titulo: IFAM - Manaus
+- model: pre_cadastro.polo
+  pk: 33
+  fields:
+    suap_id: 33
+    titulo: IFBA - Salvador
+- model: pre_cadastro.polo
+  pk: 34
+  fields:
+    suap_id: 34
+    titulo: IFES - Vitória
+- model: pre_cadastro.polo
+  pk: 35
+  fields:
+    suap_id: 35
+    titulo: IFGO - Iporá
+- model: pre_cadastro.polo
+  pk: 36
+  fields:
+    suap_id: 36
+    titulo: IFMS - Dourados
+- model: pre_cadastro.polo
+  pk: 37
+  fields:
+    suap_id: 37
+    titulo: IFNMG - Montes Claros
+- model: pre_cadastro.polo
+  pk: 38
+  fields:
+    suap_id: 38
+    titulo: IFPB - Monteiro
+- model: pre_cadastro.polo
+  pk: 39
+  fields:
+    suap_id: 39
+    titulo: IFPI - Teresina
+- model: pre_cadastro.polo
+  pk: 40
+  fields:
+    suap_id: 40
+    titulo: IFRJ - Niterói
+- model: pre_cadastro.polo
+  pk: 42
+  fields:
+    suap_id: 42
+    titulo: IFRS - Porto Alegre
+- model: pre_cadastro.polo
+  pk: 43
+  fields:
+    suap_id: 43
+    titulo: IFSE - Aracaju
+- model: pre_cadastro.polo
+  pk: 44
+  fields:
+    suap_id: 44
+    titulo: IFSP - Jundiaí
+- model: pre_cadastro.polo
+  pk: 45
+  fields:
+    suap_id: 45
+    titulo: IFSUDESTEMG - Rio Pomba
+- model: pre_cadastro.polo
+  pk: 46
+  fields:
+    suap_id: 46
+    titulo: IFSULDEMINAS - Três Corações
+- model: pre_cadastro.polo
+  pk: 47
+  fields:
+    suap_id: 47
+    titulo: IF Sul-rio-grandense - Pelotas
+- model: pre_cadastro.polo
+  pk: 48
+  fields:
+    suap_id: 48
+    titulo: IFTO - Araguaína
+- model: pre_cadastro.polo
+  pk: 49
+  fields:
+    suap_id: 49
+    titulo: IF Triângulo Mineiro - Uberaba
+- model: pre_cadastro.polo
+  pk: 50
+  fields:
+    suap_id: 50
+    titulo: Secretaria de Estado de Educação - GO
+- model: pre_cadastro.polo
+  pk: 51
+  fields:
+    suap_id: 51
+    titulo: UEMA - São Luiz
+- model: pre_cadastro.polo
+  pk: 52
+  fields:
+    suap_id: 52
+    titulo: UFCG - Cajazeiras
+- model: pre_cadastro.polo
+  pk: 53
+  fields:
+    suap_id: 53
+    titulo: UFERSA - Mossoró
+- model: pre_cadastro.polo
+  pk: 54
+  fields:
+    suap_id: 54
+    titulo: UFPA - Belém
+- model: pre_cadastro.polo
+  pk: 55
+  fields:
+    suap_id: 55
+    titulo: UFPB - Escola Técnica de Saúde - João Pessoa
+- model: pre_cadastro.polo
+  pk: 56
+  fields:
+    suap_id: 56
+    titulo: UFPE - Recife
+- model: pre_cadastro.polo
+  pk: 57
+  fields:
+    suap_id: 57
+    titulo: UFPI - Bom Jesus
+- model: pre_cadastro.polo
+  pk: 58
+  fields:
+    suap_id: 58
+    titulo: UFPI - Floriano
+- model: pre_cadastro.polo
+  pk: 59
+  fields:
+    suap_id: 59
+    titulo: UFPR - Curitiba
+- model: pre_cadastro.polo
+  pk: 60
+  fields:
+    suap_id: 60
+    titulo: UFSM - Colégio Técnico Industrial Santa Maria
+- model: pre_cadastro.polo
+  pk: 61
+  fields:
+    suap_id: 61
+    titulo: UNIR - Porto Velho
+- model: pre_cadastro.polo
+  pk: 1
+  fields:
+    suap_id: 1
+    titulo: Martins (RN)
+- model: pre_cadastro.polo
+  pk: 2
+  fields:
+    suap_id: 2
+    titulo: Luiz Gomes (RN)
+- model: pre_cadastro.polo
+  pk: 3
+  fields:
+    suap_id: 3
+    titulo: Currais Novos (RN)
+- model: pre_cadastro.polo
+  pk: 4
+  fields:
+    suap_id: 4
+    titulo: Assu (RN)
+- model: pre_cadastro.polo
+  pk: 5
+  fields:
+    suap_id: 5
+    titulo: Lajes (RN)
+- model: pre_cadastro.polo
+  pk: 6
+  fields:
+    suap_id: 6
+    titulo: Parnamirim (RN)
+- model: pre_cadastro.polo
+  pk: 7
+  fields:
+    suap_id: 7
+    titulo: Natal (RN)
+- model: pre_cadastro.polo
+  pk: 8
+  fields:
+    suap_id: 8
+    titulo: Caraúbas (RN)
+- model: pre_cadastro.polo
+  pk: 9
+  fields:
+    suap_id: 9
+    titulo: Grossos (RN)
+- model: pre_cadastro.polo
+  pk: 10
+  fields:
+    suap_id: 10
+    titulo: Marcelino Vieira (RN)
+- model: pre_cadastro.polo
+  pk: 11
+  fields:
+    suap_id: 11
+    titulo: Caicó (RN)
+- model: pre_cadastro.polo
+  pk: 12
+  fields:
+    suap_id: 12
+    titulo: Macau (RN)
+- model: pre_cadastro.polo
+  pk: 13
+  fields:
+    suap_id: 13
+    titulo: Mossoró (RN)
+- model: pre_cadastro.polo
+  pk: 14
+  fields:
+    suap_id: 14
+    titulo: Natal - Zona Norte (RN)
+- model: pre_cadastro.polo
+  pk: 15
+  fields:
+    suap_id: 15
+    titulo: Ipanguaçu (RN)
+- model: pre_cadastro.polo
+  pk: 16
+  fields:
+    suap_id: 16
+    titulo: Santa Cruz (RN)
+- model: pre_cadastro.polo
+  pk: 23
+  fields:
+    suap_id: 23
+    titulo: Guamaré (RN)
+- model: pre_cadastro.polo
+  pk: 17
+  fields:
+    suap_id: 17
+    titulo: João Câmara (RN)
+- model: pre_cadastro.polo
+  pk: 18
+  fields:
+    suap_id: 18
+    titulo: Pau dos Ferros (RN)
+- model: pre_cadastro.polo
+  pk: 19
+  fields:
+    suap_id: 19
+    titulo: Apodi - IFRN - ETEC
+- model: pre_cadastro.polo
+  pk: 20
+  fields:
+    suap_id: 20
+    titulo: São Gonçalo do Amarante (RN)
+- model: pre_cadastro.polo
+  pk: 24
+  fields:
+    suap_id: 24
+    titulo: Nova Cruz (RN)
+- model: pre_cadastro.polo
+  pk: 25
+  fields:
+    suap_id: 25
+    titulo: Natal - EAD
+- model: pre_cadastro.polo
+  pk: 26
+  fields:
+    suap_id: 26
+    titulo: Ceará Mirim (RN)
+- model: pre_cadastro.polo
+  pk: 29
+  fields:
+    suap_id: 29
+    titulo: Canguaretama [RN] - ETEC
+- model: pre_cadastro.polo
+  pk: 21
+  fields:
+    suap_id: 21
+    titulo: Proitec
+- model: pre_cadastro.polo
+  pk: 22
+  fields:
+    suap_id: 22
+    titulo: Cuité de Mamanguape (PB)

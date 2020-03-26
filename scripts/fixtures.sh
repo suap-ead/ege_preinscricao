@@ -13,3 +13,14 @@ python manage.py loaddata ./pre_cadastro/fixtures/nivel_ensino.yaml
 python manage.py loaddata ./pre_cadastro/fixtures/tipo_instituicao.yaml
 python manage.py loaddata ./pre_cadastro/fixtures/ano_conclusao.yaml
 python manage.py loaddata ./pre_cadastro/fixtures/necessidade_especial.yaml
+python manage.py loaddata ./pre_cadastro/fixtures/tipo_transtorno.yaml
+python manage.py loaddata ./pre_cadastro/fixtures/superdotacao.yaml
+python manage.py loaddata ./pre_cadastro/fixtures/tipo_transporte.yaml
+python manage.py loaddata ./pre_cadastro/fixtures/tipo_veiculo.yaml
+python manage.py loaddata ./pre_cadastro/fixtures/emissao_rg.yaml
+python manage.py loaddata ./pre_cadastro/fixtures/tipo_certidao.yaml
+python manage.py loaddata ./pre_cadastro/fixtures/periodo_letivo.yaml
+python manage.py loaddata ./pre_cadastro/fixtures/turno.yaml
+python manage.py loaddata ./pre_cadastro/fixtures/forma_ingresso.yaml
+python manage.py loaddata ./pre_cadastro/fixtures/polo.yaml
+python manage.py loaddata ./pre_cadastro/fixtures/convenio.yaml

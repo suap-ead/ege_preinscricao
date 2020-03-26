@@ -13,6 +13,16 @@ from .nivel_ensino import NivelEnsino
 from .tipo_instituicao import TipoInstituicao
 from .ano_conclusao import AnoConclusao
 from .necessidade_especial import NecessidadeEspecial
+from .tipo_transtorno import TipoTranstorno
+from .tipo_transporte import TipoTransporte
+from .emissao_rg import EmissaoRg
+from .tipo_certidao import TipoCertidao
+from .tipo_veiculo import TipoVeiculo
+from .periodo_letivo import PeriodoLetivo
+from .turno import Turno
+from .forma_ingresso import FormaIngresso
+from .polo import Polo
+from .convenio import Convenio
 
 class Candidato(models.Model):
     nome = models.CharField(max_length=350)
@@ -33,6 +43,15 @@ class Candidato(models.Model):
     tipo_instituicao = models.ForeignKey(TipoInstituicao, on_delete=models.CASCADE, default=None)
     ano_conclusao = models.ForeignKey(AnoConclusao, on_delete=models.CASCADE, default=None)
     necessidade_especial = models.ForeignKey(NecessidadeEspecial, on_delete=models.CASCADE, default=None)
+    tipo_transtorno = models.ForeignKey(TipoTranstorno, on_delete=models.CASCADE, default=None)
+    tipo_transporte = models.ForeignKey(TipoTransporte, on_delete=models.CASCADE, default=None)
+    emissao_rg = models.ForeignKey(EmissaoRg, on_delete=models.CASCADE, default=None)
+    tipo_certidao = models.ForeignKey(TipoCertidao, on_delete=models.CASCADE, default=None)
+    periodo_letivo = models.ForeignKey(PeriodoLetivo, on_delete=models.CASCADE, default=None)
+    turno = models.ForeignKey(Turno, on_delete=models.CASCADE, default=None)
+    forma_ingresso = models.ForeignKey(FormaIngresso, on_delete=models.CASCADE, default=None)
+    polo = models.ForeignKey(Polo, on_delete=models.CASCADE, default=None)
+    convenio = models.ForeignKey(Convenio, on_delete=models.CASCADE, default=None)
     
     def __str__(self):
         return self.nome
