@@ -1,0 +1,49 @@
+- model: pre_cadastro.tiposanguineo
+  pk: 1
+  fields:
+    suap_id: 1
+    titulo: O
+    apelido: O
+- model: pre_cadastro.tiposanguineo
+  pk: 2
+  fields:
+    suap_id: 2
+    titulo: O+
+    apelido: O+
+- model: pre_cadastro.tiposanguineo
+  pk: 3
+  fields:
+    suap_id: 3
+    titulo: A
+    apelido: A
+- model: pre_cadastro.tiposanguineo
+  pk: 4
+  fields:
+    suap_id: 4
+    titulo: A+
+    apelido: A+
+- model: pre_cadastro.tiposanguineo
+  pk: 5
+  fields:
+    suap_id: 5
+    titulo: B
+    apelido: B
+- model: pre_cadastro.tiposanguineo
+  pk: 6
+  fields:
+    suap_id: 6
+    titulo: B+
+    apelido: B+
+- model: pre_cadastro.tiposanguineo
+  pk: 7
+  fields:
+    suap_id: 7
+    titulo: AB
+    apelido: AB
+- model: pre_cadastro.tiposanguineo
+  pk: 8
+  fields:
+    suap_id: 8
+    titulo: AB+
+    apelido: AB+
+  

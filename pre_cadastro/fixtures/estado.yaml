@@ -1,0 +1,136 @@
+- model: pre_cadastro.estado
+  pk: 12
+  fields:
+    suap_id: 12
+    titulo: ACRE
+- model: pre_cadastro.estado
+  pk: 27
+  fields:
+    suap_id: 27
+    titulo: ALAGOAS
+- model: pre_cadastro.estado
+  pk: 16
+  fields:
+    suap_id: 16
+    titulo: AMAPÁ
+- model: pre_cadastro.estado
+  pk: 13
+  fields:
+    suap_id: 13
+    titulo: AMAZONAS
+- model: pre_cadastro.estado
+  pk: 29
+  fields:
+    suap_id: 29
+    titulo: BAHIA
+- model: pre_cadastro.estado
+  pk: 23
+  fields:
+    suap_id: 23
+    titulo: CEARÁ
+- model: pre_cadastro.estado
+  pk: 53
+  fields:
+    suap_id: 53
+    titulo: DISTRITO FEDERAL
+- model: pre_cadastro.estado
+  pk: 32
+  fields:
+    suap_id: 32
+    titulo: ESPÍRITO SANTO
+- model: pre_cadastro.estado
+  pk: 52
+  fields:
+    suap_id: 52
+    titulo: GOIÁS
+- model: pre_cadastro.estado
+  pk: 21
+  fields:
+    suap_id: 21
+    titulo: MARANHÃO
+- model: pre_cadastro.estado
+  pk: 51
+  fields:
+    suap_id: 51
+    titulo: MATO GROSSO
+- model: pre_cadastro.estado
+  pk: 50
+  fields:
+    suap_id: 50
+    titulo: MATO GROSSO DO SUL
+- model: pre_cadastro.estado
+  pk: 31
+  fields:
+    suap_id: 31
+    titulo: MINAS GERAIS
+- model: pre_cadastro.estado
+  pk: 15
+  fields:
+    suap_id: 15
+    titulo: PÁRA
+- model: pre_cadastro.estado
+  pk: 25
+  fields:
+    suap_id: 25
+    titulo: PARAÍBA
+- model: pre_cadastro.estado
+  pk: 41
+  fields:
+    suap_id: 41
+    titulo: PARANÁ
+- model: pre_cadastro.estado
+  pk: 26
+  fields:
+    suap_id: 26
+    titulo: PERNAMBUCO
+- model: pre_cadastro.estado
+  pk: 22
+  fields:
+    suap_id: 22
+    titulo: PIAUÍ
+- model: pre_cadastro.estado
+  pk: 33
+  fields:
+    suap_id: 33
+    titulo: RIO DE JANEIRO
+- model: pre_cadastro.estado
+  pk: 24
+  fields:
+    suap_id: 24
+    titulo: RIO GRANDE DO NORTE
+- model: pre_cadastro.estado
+  pk: 43
+  fields:
+    suap_id: 43
+    titulo: RIO GRANDE DO SUL
+- model: pre_cadastro.estado
+  pk: 11
+  fields:
+    suap_id: 11
+    titulo: RONDÔNIA
+- model: pre_cadastro.estado
+  pk: 14
+  fields:
+    suap_id: 14
+    titulo: RORAIMA
+- model: pre_cadastro.estado
+  pk: 42
+  fields:
+    suap_id: 42
+    titulo: SANTA CATARINA
+- model: pre_cadastro.estado
+  pk: 35
+  fields:
+    suap_id: 35
+    titulo: SÃO PAULO
+- model: pre_cadastro.estado
+  pk: 28
+  fields:
+    suap_id: 28
+    titulo: SERGIPE
+- model: pre_cadastro.estado
+  pk: 17
+  fields:
+    suap_id: 17
+    titulo: TOCANTINS
+    

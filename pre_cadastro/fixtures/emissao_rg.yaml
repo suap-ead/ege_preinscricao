@@ -1,0 +1,200 @@
+- model: pre_cadastro.emissaorg
+  pk: 40
+  fields:
+    suap_id: 40
+    titulo: Ministérios Militares
+- model: pre_cadastro.emissaorg
+  pk: 44
+  fields:
+    suap_id: 44
+    titulo: Polícia Federal
+- model: pre_cadastro.emissaorg
+  pk: 60
+  fields:
+    suap_id: 60
+    titulo: Carteira de Identidade Classista
+- model: pre_cadastro.emissaorg
+  pk: 61
+  fields:
+    suap_id: 61
+    titulo: Conselho Regional de Administração
+- model: pre_cadastro.emissaorg
+  pk: 62
+  fields:
+    suap_id: 62
+    titulo: Conselho Regional de Assist. Social
+- model: pre_cadastro.emissaorg
+  pk: 63
+  fields:
+    suap_id: 63
+    titulo: Conselho Regional de Biblioteconomia
+- model: pre_cadastro.emissaorg
+  pk: 64
+  fields:
+    suap_id: 64
+    titulo: Conselho Regional de Contabilidade
+- model: pre_cadastro.emissaorg
+  pk: 65
+  fields:
+    suap_id: 65
+    titulo: Conselho Regional de Corretores Imóveis
+- model: pre_cadastro.emissaorg
+  pk: 66
+  fields:
+    suap_id: 66
+    titulo: Conselho Regional de Enfermagem
+- model: pre_cadastro.emissaorg
+  pk: 67
+  fields:
+    suap_id: 67
+    titulo: Conselho Regional de Engenharia, Arquitetura e Agronomia
+- model: pre_cadastro.emissaorg
+  pk: 68
+  fields:
+    suap_id: 68
+    titulo: Conselho Regional de Estatística
+- model: pre_cadastro.emissaorg
+  pk: 69
+  fields:
+    suap_id: 69
+    titulo: Conselho Regional de Farmácia
+- model: pre_cadastro.emissaorg
+  pk: 70
+  fields:
+    suap_id: 70
+    titulo: Conselho Regional de Fisioterapia e Terapia Ocupacional
+- model: pre_cadastro.emissaorg
+  pk: 71
+  fields:
+    suap_id: 71
+    titulo: Conselho Regional de Medicina
+- model: pre_cadastro.emissaorg
+  pk: 72
+  fields:
+    suap_id: 72
+    titulo: Conselho Regional de Medicina Veterinária
+- model: pre_cadastro.emissaorg
+  pk: 73
+  fields:
+    suap_id: 73
+    titulo: Ordem dos Músicos do Brasil
+- model: pre_cadastro.emissaorg
+  pk: 74
+  fields:
+    suap_id: 74
+    titulo: Conselho Regional de Nutrição
+- model: pre_cadastro.emissaorg
+  pk: 75
+  fields:
+    suap_id: 75
+    titulo: Conselho Regional de Odontologia
+- model: pre_cadastro.emissaorg
+  pk: 76
+  fields:
+    suap_id: 76
+    titulo: Conselho Regional de Profissionais de Relações Públicas
+- model: pre_cadastro.emissaorg
+  pk: 77
+  fields:
+    suap_id: 77
+    titulo: Conselho Regional de Psicologia
+- model: pre_cadastro.emissaorg
+  pk: 78
+  fields:
+    suap_id: 78
+    titulo: Conselho Regional de Química
+- model: pre_cadastro.emissaorg
+  pk: 79
+  fields:
+    suap_id: 79
+    titulo: Conselho Regional de Representantes Comerciais
+- model: pre_cadastro.emissaorg
+  pk: 80
+  fields:
+    suap_id: 80
+    titulo: Ordem dos Advogados do Brasil
+- model: pre_cadastro.emissaorg
+  pk: 81
+  fields:
+    suap_id: 81
+    titulo: Outros Emissores
+- model: pre_cadastro.emissaorg
+  pk: 82
+  fields:
+    suap_id: 82
+    titulo: Documento Estrangeiro
+- model: pre_cadastro.emissaorg
+  pk: 1
+  fields:
+    suap_id: 1
+    titulo: Diretoria Geral da Polícia Civil
+- model: pre_cadastro.emissaorg
+  pk: 10
+  fields:
+    suap_id: 10
+    titulo: SSP/ITEP
+- model: pre_cadastro.emissaorg
+  pk: 2
+  fields:
+    suap_id: 2
+    titulo: SSP
+- model: pre_cadastro.emissaorg
+  pk: 3
+  fields:
+    suap_id: 3
+    titulo: ITEP
+- model: pre_cadastro.emissaorg
+  pk: 43
+  fields:
+    suap_id: 43
+    titulo: Ministério da Defesa - Comando da Marinha
+- model: pre_cadastro.emissaorg
+  pk: 42
+  fields:
+    suap_id: 42
+    titulo: Ministério da Defesa - Comando do Exército
+- model: pre_cadastro.emissaorg
+  pk: 41
+  fields:
+    suap_id: 41
+    titulo: Ministério da Defesa - Comando da Aeronáutica
+- model: pre_cadastro.emissaorg
+  pk: 4
+  fields:
+    suap_id: 4
+    titulo: DETRAN
+- model: pre_cadastro.emissaorg
+  pk: 5
+  fields:
+    suap_id: 5
+    titulo: Secretaria da Segurança e da Defesa Social
+- model: pre_cadastro.emissaorg
+  pk: 7
+  fields:
+    suap_id: 7
+    titulo: Instituto de Identificação Tavares Buril
+- model: pre_cadastro.emissaorg
+  pk: 6
+  fields:
+    suap_id: 6
+    titulo: Secretaria de Defesa Social
+- model: pre_cadastro.emissaorg
+  pk: 8
+  fields:
+    suap_id: 8
+    titulo: Polícia Militar
+- model: pre_cadastro.emissaorg
+  pk: 9
+  fields:
+    suap_id: 9
+    titulo: Polícia Militar
+- model: pre_cadastro.emissaorg
+  pk: 12
+  fields:
+    suap_id: 12
+    titulo: Polícia Civil
+- model: pre_cadastro.emissaorg
+  pk: 11
+  fields:
+    suap_id: 11
+    titulo: Corpo de Bombeiros Militar

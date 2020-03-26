@@ -16,6 +16,9 @@ WORKDIR /pre_inscricao
 COPY . /pre_inscricao
 RUN pip install -r requirements.txt
 
+RUN chmod +x database_create.sh
+RUN chmod +x database_update.sh
+
 # RUN python manage.py makemigrations
 # RUN python manage.py migrate
 # RUN python manage.py createsuperuser
