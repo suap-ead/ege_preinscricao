@@ -1,0 +1,10 @@
+- model: dominio_suap.zonaresidencial
+  pk: 1
+  fields:
+    suap_id: 1
+    titulo: Urbana
+- model: dominio_suap.zonaresidencial
+  pk: 2
+  fields:
+    suap_id: 2
+    titulo: Rural

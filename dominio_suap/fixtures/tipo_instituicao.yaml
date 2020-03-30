@@ -1,0 +1,10 @@
+- model: dominio_suap.tipoinstituicao
+  pk: 1
+  fields:
+    suap_id: 1
+    titulo: Pública
+- model: dominio_suap.tipoinstituicao
+  pk: 2
+  fields:
+    suap_id: 2
+    titulo: Privada

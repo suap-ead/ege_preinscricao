@@ -1,0 +1,5 @@
+- model: dominio_suap.superdotacao
+  pk: 1
+  fields:
+    suap_id: 1
+    titulo: Altas habilidades/Superdotação

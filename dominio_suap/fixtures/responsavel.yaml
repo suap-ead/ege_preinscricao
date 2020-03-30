@@ -1,0 +1,25 @@
+- model: dominio_suap.responsavel
+  pk: 1
+  fields:
+    suap_id: 1
+    titulo: Pai/Mãe
+- model: dominio_suap.responsavel
+  pk: 2
+  fields:
+    suap_id: 2
+    titulo: Avô/Avó
+- model: dominio_suap.responsavel
+  pk: 3
+  fields:
+    suap_id: 3
+    titulo: Tio/Tia
+- model: dominio_suap.responsavel
+  pk: 4
+  fields:
+    suap_id: 4
+    titulo: Sobrinho/Sobrinha
+- model: dominio_suap.responsavel
+  pk: 5
+  fields:
+    suap_id: 5
+    titulo: Outro

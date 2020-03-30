@@ -1,0 +1,41 @@
+- model: dominio_suap.tiposanguineo
+  pk: 1
+  fields:
+    suap_id: 1
+    titulo: O
+- model: dominio_suap.tiposanguineo
+  pk: 2
+  fields:
+    suap_id: 2
+    titulo: O+
+- model: dominio_suap.tiposanguineo
+  pk: 3
+  fields:
+    suap_id: 3
+    titulo: A
+- model: dominio_suap.tiposanguineo
+  pk: 4
+  fields:
+    suap_id: 4
+    titulo: A+
+- model: dominio_suap.tiposanguineo
+  pk: 5
+  fields:
+    suap_id: 5
+    titulo: B
+- model: dominio_suap.tiposanguineo
+  pk: 6
+  fields:
+    suap_id: 6
+    titulo: B+
+- model: dominio_suap.tiposanguineo
+  pk: 7
+  fields:
+    suap_id: 7
+    titulo: AB
+- model: dominio_suap.tiposanguineo
+  pk: 8
+  fields:
+    suap_id: 8
+    titulo: AB+
+  

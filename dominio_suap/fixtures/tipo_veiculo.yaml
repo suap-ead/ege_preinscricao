@@ -1,0 +1,60 @@
+- model: dominio_suap.tipoveiculo
+  pk: 1
+  fields:
+    suap_id: 1
+    titulo: Rodoviário - Vans/WV
+- model: dominio_suap.tipoveiculo
+  pk: 2
+  fields:
+    suap_id: 2
+    titulo: Rodoviário - Kombi Micro-Ônibus
+- model: dominio_suap.tipoveiculo
+  pk: 3
+  fields:
+    suap_id: 3
+    titulo: Rodoviário - Ônibus
+- model: dominio_suap.tipoveiculo
+  pk: 4
+  fields:
+    suap_id: 4
+    titulo: Rodoviário - Bicicleta
+- model: dominio_suap.tipoveiculo
+  pk: 5
+  fields:
+    suap_id: 5
+    titulo: Rodoviário - Tração Animal
+- model: dominio_suap.tipoveiculo
+  pk: 6
+  fields:
+    suap_id: 6
+    titulo: Rodoviário - Outro tipo de veículo rodoviário
+- model: dominio_suap.tipoveiculo
+  pk: 7
+  fields:
+    suap_id: 7
+    titulo: Aquaviário - Capacidade de até 5 alunos
+- model: dominio_suap.tipoveiculo
+  pk: 7
+  fields:
+    suap_id: 7
+    titulo: Aquaviário - Capacidade de até 5 alunos
+- model: dominio_suap.tipoveiculo
+  pk: 8
+  fields:
+    suap_id: 8
+    titulo: Aquaviário - Capacidade entre 5 a 15 alunos
+- model: dominio_suap.tipoveiculo
+  pk: 9
+  fields:
+    suap_id: 9
+    titulo: Aquaviário - Capacidade entre 15 e 35 alunos
+- model: dominio_suap.tipoveiculo
+  pk: 10
+  fields:
+    suap_id: 10
+    titulo: Aquaviário - Capacidade acima de 35 alunos
+- model: dominio_suap.tipoveiculo
+  pk: 11
+  fields:
+    suap_id: 11
+    titulo: Ferroviário - Trem/Metrô

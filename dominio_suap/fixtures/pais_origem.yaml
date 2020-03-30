@@ -1,0 +1,1220 @@
+- model: dominio_suap.paisorigem
+  pk: 1
+  fields:
+    suap_id: 1
+    titulo: Afeganistão
+- model: dominio_suap.paisorigem
+  pk: 2
+  fields:
+    suap_id: 2
+    titulo: África do Sul
+- model: dominio_suap.paisorigem
+  pk: 3
+  fields:
+    suap_id: 3
+    titulo: Albânia
+- model: dominio_suap.paisorigem
+  pk: 4
+  fields:
+    suap_id: 4
+    titulo: Alemanha
+- model: dominio_suap.paisorigem
+  pk: 5
+  fields:
+    suap_id: 5
+    titulo: Andorra
+- model: dominio_suap.paisorigem
+  pk: 6
+  fields:
+    suap_id: 6
+    titulo: Angola
+- model: dominio_suap.paisorigem
+  pk: 7
+  fields:
+    suap_id: 7
+    titulo: Anguilla
+- model: dominio_suap.paisorigem
+  pk: 8
+  fields:
+    suap_id: 8
+    titulo: Antárctida
+- model: dominio_suap.paisorigem
+  pk: 9
+  fields:
+    suap_id: 9
+    titulo: Antigua e Barbuda
+- model: dominio_suap.paisorigem
+  pk: 10
+  fields:
+    suap_id: 10
+    titulo: Antilhas Holandesas
+- model: dominio_suap.paisorigem
+  pk: 11
+  fields:
+    suap_id: 11
+    titulo: Arábia Saudita
+- model: dominio_suap.paisorigem
+  pk: 12
+  fields:
+    suap_id: 12
+    titulo: Argélia
+- model: dominio_suap.paisorigem
+  pk: 13
+  fields:
+    suap_id: 13
+    titulo: Argentina
+- model: dominio_suap.paisorigem
+  pk: 14
+  fields:
+    suap_id: 14
+    titulo: Armênia
+- model: dominio_suap.paisorigem
+  pk: 15
+  fields:
+    suap_id: 15
+    titulo: Aruba
+- model: dominio_suap.paisorigem
+  pk: 16
+  fields:
+    suap_id: 16
+    titulo: Austrália
+- model: dominio_suap.paisorigem
+  pk: 17
+  fields:
+    suap_id: 17
+    titulo: Áustria
+- model: dominio_suap.paisorigem
+  pk: 18
+  fields:
+    suap_id: 18
+    titulo: Azerbaijão
+- model: dominio_suap.paisorigem
+  pk: 19
+  fields:
+    suap_id: 19
+    titulo: Bahrein
+- model: dominio_suap.paisorigem
+  pk: 20
+  fields:
+    suap_id: 20
+    titulo: Bangladesh
+- model: dominio_suap.paisorigem
+  pk: 21
+  fields:
+    suap_id: 21
+    titulo: Barbados
+- model: dominio_suap.paisorigem
+  pk: 22
+  fields:
+    suap_id: 22
+    titulo: Bélgica
+- model: dominio_suap.paisorigem
+  pk: 23
+  fields:
+    suap_id: 23
+    titulo: Belize
+- model: dominio_suap.paisorigem
+  pk: 24
+  fields:
+    suap_id: 24
+    titulo: Benin
+- model: dominio_suap.paisorigem
+  pk: 25
+  fields:
+    suap_id: 25
+    titulo: Bermudas
+- model: dominio_suap.paisorigem
+  pk: 26
+  fields:
+    suap_id: 26
+    titulo: Bolívia
+- model: dominio_suap.paisorigem
+  pk: 27
+  fields:
+    suap_id: 27
+    titulo: Bósnia Herzegovina
+- model: dominio_suap.paisorigem
+  pk: 29
+  fields:
+    suap_id: 29
+    titulo: Brunei
+- model: dominio_suap.paisorigem
+  pk: 30
+  fields:
+    suap_id: 30
+    titulo: Bulgária
+- model: dominio_suap.paisorigem
+  pk: 31
+  fields:
+    suap_id: 31
+    titulo: Burkina Faso
+- model: dominio_suap.paisorigem
+  pk: 32
+  fields:
+    suap_id: 32
+    titulo: Burundi
+- model: dominio_suap.paisorigem
+  pk: 33
+  fields:
+    suap_id: 33
+    titulo: Butão
+- model: dominio_suap.paisorigem
+  pk: 34
+  fields:
+    suap_id: 34
+    titulo: Cabo Verde
+- model: dominio_suap.paisorigem
+  pk: 35
+  fields:
+    suap_id: 35
+    titulo: Camarões
+- model: dominio_suap.paisorigem
+  pk: 36
+  fields:
+    suap_id: 36
+    titulo: Cambodja
+- model: dominio_suap.paisorigem
+  pk: 37
+  fields:
+    suap_id: 37
+    titulo: Canadá
+- model: dominio_suap.paisorigem
+  pk: 38
+  fields:
+    suap_id: 38
+    titulo: Catar
+- model: dominio_suap.paisorigem
+  pk: 39
+  fields:
+    suap_id: 39
+    titulo: Cazaquistão
+- model: dominio_suap.paisorigem
+  pk: 40
+  fields:
+    suap_id: 40
+    titulo: Chade
+- model: dominio_suap.paisorigem
+  pk: 41
+  fields:
+    suap_id: 41
+    titulo: Chile
+- model: dominio_suap.paisorigem
+  pk: 42
+  fields:
+    suap_id: 42
+    titulo: China
+- model: dominio_suap.paisorigem
+  pk: 43
+  fields:
+    suap_id: 43
+    titulo: China (Taiwan)
+- model: dominio_suap.paisorigem
+  pk: 44
+  fields:
+    suap_id: 44
+    titulo: Chipre
+- model: dominio_suap.paisorigem
+  pk: 45
+  fields:
+    suap_id: 45
+    titulo: Colômbia
+- model: dominio_suap.paisorigem
+  pk: 46
+  fields:
+    suap_id: 46
+    titulo: Comunidade Das Bahamas
+- model: dominio_suap.paisorigem
+  pk: 47
+  fields:
+    suap_id: 47
+    titulo: Congo
+- model: dominio_suap.paisorigem
+  pk: 48
+  fields:
+    suap_id: 48
+    titulo: Coréia
+- model: dominio_suap.paisorigem
+  pk: 49
+  fields:
+    suap_id: 49
+    titulo: Coreia do Norte
+- model: dominio_suap.paisorigem
+  pk: 50
+  fields:
+    suap_id: 50
+    titulo: Costa Do Marfim
+- model: dominio_suap.paisorigem
+  pk: 51
+  fields:
+    suap_id: 51
+    titulo: Costa Rica
+- model: dominio_suap.paisorigem
+  pk: 52
+  fields:
+    suap_id: 52
+    titulo: Croácia
+- model: dominio_suap.paisorigem
+  pk: 53
+  fields:
+    suap_id: 53
+    titulo: Cuba
+- model: dominio_suap.paisorigem
+  pk: 54
+  fields:
+    suap_id: 54
+    titulo: Dinamarca
+- model: dominio_suap.paisorigem
+  pk: 55
+  fields:
+    suap_id: 55
+    titulo: Djibuti
+- model: dominio_suap.paisorigem
+  pk: 56
+  fields:
+    suap_id: 56
+    titulo: Dominica
+- model: dominio_suap.paisorigem
+  pk: 57
+  fields:
+    suap_id: 57
+    titulo: Emirados Árabes Unidos
+- model: dominio_suap.paisorigem
+  pk: 58
+  fields:
+    suap_id: 58
+    titulo: Equador
+- model: dominio_suap.paisorigem
+  pk: 59
+  fields:
+    suap_id: 59
+    titulo: Eritreia
+- model: dominio_suap.paisorigem
+  pk: 60
+  fields:
+    suap_id: 60
+    titulo: Eslováquia
+- model: dominio_suap.paisorigem
+  pk: 61
+  fields:
+    suap_id: 61
+    titulo: Eslovênia
+- model: dominio_suap.paisorigem
+  pk: 62
+  fields:
+    suap_id: 62
+    titulo: Espanha
+- model: dominio_suap.paisorigem
+  pk: 63
+  fields:
+    suap_id: 63
+    titulo: Estado Da Cidade Do Vaticano
+- model: dominio_suap.paisorigem
+  pk: 64
+  fields:
+    suap_id: 64
+    titulo: Estados Assoc. Das Antilhas
+- model: dominio_suap.paisorigem
+  pk: 65
+  fields:
+    suap_id: 65
+    titulo: Estados Federados da Micronésia
+- model: dominio_suap.paisorigem
+  pk: 66
+  fields:
+    suap_id: 66
+    titulo: Estados Unidos Da América (Eua)
+- model: dominio_suap.paisorigem
+  pk: 67
+  fields:
+    suap_id: 67
+    titulo: Estônia
+- model: dominio_suap.paisorigem
+  pk: 68
+  fields:
+    suap_id: 68
+    titulo: Etiópia
+- model: dominio_suap.paisorigem
+  pk: 69
+  fields:
+    suap_id: 69
+    titulo: Filipinas
+- model: dominio_suap.paisorigem
+  pk: 70
+  fields:
+    suap_id: 70
+    titulo: Finlândia
+- model: dominio_suap.paisorigem
+  pk: 71
+  fields:
+    suap_id: 71
+    titulo: França
+- model: dominio_suap.paisorigem
+  pk: 72
+  fields:
+    suap_id: 72
+    titulo: Gâmbia
+- model: dominio_suap.paisorigem
+  pk: 73
+  fields:
+    suap_id: 73
+    titulo: Gana
+- model: dominio_suap.paisorigem
+  pk: 74
+  fields:
+    suap_id: 74
+    titulo: Geórgia
+- model: dominio_suap.paisorigem
+  pk: 75
+  fields:
+    suap_id: 75
+    titulo: Gibraltar
+- model: dominio_suap.paisorigem
+  pk: 76
+  fields:
+    suap_id: 76
+    titulo: Granada
+- model: dominio_suap.paisorigem
+  pk: 77
+  fields:
+    suap_id: 77
+    titulo: Grécia
+- model: dominio_suap.paisorigem
+  pk: 78
+  fields:
+    suap_id: 78
+    titulo: Groenlândia
+- model: dominio_suap.paisorigem
+  pk: 79
+  fields:
+    suap_id: 79
+    titulo: Guadeloupe
+- model: dominio_suap.paisorigem
+  pk: 80
+  fields:
+    suap_id: 80
+    titulo: Guam
+- model: dominio_suap.paisorigem
+  pk: 81
+  fields:
+    suap_id: 81
+    titulo: Guatemala
+- model: dominio_suap.paisorigem
+  pk: 82
+  fields:
+    suap_id: 82
+    titulo: Guernsey
+- model: dominio_suap.paisorigem
+  pk: 83
+  fields:
+    suap_id: 83
+    titulo: Guiana
+- model: dominio_suap.paisorigem
+  pk: 84
+  fields:
+    suap_id: 84
+    titulo: Guiana Francesa
+- model: dominio_suap.paisorigem
+  pk: 85
+  fields:
+    suap_id: 85
+    titulo: Guiné Bissau
+- model: dominio_suap.paisorigem
+  pk: 86
+  fields:
+    suap_id: 86
+    titulo: Guiné Equatorial
+- model: dominio_suap.paisorigem
+  pk: 87
+  fields:
+    suap_id: 87
+    titulo: Guiné-Conacri
+- model: dominio_suap.paisorigem
+  pk: 88
+  fields:
+    suap_id: 88
+    titulo: Holanda
+- model: dominio_suap.paisorigem
+  pk: 89
+  fields:
+    suap_id: 89
+    titulo: Honduras
+- model: dominio_suap.paisorigem
+  pk: 90
+  fields:
+    suap_id: 90
+    titulo: Hong
+- model: dominio_suap.paisorigem
+  pk: 91
+  fields:
+    suap_id: 91
+    titulo: Hungria
+- model: dominio_suap.paisorigem
+  pk: 92
+  fields:
+    suap_id: 92
+    titulo: Iemen
+- model: dominio_suap.paisorigem
+  pk: 93
+  fields:
+    suap_id: 93
+    titulo: Ilha Bouvet
+- model: dominio_suap.paisorigem
+  pk: 94
+  fields:
+    suap_id: 94
+    titulo: Ilha Christmas
+- model: dominio_suap.paisorigem
+  pk: 95
+  fields:
+    suap_id: 95
+    titulo: Ilha de Man
+- model: dominio_suap.paisorigem
+  pk: 96
+  fields:
+    suap_id: 96
+    titulo: Ilha Heard e Ilhas McDonald
+- model: dominio_suap.paisorigem
+  pk: 97
+  fields:
+    suap_id: 97
+    titulo: Ilha Norfolk
+- model: dominio_suap.paisorigem
+  pk: 98
+  fields:
+    suap_id: 98
+    titulo: Ilhas Aland
+- model: dominio_suap.paisorigem
+  pk: 99
+  fields:
+    suap_id: 99
+    titulo: Ilhas Cayman
+- model: dominio_suap.paisorigem
+  pk: 100
+  fields:
+    suap_id: 100
+    titulo: Ilhas Cocos
+- model: dominio_suap.paisorigem
+  pk: 101
+  fields:
+    suap_id: 101
+    titulo: Ilhas Cook
+- model: dominio_suap.paisorigem
+  pk: 102
+  fields:
+    suap_id: 102
+    titulo: Ilhas Faroe
+- model: dominio_suap.paisorigem
+  pk: 103
+  fields:
+    suap_id: 103
+    titulo: Ilhas Geórgia do Sul e Sandwich do Sul
+- model: dominio_suap.paisorigem
+  pk: 104
+  fields:
+    suap_id: 104
+    titulo: Ilhas Malvinas (Falkland)
+- model: dominio_suap.paisorigem
+  pk: 105
+  fields:
+    suap_id: 105
+    titulo: Ilhas Marshall
+- model: dominio_suap.paisorigem
+  pk: 106
+  fields:
+    suap_id: 106
+    titulo: Ilhas Menores Distantes dos Estados UnidoS
+- model: dominio_suap.paisorigem
+  pk: 107
+  fields:
+    suap_id: 107
+    titulo: Ilhas Salomão
+- model: dominio_suap.paisorigem
+  pk: 108
+  fields:
+    suap_id: 108
+    titulo: Ilhas Virgens Americanas
+- model: dominio_suap.paisorigem
+  pk: 109
+  fields:
+    suap_id: 109
+    titulo: Ilhas Virgens Britânicas
+- model: dominio_suap.paisorigem
+  pk: 110
+  fields:
+    suap_id: 110
+    titulo: Índia
+- model: dominio_suap.paisorigem
+  pk: 111
+  fields:
+    suap_id: 111
+    titulo: Indonésia
+- model: dominio_suap.paisorigem
+  pk: 112
+  fields:
+    suap_id: 112
+    titulo: Inglaterra
+- model: dominio_suap.paisorigem
+  pk: 113
+  fields:
+    suap_id: 113
+    titulo: Irã
+- model: dominio_suap.paisorigem
+  pk: 114
+  fields:
+    suap_id: 114
+    titulo: Iraque
+- model: dominio_suap.paisorigem
+  pk: 115
+  fields:
+    suap_id: 115
+    titulo: Irlanda Do Norte
+- model: dominio_suap.paisorigem
+  pk: 116
+  fields:
+    suap_id: 116
+    titulo: Islândia
+- model: dominio_suap.paisorigem
+  pk: 117
+  fields:
+    suap_id: 117
+    titulo: Israel
+- model: dominio_suap.paisorigem
+  pk: 118
+  fields:
+    suap_id: 118
+    titulo: Itália
+- model: dominio_suap.paisorigem
+  pk: 119
+  fields:
+    suap_id: 119
+    titulo: Jamaica
+- model: dominio_suap.paisorigem
+  pk: 120
+  fields:
+    suap_id: 120
+    titulo: Japão
+- model: dominio_suap.paisorigem
+  pk: 121
+  fields:
+    suap_id: 121
+    titulo: Jersey
+- model: dominio_suap.paisorigem
+  pk: 122
+  fields:
+    suap_id: 122
+    titulo: Jordânia
+- model: dominio_suap.paisorigem
+  pk: 123
+  fields:
+    suap_id: 123
+    titulo: Kiribati
+- model: dominio_suap.paisorigem
+  pk: 124
+  fields:
+    suap_id: 124
+    titulo: Kuwait
+- model: dominio_suap.paisorigem
+  pk: 125
+  fields:
+    suap_id: 125
+    titulo: Laos
+- model: dominio_suap.paisorigem
+  pk: 126
+  fields:
+    suap_id: 126
+    titulo: Lesoto
+- model: dominio_suap.paisorigem
+  pk: 127
+  fields:
+    suap_id: 127
+    titulo: Letônia
+- model: dominio_suap.paisorigem
+  pk: 128
+  fields:
+    suap_id: 128
+    titulo: Líbano
+- model: dominio_suap.paisorigem
+  pk: 129
+  fields:
+    suap_id: 129
+    titulo: Libéria
+- model: dominio_suap.paisorigem
+  pk: 130
+  fields:
+    suap_id: 130
+    titulo: Líbia
+- model: dominio_suap.paisorigem
+  pk: 131
+  fields:
+    suap_id: 131
+    titulo: Liechtenstein
+- model: dominio_suap.paisorigem
+  pk: 132
+  fields:
+    suap_id: 132
+    titulo: Lituânia
+- model: dominio_suap.paisorigem
+  pk: 133
+  fields:
+    suap_id: 133
+    titulo: Luxemburgo
+- model: dominio_suap.paisorigem
+  pk: 134
+  fields:
+    suap_id: 134
+    titulo: Macau
+- model: dominio_suap.paisorigem
+  pk: 135
+  fields:
+    suap_id: 135
+    titulo: Madagascar
+- model: dominio_suap.paisorigem
+  pk: 136
+  fields:
+    suap_id: 136
+    titulo: Malásia
+- model: dominio_suap.paisorigem
+  pk: 137
+  fields:
+    suap_id: 137
+    titulo: Malawi
+- model: dominio_suap.paisorigem
+  pk: 138
+  fields:
+    suap_id: 138
+    titulo: Maldivas
+- model: dominio_suap.paisorigem
+  pk: 139
+  fields:
+    suap_id: 139
+    titulo: Mali
+- model: dominio_suap.paisorigem
+  pk: 140
+  fields:
+    suap_id: 140
+    titulo: Marianas Setentrionais
+- model: dominio_suap.paisorigem
+  pk: 141
+  fields:
+    suap_id: 141
+    titulo: Marrocos
+- model: dominio_suap.paisorigem
+  pk: 142
+  fields:
+    suap_id: 142
+    titulo: Martinica
+- model: dominio_suap.paisorigem
+  pk: 143
+  fields:
+    suap_id: 143
+    titulo: Maurícia
+- model: dominio_suap.paisorigem
+  pk: 144
+  fields:
+    suap_id: 144
+    titulo: Mauritânia
+- model: dominio_suap.paisorigem
+  pk: 145
+  fields:
+    suap_id: 145
+    titulo: Mayotte
+- model: dominio_suap.paisorigem
+  pk: 146
+  fields:
+    suap_id: 146
+    titulo: México
+- model: dominio_suap.paisorigem
+  pk: 147
+  fields:
+    suap_id: 147
+    titulo: Mianmar
+- model: dominio_suap.paisorigem
+  pk: 148
+  fields:
+    suap_id: 148
+    titulo: Moçambique
+- model: dominio_suap.paisorigem
+  pk: 149
+  fields:
+    suap_id: 149
+    titulo: Moldávia
+- model: dominio_suap.paisorigem
+  pk: 150
+  fields:
+    suap_id: 150
+    titulo: Mônaco
+- model: dominio_suap.paisorigem
+  pk: 151
+  fields:
+    suap_id: 151
+    titulo: Mongólia
+- model: dominio_suap.paisorigem
+  pk: 152
+  fields:
+    suap_id: 152
+    titulo: Monte Serrat
+- model: dominio_suap.paisorigem
+  pk: 153
+  fields:
+    suap_id: 153
+    titulo: Montenegro
+- model: dominio_suap.paisorigem
+  pk: 154
+  fields:
+    suap_id: 154
+    titulo: Namíbia
+- model: dominio_suap.paisorigem
+  pk: 155
+  fields:
+    suap_id: 155
+    titulo: Nauru
+- model: dominio_suap.paisorigem
+  pk: 156
+  fields:
+    suap_id: 156
+    titulo: Nepal
+- model: dominio_suap.paisorigem
+  pk: 157
+  fields:
+    suap_id: 157
+    titulo: Nicarágua
+- model: dominio_suap.paisorigem
+  pk: 158
+  fields:
+    suap_id: 158
+    titulo: Nigéria
+- model: dominio_suap.paisorigem
+  pk: 159
+  fields:
+    suap_id: 159
+    titulo: Niue
+- model: dominio_suap.paisorigem
+  pk: 160
+  fields:
+    suap_id: 160
+    titulo: Noruega
+- model: dominio_suap.paisorigem
+  pk: 161
+  fields:
+    suap_id: 161
+    titulo: Nova Caledónia
+- model: dominio_suap.paisorigem
+  pk: 162
+  fields:
+    suap_id: 162
+    titulo: Nova Zelândia
+- model: dominio_suap.paisorigem
+  pk: 163
+  fields:
+    suap_id: 163
+    titulo: Oman
+- model: dominio_suap.paisorigem
+  pk: 164
+  fields:
+    suap_id: 164
+    titulo: Palau
+- model: dominio_suap.paisorigem
+  pk: 165
+  fields:
+    suap_id: 165
+    titulo: Palestina
+- model: dominio_suap.paisorigem
+  pk: 166
+  fields:
+    suap_id: 166
+    titulo: Panamá
+- model: dominio_suap.paisorigem
+  pk: 167
+  fields:
+    suap_id: 167
+    titulo: Papua Nova Guiné
+- model: dominio_suap.paisorigem
+  pk: 168
+  fields:
+    suap_id: 168
+    titulo: Paquistão
+- model: dominio_suap.paisorigem
+  pk: 169
+  fields:
+    suap_id: 169
+    titulo: Paraguai
+- model: dominio_suap.paisorigem
+  pk: 170
+  fields:
+    suap_id: 170
+    titulo: Peru
+- model: dominio_suap.paisorigem
+  pk: 171
+  fields:
+    suap_id: 171
+    titulo: Pitcairn
+- model: dominio_suap.paisorigem
+  pk: 172
+  fields:
+    suap_id: 172
+    titulo: Polinésia Francesa
+- model: dominio_suap.paisorigem
+  pk: 173
+  fields:
+    suap_id: 173
+    titulo: Polônia
+- model: dominio_suap.paisorigem
+  pk: 174
+  fields:
+    suap_id: 174
+    titulo: Porto Rico
+- model: dominio_suap.paisorigem
+  pk: 175
+  fields:
+    suap_id: 175
+    titulo: Portugal
+- model: dominio_suap.paisorigem
+  pk: 176
+  fields:
+    suap_id: 176
+    titulo: Quênia
+- model: dominio_suap.paisorigem
+  pk: 177
+  fields:
+    suap_id: 177
+    titulo: Quirguistão
+- model: dominio_suap.paisorigem
+  pk: 178
+  fields:
+    suap_id: 178
+    titulo: República Árabe Do Egito
+- model: dominio_suap.paisorigem
+  pk: 179
+  fields:
+    suap_id: 179
+    titulo: República Centro-africana
+- model: dominio_suap.paisorigem
+  pk: 180
+  fields:
+    suap_id: 180
+    titulo: República Da Bielorrússia
+- model: dominio_suap.paisorigem
+  pk: 181
+  fields:
+    suap_id: 181
+    titulo: República Da Macedônia
+- model: dominio_suap.paisorigem
+  pk: 182
+  fields:
+    suap_id: 182
+    titulo: República De El Salvador
+- model: dominio_suap.paisorigem
+  pk: 183
+  fields:
+    suap_id: 183
+    titulo: República De Fiji
+- model: dominio_suap.paisorigem
+  pk: 184
+  fields:
+    suap_id: 184
+    titulo: República De Malta
+- model: dominio_suap.paisorigem
+  pk: 185
+  fields:
+    suap_id: 185
+    titulo: República Democrática do Congo (antigo Zaire)
+- model: dominio_suap.paisorigem
+  pk: 186
+  fields:
+    suap_id: 186
+    titulo: República Do Gabão
+- model: dominio_suap.paisorigem
+  pk: 187
+  fields:
+    suap_id: 187
+    titulo: República Do Haiti
+- model: dominio_suap.paisorigem
+  pk: 188
+  fields:
+    suap_id: 188
+    titulo: República Do Níger
+- model: dominio_suap.paisorigem
+  pk: 189
+  fields:
+    suap_id: 189
+    titulo: República Dominicana
+- model: dominio_suap.paisorigem
+  pk: 190
+  fields:
+    suap_id: 190
+    titulo: República Tcheca
+- model: dominio_suap.paisorigem
+  pk: 191
+  fields:
+    suap_id: 191
+    titulo: Reunião
+- model: dominio_suap.paisorigem
+  pk: 192
+  fields:
+    suap_id: 192
+    titulo: Romênia
+- model: dominio_suap.paisorigem
+  pk: 193
+  fields:
+    suap_id: 193
+    titulo: Ruanda
+- model: dominio_suap.paisorigem
+  pk: 194
+  fields:
+    suap_id: 194
+    titulo: Rússia
+- model: dominio_suap.paisorigem
+  pk: 195
+  fields:
+    suap_id: 195
+    titulo: Saara Ocidental
+- model: dominio_suap.paisorigem
+  pk: 196
+  fields:
+    suap_id: 196
+    titulo: Saint Martin
+- model: dominio_suap.paisorigem
+  pk: 197
+  fields:
+    suap_id: 197
+    titulo: Saint Pierre et Miquelon
+- model: dominio_suap.paisorigem
+  pk: 198
+  fields:
+    suap_id: 198
+    titulo: Samoa Americana
+- model: dominio_suap.paisorigem
+  pk: 199
+  fields:
+    suap_id: 199
+    titulo: Samoa Ocidental
+- model: dominio_suap.paisorigem
+  pk: 200
+  fields:
+    suap_id: 200
+    titulo: San Marino
+- model: dominio_suap.paisorigem
+  pk: 201
+  fields:
+    suap_id: 201
+    titulo: Santa Helena
+- model: dominio_suap.paisorigem
+  pk: 202
+  fields:
+    suap_id: 202
+    titulo: Santa Lúcia
+- model: dominio_suap.paisorigem
+  pk: 203
+  fields:
+    suap_id: 203
+    titulo: São Bartolomeu
+- model: dominio_suap.paisorigem
+  pk: 204
+  fields:
+    suap_id: 204
+    titulo: São Cristóvão e Névis (Saint Kitts e Nevis)
+- model: dominio_suap.paisorigem
+  pk: 205
+  fields:
+    suap_id: 205
+    titulo: São Tomé E Príncipe
+- model: dominio_suap.paisorigem
+  pk: 206
+  fields:
+    suap_id: 206
+    titulo: São Vicente
+- model: dominio_suap.paisorigem
+  pk: 207
+  fields:
+    suap_id: 207
+    titulo: Senegal
+- model: dominio_suap.paisorigem
+  pk: 208
+  fields:
+    suap_id: 208
+    titulo: Serra Leoa
+- model: dominio_suap.paisorigem
+  pk: 209
+  fields:
+    suap_id: 209
+    titulo: Sérvia
+- model: dominio_suap.paisorigem
+  pk: 210
+  fields:
+    suap_id: 210
+    titulo: Seychelles
+- model: dominio_suap.paisorigem
+  pk: 211
+  fields:
+    suap_id: 211
+    titulo: Singapura
+- model: dominio_suap.paisorigem
+  pk: 212
+  fields:
+    suap_id: 212
+    titulo: Síria
+- model: dominio_suap.paisorigem
+  pk: 213
+  fields:
+    suap_id: 213
+    titulo: Somália, República
+- model: dominio_suap.paisorigem
+  pk: 214
+  fields:
+    suap_id: 214
+    titulo: Sri
+- model: dominio_suap.paisorigem
+  pk: 215
+  fields:
+    suap_id: 215
+    titulo: Suazilândia
+- model: dominio_suap.paisorigem
+  pk: 216
+  fields:
+    suap_id: 216
+    titulo: Sudão
+- model: dominio_suap.paisorigem
+  pk: 217
+  fields:
+    suap_id: 217
+    titulo: Suécia
+- model: dominio_suap.paisorigem
+  pk: 218
+  fields:
+    suap_id: 218
+    titulo: Suíça
+- model: dominio_suap.paisorigem
+  pk: 219
+  fields:
+    suap_id: 219
+    titulo: Suriname
+- model: dominio_suap.paisorigem
+  pk: 220
+  fields:
+    suap_id: 220
+    titulo: Svalbard e Jan Mayen
+- model: dominio_suap.paisorigem
+  pk: 221
+  fields:
+    suap_id: 221
+    titulo: Tadjiquistão
+- model: dominio_suap.paisorigem
+  pk: 222
+  fields:
+    suap_id: 222
+    titulo: Tailândia
+- model: dominio_suap.paisorigem
+  pk: 223
+  fields:
+    suap_id: 223
+    titulo: Tanzânia
+- model: dominio_suap.paisorigem
+  pk: 224
+  fields:
+    suap_id: 224
+    titulo: Terras Austrais e Antárticas Francesas (TAAF)
+- model: dominio_suap.paisorigem
+  pk: 225
+  fields:
+    suap_id: 225
+    titulo: Território Britânico do Oceano Índico
+- model: dominio_suap.paisorigem
+  pk: 226
+  fields:
+    suap_id: 226
+    titulo: Timor
+- model: dominio_suap.paisorigem
+  pk: 227
+  fields:
+    suap_id: 227
+    titulo: Togo
+- model: dominio_suap.paisorigem
+  pk: 228
+  fields:
+    suap_id: 228
+    titulo: Tonga
+- model: dominio_suap.paisorigem
+  pk: 229
+  fields:
+    suap_id: 229
+    titulo: Toquelau
+- model: dominio_suap.paisorigem
+  pk: 230
+  fields:
+    suap_id: 230
+    titulo: Trinidad E Tobago
+- model: dominio_suap.paisorigem
+  pk: 231
+  fields:
+    suap_id: 231
+    titulo: Tunísia
+- model: dominio_suap.paisorigem
+  pk: 232
+  fields:
+    suap_id: 232
+    titulo: Turcomenistão
+- model: dominio_suap.paisorigem
+  pk: 233
+  fields:
+    suap_id: 233
+    titulo: Turks e Caicos
+- model: dominio_suap.paisorigem
+  pk: 234
+  fields:
+    suap_id: 234
+    titulo: Turquia
+- model: dominio_suap.paisorigem
+  pk: 235
+  fields:
+    suap_id: 235
+    titulo: Tuvalu
+- model: dominio_suap.paisorigem
+  pk: 236
+  fields:
+    suap_id: 236
+    titulo: Ucrânia
+- model: dominio_suap.paisorigem
+  pk: 237
+  fields:
+    suap_id: 237
+    titulo: Uganda
+- model: dominio_suap.paisorigem
+  pk: 238
+  fields:
+    suap_id: 238
+    titulo: Uruguai
+- model: dominio_suap.paisorigem
+  pk: 239
+  fields:
+    suap_id: 239
+    titulo: Uzbequistão
+- model: dominio_suap.paisorigem
+  pk: 240
+  fields:
+    suap_id: 240
+    titulo: Vanuatu
+- model: dominio_suap.paisorigem
+  pk: 241
+  fields:
+    suap_id: 241
+    titulo: Venezuela
+- model: dominio_suap.paisorigem
+  pk: 242
+  fields:
+    suap_id: 242
+    titulo: Vietnã Do Sul
+- model: dominio_suap.paisorigem
+  pk: 243
+  fields:
+    suap_id: 243
+    titulo: Wallis e Futuna
+- model: dominio_suap.paisorigem
+  pk: 244
+  fields:
+    suap_id: 244
+    titulo: Zâmbia
+- model: dominio_suap.paisorigem
+  pk: 245
+  fields:
+    suap_id: 245
+    titulo: Zimbabwe

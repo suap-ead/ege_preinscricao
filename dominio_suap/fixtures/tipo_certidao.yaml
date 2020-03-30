@@ -1,0 +1,10 @@
+- model: dominio_suap.tipocertidao
+  pk: 1
+  fields:
+    suap_id: 1
+    titulo: Nascimento
+- model: dominio_suap.tipocertidao
+  pk: 2
+  fields:
+    suap_id: 2
+    titulo: Casamento

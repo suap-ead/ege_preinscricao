@@ -1,0 +1,15 @@
+- model: dominio_suap.nacionalidade
+  pk: 1
+  fields:
+    suap_id: 1
+    titulo: Brasileira
+- model: dominio_suap.nacionalidade
+  pk: 2
+  fields:
+    suap_id: 2
+    titulo: Brasileira - Nascido no exterior ou naturalizado
+- model: dominio_suap.nacionalidade
+  pk: 3
+  fields:
+    suap_id: 3
+    titulo: Estrangeira

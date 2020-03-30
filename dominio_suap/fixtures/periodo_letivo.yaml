@@ -1,0 +1,10 @@
+- model: dominio_suap.periodoletivo
+  pk: 1
+  fields:
+    suap_id: 1
+    titulo: 1
+- model: dominio_suap.periodoletivo
+  pk: 2
+  fields:
+    suap_id: 2
+    titulo: 2

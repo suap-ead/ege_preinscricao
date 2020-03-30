@@ -1,0 +1,50 @@
+- model: dominio_suap.convenio
+  pk: 12
+  fields:
+    suap_id: 12
+    titulo: Escola de Governo - RN
+- model: dominio_suap.convenio
+  pk: 5
+  fields:
+    suap_id: 5
+    titulo: ETEC
+- model: dominio_suap.convenio
+  pk: 11
+  fields:
+    suap_id: 11
+    titulo: INCRA
+- model: dominio_suap.convenio
+  pk: 2
+  fields:
+    suap_id: 2
+    titulo: Mulheres Mil
+- model: dominio_suap.convenio
+  pk: 3
+  fields:
+    suap_id: 3
+    titulo: Mulheres Mil / PRONATEC
+- model: dominio_suap.convenio
+  pk: 10
+  fields:
+    suap_id: 10
+    titulo: Não Possui Convênio
+- model: dominio_suap.convenio
+  pk: 6
+  fields:
+    suap_id: 6
+    titulo: PARFOR
+- model: dominio_suap.convenio
+  pk: 1
+  fields:
+    suap_id: 1
+    titulo: PRONATEC
+- model: dominio_suap.convenio
+  pk: 7
+  fields:
+    suap_id: 7
+    titulo: SETEC/MEC
+- model: dominio_suap.convenio
+  pk: 4
+  fields:
+    suap_id: 4
+    titulo: UAB

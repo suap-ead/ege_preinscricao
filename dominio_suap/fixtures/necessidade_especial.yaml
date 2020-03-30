@@ -1,0 +1,40 @@
+- model: dominio_suap.necessidadeespecial
+  pk: 1
+  fields:
+    suap_id: 1
+    titulo: Baixa Visão
+- model: dominio_suap.necessidadeespecial
+  pk: 11
+  fields:
+    suap_id: 11
+    titulo: Cegueira
+- model: dominio_suap.necessidadeespecial
+  pk: 2
+  fields:
+    suap_id: 2
+    titulo: Deficiência Auditiva
+- model: dominio_suap.necessidadeespecial
+  pk: 3
+  fields:
+    suap_id: 3
+    titulo: Deficiência Física
+- model: dominio_suap.necessidadeespecial
+  pk: 4
+  fields:
+    suap_id: 4
+    titulo: Deficiência Intelectual
+- model: dominio_suap.necessidadeespecial
+  pk: 5
+  fields:
+    suap_id: 5
+    titulo: Deficiência Múltipla
+- model: dominio_suap.necessidadeespecial
+  pk: 22
+  fields:
+    suap_id: 22
+    titulo: Surdez
+- model: dominio_suap.necessidadeespecial
+  pk: 22
+  fields:
+    suap_id: 22
+    titulo: Surdocegueira

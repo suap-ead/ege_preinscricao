@@ -1,0 +1,10 @@
+- model: dominio_suap.sexo
+  pk: 1
+  fields:
+    suap_id: 1
+    titulo: Masculino
+- model: dominio_suap.sexo
+  pk: 2
+  fields:
+    suap_id: 2
+    titulo: Feminino

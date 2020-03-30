@@ -1,0 +1,10 @@
+- model: dominio_suap.tipotransporte
+  pk: 1
+  fields:
+    suap_id: 1
+    titulo: Municipal
+- model: dominio_suap.tipotransporte
+  pk: 2
+  fields:
+    suap_id: 2
+    titulo: Estadual

@@ -1,0 +1,200 @@
+- model: dominio_suap.orgaoemissorrg
+  pk: 40
+  fields:
+    suap_id: 40
+    titulo: Ministérios Militares
+- model: dominio_suap.orgaoemissorrg
+  pk: 44
+  fields:
+    suap_id: 44
+    titulo: Polícia Federal
+- model: dominio_suap.orgaoemissorrg
+  pk: 60
+  fields:
+    suap_id: 60
+    titulo: Carteira de Identidade Classista
+- model: dominio_suap.orgaoemissorrg
+  pk: 61
+  fields:
+    suap_id: 61
+    titulo: Conselho Regional de Administração
+- model: dominio_suap.orgaoemissorrg
+  pk: 62
+  fields:
+    suap_id: 62
+    titulo: Conselho Regional de Assist. Social
+- model: dominio_suap.orgaoemissorrg
+  pk: 63
+  fields:
+    suap_id: 63
+    titulo: Conselho Regional de Biblioteconomia
+- model: dominio_suap.orgaoemissorrg
+  pk: 64
+  fields:
+    suap_id: 64
+    titulo: Conselho Regional de Contabilidade
+- model: dominio_suap.orgaoemissorrg
+  pk: 65
+  fields:
+    suap_id: 65
+    titulo: Conselho Regional de Corretores Imóveis
+- model: dominio_suap.orgaoemissorrg
+  pk: 66
+  fields:
+    suap_id: 66
+    titulo: Conselho Regional de Enfermagem
+- model: dominio_suap.orgaoemissorrg
+  pk: 67
+  fields:
+    suap_id: 67
+    titulo: Conselho Regional de Engenharia, Arquitetura e Agronomia
+- model: dominio_suap.orgaoemissorrg
+  pk: 68
+  fields:
+    suap_id: 68
+    titulo: Conselho Regional de Estatística
+- model: dominio_suap.orgaoemissorrg
+  pk: 69
+  fields:
+    suap_id: 69
+    titulo: Conselho Regional de Farmácia
+- model: dominio_suap.orgaoemissorrg
+  pk: 70
+  fields:
+    suap_id: 70
+    titulo: Conselho Regional de Fisioterapia e Terapia Ocupacional
+- model: dominio_suap.orgaoemissorrg
+  pk: 71
+  fields:
+    suap_id: 71
+    titulo: Conselho Regional de Medicina
+- model: dominio_suap.orgaoemissorrg
+  pk: 72
+  fields:
+    suap_id: 72
+    titulo: Conselho Regional de Medicina Veterinária
+- model: dominio_suap.orgaoemissorrg
+  pk: 73
+  fields:
+    suap_id: 73
+    titulo: Ordem dos Músicos do Brasil
+- model: dominio_suap.orgaoemissorrg
+  pk: 74
+  fields:
+    suap_id: 74
+    titulo: Conselho Regional de Nutrição
+- model: dominio_suap.orgaoemissorrg
+  pk: 75
+  fields:
+    suap_id: 75
+    titulo: Conselho Regional de Odontologia
+- model: dominio_suap.orgaoemissorrg
+  pk: 76
+  fields:
+    suap_id: 76
+    titulo: Conselho Regional de Profissionais de Relações Públicas
+- model: dominio_suap.orgaoemissorrg
+  pk: 77
+  fields:
+    suap_id: 77
+    titulo: Conselho Regional de Psicologia
+- model: dominio_suap.orgaoemissorrg
+  pk: 78
+  fields:
+    suap_id: 78
+    titulo: Conselho Regional de Química
+- model: dominio_suap.orgaoemissorrg
+  pk: 79
+  fields:
+    suap_id: 79
+    titulo: Conselho Regional de Representantes Comerciais
+- model: dominio_suap.orgaoemissorrg
+  pk: 80
+  fields:
+    suap_id: 80
+    titulo: Ordem dos Advogados do Brasil
+- model: dominio_suap.orgaoemissorrg
+  pk: 81
+  fields:
+    suap_id: 81
+    titulo: Outros Emissores
+- model: dominio_suap.orgaoemissorrg
+  pk: 82
+  fields:
+    suap_id: 82
+    titulo: Documento Estrangeiro
+- model: dominio_suap.orgaoemissorrg
+  pk: 1
+  fields:
+    suap_id: 1
+    titulo: Diretoria Geral da Polícia Civil
+- model: dominio_suap.orgaoemissorrg
+  pk: 10
+  fields:
+    suap_id: 10
+    titulo: SSP/ITEP
+- model: dominio_suap.orgaoemissorrg
+  pk: 2
+  fields:
+    suap_id: 2
+    titulo: SSP
+- model: dominio_suap.orgaoemissorrg
+  pk: 3
+  fields:
+    suap_id: 3
+    titulo: ITEP
+- model: dominio_suap.orgaoemissorrg
+  pk: 43
+  fields:
+    suap_id: 43
+    titulo: Ministério da Defesa - Comando da Marinha
+- model: dominio_suap.orgaoemissorrg
+  pk: 42
+  fields:
+    suap_id: 42
+    titulo: Ministério da Defesa - Comando do Exército
+- model: dominio_suap.orgaoemissorrg
+  pk: 41
+  fields:
+    suap_id: 41
+    titulo: Ministério da Defesa - Comando da Aeronáutica
+- model: dominio_suap.orgaoemissorrg
+  pk: 4
+  fields:
+    suap_id: 4
+    titulo: DETRAN
+- model: dominio_suap.orgaoemissorrg
+  pk: 5
+  fields:
+    suap_id: 5
+    titulo: Secretaria da Segurança e da Defesa Social
+- model: dominio_suap.orgaoemissorrg
+  pk: 7
+  fields:
+    suap_id: 7
+    titulo: Instituto de Identificação Tavares Buril
+- model: dominio_suap.orgaoemissorrg
+  pk: 6
+  fields:
+    suap_id: 6
+    titulo: Secretaria de Defesa Social
+- model: dominio_suap.orgaoemissorrg
+  pk: 8
+  fields:
+    suap_id: 8
+    titulo: Polícia Militar
+- model: dominio_suap.orgaoemissorrg
+  pk: 9
+  fields:
+    suap_id: 9
+    titulo: Polícia Militar
+- model: dominio_suap.orgaoemissorrg
+  pk: 12
+  fields:
+    suap_id: 12
+    titulo: Polícia Civil
+- model: dominio_suap.orgaoemissorrg
+  pk: 11
+  fields:
+    suap_id: 11
+    titulo: Corpo de Bombeiros Militar
