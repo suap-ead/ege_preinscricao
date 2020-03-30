@@ -13,7 +13,7 @@ urlpatterns = [
             [
                 path('admin/', admin.site.urls),
                 path('', include('django.contrib.auth.urls')),
-                # path('', include('solicitacao.urls', namespace='solicitacao')),
+                path('', include('solicitacao.urls', namespace='solicitacao')),
                 path('api', schemas.get_schema_view(
                     title="ID - Identidade do usuários",
                     description="API for all things …",

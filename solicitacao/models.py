@@ -1,95 +1,170 @@
-from django.db.models import Model, CharField, DateField, BooleanField, NullBooleanField
+from django.db.models import Model, TextChoices
+from django.db.models import CharField, DateField, BooleanField, NullBooleanField, DateTimeField
+from django.db.models import URLField, EmailField, FileField
+# from django.db.models import ImageField
+from django.contrib.auth.models import User
 from django.db.models import ForeignKey, CASCADE
 from dominio_suap.models import *
+from .fields import nullable, nullable_phone, FK, NullFK
 
 
-nullable={'null':True, 'blank':True}
+class Documentacao(Model):
+    identificacao = CharField("Identificação", max_length=255)
+
+    class Meta:
+        verbose_name = "Documentação"
+        verbose_name_plural = "Documentações"
+
+    def __str__(self):
+        return self.identificacao
 
 
-class FK(ForeignKey):
+class Edital(Model):
+    identificacao = CharField("Identificação", max_length=255)
+    titulo = CharField("Título", max_length=255)
+    pagina = URLField("Página")
+    tem_ppi = BooleanField("Tem lista PPI?")
+    tem_pce = BooleanField("Tem lista PCD?")
 
-    def __init__(self, verbose_name, to, on_delete=CASCADE, related_name=None, related_query_name=None,
-                 limit_choices_to=None, parent_link=False, to_field=None,
-                 db_constraint=True, **kwargs):
-        super().__init__(
-            to, 
-            on_delete=on_delete,
-            related_name=related_name,
-            related_query_name=related_query_name,
-            limit_choices_to=limit_choices_to,
-            parent_link=parent_link,
-            to_field=to_field,
-            db_constraint=db_constraint,
-            verbose_name=verbose_name,
-            **kwargs)
+    class Meta:
+        verbose_name = "Edital"
+        verbose_name_plural = "Editais"
 
-class NullFK(ForeignKey):
-
-    def __init__(self, verbose_name, to, on_delete=CASCADE, related_name=None, related_query_name=None,
-                 limit_choices_to=None, parent_link=False, to_field=None,
-                 db_constraint=True, **kwargs):
-        if 'null' in kwargs:
-            kwargs.pop('null')
-        if 'blank' in kwargs:
-            kwargs.pop('blank')
-        super().__init__(
-            to, 
-            on_delete=on_delete,
-            related_name=related_name,
-            related_query_name=related_query_name,
-            limit_choices_to=limit_choices_to,
-            parent_link=parent_link,
-            to_field=to_field,
-            db_constraint=db_constraint,
-            verbose_name=verbose_name,
-            null=True,
-            blank=True,
-            **kwargs)
+    def __str__(self):
+        return self.identificacao
 
 
-class Solicitacao(Model):
+class DocumentoExigido(Model):
+    edital = FK("Edital", Edital)
+    documentacao = FK("Documentação", Documentacao)
+    lista_geral = BooleanField("Exigir na lista geral?")
+    lista_ppi = BooleanField("Exigir na lista PPI?")
+    lista_pce = BooleanField("Exigir na lista PCD?")
 
-    # Dados da solicitação de matrícula
+    class Meta:
+        verbose_name = "Documento exigido"
+        verbose_name_plural = "Documentos exigidos"
+
+    def __str__(self):
+        tem = []
+
+        if self.lista_geral:
+            tem.append("Geral")
+
+        if self.lista_ppi:
+            tem.append("PPI")
+
+        if self.lista_pce:
+            tem.append("PDE")
+
+        tem_str = ""
+        if len(tem):
+            tem_str = " (%s)" % (tem, )
+
+        return "%s - %s%s" % (self.edital, self.documentacao, tem_str)
+
+
+class TipoChamada(TextChoices):
+    INICIAL = 'I', 'Inicial'
+    REMANESCENTE = 'R', 'Remanescente'
+
+
+class Chamada(Model):
+    edital = FK("Edital", Edital)
+    chamada = CharField("Chamada", max_length=255)
+    tipo_chamada = CharField("Tipo", max_length=1, choices=TipoChamada.choices, default=TipoChamada.INICIAL)
+    inicio_solicitacoes = DateTimeField("Início das solicitações")
+    fim_solicitacoes = DateTimeField("Fim das solicitações")
+
+    class Meta:
+        verbose_name = "Chamada"
+        verbose_name_plural = "Chamadas"
+
+    def __str__(self):
+        return "%s - %s" % (self.edital, self.chamada)
+
+
+class ListaSelecao(TextChoices):
+    GERAL = 'GERAL', 'Geral'
+    PPI = 'PPI', 'Preto/Pardo/Indígena'
+    PCD = 'PCD', 'Pessoa com deficiência'
+
+
+class Selecionado(Model):
+
+    # Dados do edital
+    chamada = FK("Edital", Chamada)
+
+    # Dados da oferta
+    matriz_curso = FK("Matriz/Curso", MatrizCurso, )
     ano_letivo = FK("Ano letivo", AnoLetivo)
     periodo_letivo = FK("Período letivo", PeriodoLetivo)
     turno = FK("Turno", Turno)
     forma_ingresso = FK("Forma de ingresso", FormaIngresso)
     polo = NullFK("Polo EAD", Polo)
+
+    # Dados do selecionado
+    lista = CharField("Lista de seleção", max_length=250, choices=ListaSelecao.choices)
+    nacionalidade = FK("Nacionalidade", Nacionalidade)
+    cpf = CharField("CPF", max_length=11, **nullable)
+    passaporte = CharField("Passaporte", max_length=250, **nullable)
+    nome = CharField("Nome", max_length=250)
+    nome_social = CharField("Nome social", max_length=250, help_text="Só preencher este campo a pedido do aluno e de acordo com a legislação vigente.", **nullable)
+    email = EmailField("E-Mail")
+    inscricao = CharField("Inscrição", max_length=250, **nullable)
+
+    class Meta:
+        verbose_name = "Documentação"
+        verbose_name_plural = "Documentações"
+
+    def __str__(self):
+        ident = ""
+        if self.cpf:
+            ident = self.cpf
+        else:
+            ident = self.passaporte
+
+        return "%s - %s" % (ident, self.edital)
+
+
+class Solicitacao(Model):
+
+    # Dados da solicitação de matrícula
+    selecionado = FK("Selecionado", Selecionado)
     cota_sistec = NullFK("Cota SISTEC", CotaSISTEC)
     cota_mec = NullFK("Cota MEC", CotaMEC, )
     convenio = NullFK("Convênio", Convenio, )
     data_conclusao_intercambio = DateField("Conclusão do intercâmbio", **nullable)
-    matriz_curso = FK("Matriz/Curso", MatrizCurso, )
     linha_pesquisa = FK("Linha de pesquisa", LinhaPesquisa, help_text='Obrigatório para alunos de Mestrado e Doutourado. Caso não saiba, escreva "A definir".')
     aluno_especial = NullBooleanField("Aluno especial?")
     # numero_pasta = CharField("Número da pasta", max_length=250, null=True, blank=False)
 
     # Identificação
     nacionalidade = FK("Nacionalidade", Nacionalidade)
-    cpf = CharField("CPF", max_length=11, null=True, blank=True)
-    passaporte = CharField("Passaporte", max_length=250, null=True, blank=True)
+    cpf = CharField("CPF", max_length=11, **nullable)
+    passaporte = CharField("Passaporte", max_length=250, **nullable)
 
     # Dados pessoais 
     nome = CharField("Nome", max_length=250)
-    nome_social = CharField("Nome social", max_length=250, null=True, blank=False, help_text="Só preencher este campo a pedido do aluno e de acordo com a legislação vigente.")
+    nome_social = CharField("Nome social", max_length=250, help_text="Só preencher este campo a pedido do aluno e de acordo com a legislação vigente.", **nullable)
     sexo = FK("Sexo", Sexo)
     data_nascimento = DateField("Data de nascimento")
     estado_civil = FK("Estado civil", EstadoCivil, related_name="solicitacoes")
 
     # Dados familiares
-    nome_pai = CharField("Nome do pai", max_length=250, null=True, blank=True)
+    nome_pai = CharField("Nome do pai", max_length=250, **nullable)
     estado_civil_pai = NullFK("Estado civil do pai", EstadoCivil, related_name="pais")
     pai_falecido = NullBooleanField("Pai é falecido?")
     nome_mae = CharField("Nome da mãe", max_length=250)
     estado_civil_mae = FK("Estado civil da mãe", EstadoCivil, related_name="maes")
     mae_falecida = BooleanField("Mãe é falecida?")
-    responsavel = CharField("Nome do responsável", max_length=250, null=True, blank=True, help_text="Obrigatório para menores de idade.")
-    email_responsavel = CharField("Email do responsável", max_length=250, null=True, blank=True)
+    responsavel = CharField("Nome do responsável", max_length=250, help_text="Obrigatório para menores de idade.", **nullable)
+    email_responsavel = EmailField("Email do responsável", max_length=250, **nullable)
     parentesco_responsavel = FK("Parentesco do responsável", Responsavel)
-    cpf_responsavel = CharField("CPF do responsável", max_length=11, null=True, blank=True)
+    cpf_responsavel = CharField("CPF do responsável", max_length=11, **nullable)
 
     # Endereço
-    cep = CharField("CEP", max_length=9, null=True, blank=True, help_text='Formato: "99999-999"')
+    cep = CharField("CEP", max_length=9, help_text='Formato: "99999-999"', **nullable)
     logradouro = CharField("Logradouro", max_length=250)
     numero = CharField("Número", max_length=250)
     complemento = CharField("Complemento", max_length=250)
@@ -99,11 +174,11 @@ class Solicitacao(Model):
     tipo_zona_residencial = FK("Zona residencial", ZonaResidencial)
 
     # Informações para Contato
-    telefone_principal = CharField("Telefone principal", max_length=15, null=True, blank=True, help_text='(XX) XXXX-XXXX')
-    telefone_secundario = CharField("Telefone secundário", max_length=15, null=True, blank=True, help_text='(XX) XXXX-XXXX')
-    telefone_adicional_1 = CharField("Telefone principal do responsável", max_length=15, null=True, blank=True, help_text='(XX) XXXX-XXXX')
-    telefone_adicional_2 = CharField("Telefone secundário do responsável", max_length=15, null=True, blank=True, help_text='(XX) XXXX-XXXX')
-    email_pessoal = CharField("E-mail pessoal", max_length=255, null=True, blank=True, help_text='É por este email que você configurará sua senha e acompanhará suas aulas. Informe um que costume acessar.')
+    telefone_principal = CharField("Telefone principal", **nullable_phone)
+    telefone_secundario = CharField("Telefone secundário", **nullable_phone)
+    telefone_adicional_1 = CharField("Telefone principal do responsável", **nullable_phone)
+    telefone_adicional_2 = CharField("Telefone secundário do responsável", **nullable_phone)
+    email_pessoal = EmailField("E-mail pessoal", help_text='É por este email que você configurará sua senha e acompanhará suas aulas. Informe um que costume acessar.', **nullable)
 
     # Deficiências, transtornos e superdotação
     aluno_pne = BooleanField("Portador de necessidades especiais")
@@ -129,41 +204,63 @@ class Solicitacao(Model):
     ano_conclusao_estudo_anterior = FK("Ano de conclusão", AnoConclusao)
 
     # RG
-    numero_rg = CharField("Número do RG", max_length=255, null=True, blank=True)
+    numero_rg = CharField("Número do RG", max_length=255, **nullable)
     uf_emissao_rg = NullFK("Estado emissor", Estado, related_name="rgs")
     orgao_emissao_rg = NullFK("Orgão emissor", OrgaoEmissorRG)
-    data_emissao_rg = DateField("Data de emissão", null=True, blank=True)
+    data_emissao_rg = DateField("Data de emissão", **nullable)
 
     # Título de eleitor
-    numero_titulo_eleitor = CharField("Título de eleitor", max_length=255, null=True, blank=True)
-    zona_titulo_eleitor = CharField("Zona", max_length=255, null=True, blank=True)
-    secao = CharField("Seção", max_length=255, null=True, blank=True)
-    data_emissao_titulo_eleitor = DateField("Data de emissão", null=True, blank=True)
+    numero_titulo_eleitor = CharField("Título de eleitor", max_length=255, **nullable)
+    zona_titulo_eleitor = CharField("Zona", max_length=255, **nullable)
+    secao = CharField("Seção", max_length=255, **nullable)
+    data_emissao_titulo_eleitor = DateField("Data de emissão", **nullable)
     uf_emissao_titulo_eleitor = NullFK("Estado emissor", Estado, related_name="titulos")
 
     # Carteira de reservista
-    numero_carteira_reservista = CharField("Número da carteira de reservista", max_length=255, null=True, blank=True)
-    regiao_carteira_reservista = CharField("Região", max_length=255, null=True, blank=True)
-    serie_carteira_reservista = CharField("Série", max_length=255, null=True, blank=True)
+    numero_carteira_reservista = CharField("Número da carteira de reservista", max_length=255, **nullable)
+    regiao_carteira_reservista = CharField("Região", max_length=255, **nullable)
+    serie_carteira_reservista = CharField("Série", max_length=255, **nullable)
     estado_emissao_carteira_reservista = NullFK("Estado emissor", Estado, related_name="reservistas")
     nivel_ensino_anterior = NullFK("Nível de ensino", NivelEnsino)
-    ano_carteira_reservista = CharField("Ano", max_length=255, null=True, blank=True)
+    ano_carteira_reservista = CharField("Ano", max_length=255, **nullable)
 
     # Certidão Civil
     tipo_certidao = FK("Tipo de certidão", TipoCertidao)
-    # cartorio = FK(Cartorio, "Cartório", null=True, blank=True)
-    numero_certidao = CharField("Número de Termo", max_length=255, null=True, blank=True)
-    folha_certidao = CharField("Folha", max_length=255, null=True, blank=True)
-    livro_certidao = CharField("Livro", max_length=255, null=True, blank=True)
-    data_emissao_certidao = DateField("Data de emissão", null=True, blank=True)
-    matricula_certidao = CharField("Livro", max_length=255, null=True, blank=True, help_text="Obrigatório para certidões realizadas a partir de 01/01/2010")
+    # cartorio = FK(Cartorio, "Cartório", **nullable)
+    numero_certidao = CharField("Número de Termo", max_length=255, **nullable)
+    folha_certidao = CharField("Folha", max_length=255, **nullable)
+    livro_certidao = CharField("Livro", max_length=255, **nullable)
+    data_emissao_certidao = DateField("Data de emissão", **nullable)
+    matricula_certidao = CharField("Livro", max_length=255, help_text="Obrigatório para certidões realizadas a partir de 01/01/2010", **nullable)
 
     # Foto
-    arquivo_foto = CharField("Foto", max_length=255, null=True, blank=True, help_text="Obrigatório para certidões realizadas a partir de 01/01/2010")
+    # arquivo_foto = ImageField("Foto", **nullable)
 
     # Carteira estudantil
     autorizacao_carteira_estudantil = BooleanField("Autorização para emissão da carteira estudantil", help_text="O aluno autoriza o envio de seus dados pessoais para o Sistema Brasileiro de Educação (SEB) para fins de emissão da carteira de estudante digital de acordo com a Medida Provisória Nº 895, de 6 de setembro de 2019")
 
+    # Solicitação
+    enviada_em = DateTimeField("Enviada em")
+    sha512_foto = CharField("SHA 512 da foto")
+    sha512_solicitacao = CharField("SHA 512 dos dados e arquivo")
+
+    class Meta:
+        verbose_name = "Solicitação"
+        verbose_name_plural = "Solicitações"
 
     def __str__(self):
-       return self.cpf
+       return self.selecionado
+
+
+class Documento(Model):
+    solicitacao = FK("Solicitação", Solicitacao)
+    documentacao = FK("Documentação", Documentacao)
+    arquivo = FileField("Arquivo")
+    sha512_arquivo = CharField("SHA 512 do arquivo", max_length=255)
+
+    class Meta:
+        verbose_name = "Documento"
+        verbose_name_plural = "Documentos"
+
+    def __str__(self):
+       return "%s - %s" % (self.solicitacao, self.documentacao)

@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <title>Bootstrap 4 Example</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"></script>
+  <style>body {padding-top: 70px;}</style>
+</head>
+<body>
+
+
+  <nav class="navbar navbar-expand-md fixed-top navbar-dark bg-primary">
+    <a class="navbar-brand" href="{% url 'solicitacao:index' %}">Solicitação de matrículas</a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarCollapse">
+      <ul class="navbar-nav mr-auto">
+        <!-- <li class="nav-item active"><a class="nav-link" href="/pre_matricula">Início <span class="sr-only">(current)</span></a></li> -->
+      </ul>
+      <form class="form-inline mt-2 mt-md-0">
+        <!-- <input class="form-control mr-sm-2" type="text" placeholder="Search" aria-label="Search"> -->
+        <button class="btn btn-success my-2 my-sm-0" type="submit">Entrar</button>
+      </form>
+    </div>
+  </nav>
+
+  <div class="container">
+    <div class="jumbotron">
+        <h1>Sistema de Solicitação de Matrícula - SSM</h1>
+        <h2>Sobre o SSM</h2>
+        <p>O “Sistema de Solicitação de Matrícula” (SSM) atende à necessidade dos alunos que necessitam realizar suas matrículas, mas não podem ou não desejam comparecer presencialmente para este fim.</p>        
+        <p>Só pode solicitar sua matrícula neste sistema os candidatos selecionados nos editais em que constam estas informações.</p>
+        <p>O envio do formulário de solicitação de matrícula não caracteriza a realização da matrícula, apenas é o registro de solicitação e do envio dos dados e arquivos necessários para que a secretária possa dar andamento no processo de matrícula. Ou seja, se os dados estiverem incorretos, os arquivos estiverem incompletos, errados ou inelegíveis a MATRÍCULA NÃO PODERÁ SER CONCLUÍDA.</p>
+      </div>
+  
+  <h2>Editais chamando alunos a se matricularem</h2>
+
+  <table class="table">
+    <thead><tr><th>Edital</th><th width="1%">Ações</th></tr></thead>
+    <tbody>
+      {% for chamada in chamadas_em_aberto %}
+      <tr>
+        <td>{{ chamada.edital.identificacao }} - {{ chamada.edital.titulo }} <br />
+        De: <small>{{ chamada.inicio_solicitacoes }}</small><br />Até: <small>{{ chamada.fim_solicitacoes }}</small></td>
+        <td><a href="#" class="btn btn-primary btn-sm" role="button">Solicitar matrícula</a>
+          <a href="{{ chamada.edital.pagina }}" class="btn btn-outline-secondary btn-sm" role="button">Ver edital</a></td>
+      </tr>
+      {% empty %}
+      <tr><td colspan="3">Não há.</td></tr>
+      {% endfor %}
+    </tbody>
+  </table>
+
+  <h2>Próximos editais a chamar alunos a se matricularem</h2>
+
+  <table class="table">
+    <thead><tr><th>Edital</th><th width="1%">Ações</th></tr></thead>
+    <tbody>
+      {% for chamada in futuras_chamadas %}
+      <tr>
+        <td>{{ chamada.edital.identificacao }} - {{ chamada.edital.titulo }} <br />
+        De: <small>{{ chamada.inicio_solicitacoes }}</small><br />Até: <small>{{ chamada.fim_solicitacoes }}</small></td>
+        <td><a href="#" class="btn btn-primary btn-sm" role="button">Solicitar matrícula</a>
+          <a href="{{ chamada.edital.pagina }}" class="btn btn-outline-secondary btn-sm" role="button">Ver edital</a></td>
+      </tr>
+      {% empty %}
+      <tr><td colspan="3">Não há.</td></tr>
+      {% endfor %}
+    </tbody>
+  </table>
+
+  <h2>Chamadas anteriores</h2>
+
+  <table class="table">
+    <thead><tr><th>Edital</th><th width="1%">Ações</th></tr></thead>
+    <tbody>
+      {% for chamada in chamadas_passadas %}
+      <tr>
+        <td>{{ chamada.edital.identificacao }} - {{ chamada.edital.titulo }} <br />
+        De: <small>{{ chamada.inicio_solicitacoes }}</small><br />Até: <small>{{ chamada.fim_solicitacoes }}</small></td>
+        <td><a href="#" class="btn btn-primary btn-sm" role="button">Solicitar matrícula</a>
+          <a href="{{ chamada.edital.pagina }}" class="btn btn-outline-secondary btn-sm" role="button">Ver edital</a></td>
+      </tr>
+      {% empty %}
+        <tr><td colspan="3">Não há.</td></tr>
+      {% endfor %}
+    </tbody>
+  </table>
+
+</div>
+
+</body>
+</html> 
