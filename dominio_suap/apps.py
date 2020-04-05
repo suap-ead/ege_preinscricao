@@ -1,6 +1,6 @@
 from django.apps import AppConfig
 
 
-class PreCadastroConfig(AppConfig):
+class DominioSuapConfig(AppConfig):
     name = 'dominio_suap'
-    verbose_name = 'Cadastro'
+    verbose_name = 'Cadastro do SUAP'
