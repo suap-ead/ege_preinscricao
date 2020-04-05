@@ -241,8 +241,8 @@ class Solicitacao(Model):
 
     # Solicitação
     enviada_em = DateTimeField("Enviada em")
-    sha512_foto = CharField("SHA 512 da foto")
-    sha512_solicitacao = CharField("SHA 512 dos dados e arquivo")
+    sha512_foto = CharField("SHA 512 da foto", max_length=255)
+    sha512_solicitacao = CharField("SHA 512 dos dados e arquivo", max_length=255)
 
     class Meta:
         verbose_name = "Solicitação"

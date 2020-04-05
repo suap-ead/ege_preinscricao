@@ -8,10 +8,8 @@ class EditalAdmin(ModelAdmin):
     list_display = ['identificacao', 'titulo', 'pagina']
     search_fields = ['identificacao', 'titulo']
 
-
 class SelecionadoInline(TabularInline):
     model = Selecionado
-
 
 @register(Chamada)
 class ChamadaAdmin(ModelAdmin):

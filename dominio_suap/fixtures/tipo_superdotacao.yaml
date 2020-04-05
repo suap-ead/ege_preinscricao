@@ -1,4 +1,4 @@
-- model: dominio_suap.superdotacao
+- model: dominio_suap.tiposuperdotacao
   pk: 1
   fields:
     suap_id: 1
