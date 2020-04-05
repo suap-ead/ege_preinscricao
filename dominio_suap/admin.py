@@ -83,6 +83,10 @@ class TipoVeiculoAdmin(BaseAdmin):
 class TipoCertidaoAdmin(BaseAdmin):
     pass
 
+@register(AnoLetivo)
+class AnoLetivoAdmin(BaseAdmin):
+    pass
+
 @register(PeriodoLetivo)
 class PeriodoLetivoAdmin(BaseAdmin):
     pass
@@ -101,4 +105,28 @@ class PoloAdmin(BaseAdmin):
 
 @register(Convenio)
 class ConvenioAdmin(BaseAdmin):
+    pass
+
+@register(OrgaoEmissorRG)
+class OrgaoEmissorRGAdmin(BaseAdmin):
+    pass
+
+@register(Cidade)
+class CidadeAdmin(BaseAdmin):
+    pass
+
+@register(CotaSISTEC)
+class CotaSISTECAdmin(BaseAdmin):
+    pass
+
+@register(CotaMEC)
+class CotaMECAdmin(BaseAdmin):
+    pass
+
+@register(MatrizCurso)
+class MatrizCursoAdmin(BaseAdmin):
+    pass
+
+@register(LinhaPesquisa)
+class LinhaPesquisaAdmin(BaseAdmin):
     pass

@@ -101,7 +101,6 @@ class Raca(BaseModel):
     verbose_name = "Raça"
     verbose_name_plural = "Raças"
 
-
 class Polo(BaseModel):
   class Meta:
     verbose_name = "Pólo"
