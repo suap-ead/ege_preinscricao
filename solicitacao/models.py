@@ -1,3 +1,4 @@
+from uuid import uuid1
 from django.db.models import Model, TextChoices
 from django.db.models import CharField, DateField, BooleanField, NullBooleanField, DateTimeField
 from django.db.models import URLField, EmailField, FileField
@@ -93,7 +94,7 @@ class ListaSelecao(TextChoices):
 class Selecionado(Model):
 
     # Dados do edital
-    chamada = FK("Edital", Chamada)
+    chamada = FK("Chamada", Chamada)
 
     # Dados da oferta
     matriz_curso = FK("Matriz/Curso", MatrizCurso, )
@@ -114,8 +115,12 @@ class Selecionado(Model):
     inscricao = CharField("Inscrição", max_length=250, **nullable)
 
     class Meta:
-        verbose_name = "Documentação"
-        verbose_name_plural = "Documentações"
+        verbose_name = "Selecionado"
+        verbose_name_plural = "Selecionados"
+
+    @property
+    def is_authenticated(self):
+        return True
 
     def __str__(self):
         ident = ""
@@ -124,7 +129,7 @@ class Selecionado(Model):
         else:
             ident = self.passaporte
 
-        return "%s - %s" % (ident, self.edital)
+        return "%s - %s" % (ident, self.chamada)
 
 
 class Solicitacao(Model):
@@ -264,3 +269,14 @@ class Documento(Model):
 
     def __str__(self):
        return "%s - %s" % (self.solicitacao, self.documentacao)
+
+
+class PublicAuthToken(Model):
+    chamada = FK("Chamada", Chamada)
+    selecionado = FK("Selecionado", Selecionado)
+    token = CharField("Token", max_length=255)
+    criado_em = DateTimeField("Criado em", auto_now=True)
+
+    def save(self):
+        self.token = "%s" % uuid1()
+        super().save()

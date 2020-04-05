@@ -1,0 +1,103 @@
+{% extends "pre_matricula/base.html" %}
+{% load i18n admin_urls static admin_list %}
+{% load common_utils %}
+
+{% block extrastyle %}
+<style>
+.login-container{
+  margin-top: 5%;
+  margin-bottom: 5%;
+}
+.login-form-1{
+  padding: 5%;
+  box-shadow: 0 5px 8px 0 rgba(0, 0, 0, 0.2), 0 9px 26px 0 rgba(0, 0, 0, 0.19);
+}
+.login-form-1 h3{
+  text-align: center;
+  color: #333;
+}
+
+.login-container form{
+  padding: 10%;
+}
+.btnSubmit
+{
+  width: 50%;
+  border-radius: 1rem;
+  padding: 1.5%;
+  border: none;
+  cursor: pointer;
+}
+.login-form-1 .btnSubmit{
+  font-weight: 600;
+  color: #fff;
+  background-color: #0062cc;
+}
+.login-form-1 .ForgetPwd{
+  color: #0062cc;
+  font-weight: 600;
+  text-decoration: none;
+}
+.errorlist {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    font-size: 90%;
+    color: #bb3d3d;
+}
+</style>
+{% endblock extrastyle %}
+
+{% block content %}
+    <div class="alert alert-primary" role="alert">
+        Se você foi selecionado para a <b>chamada</b> a baixo, informe teu e-mail, nº de inscrição, CPF ou passaporte para receber por e-mail um link que irá lhe autorizar a acessar o sistema e submeter tua solicitação de matrícula.
+    </div>
+    <div class="alert alert-warning" role="alert">
+        Note que a solicitação passará por um processo de validação, ou seja, só se estiver tudo correto é que você terá sua matricula efetivada.
+    </div>
+    <div class="alert alert-warning" role="alert">
+        Fique atento aos prazos, ao preenchimento do formulário e aos arquivos necessários para a concluir a matrícula.
+    </div>
+
+    {% if form.non_field_errors %}
+        {% for error in form.non_field_errors %}
+        <div class="alert alert-warning" role="alert">
+            {{ error }}
+        </div>
+        {% endfor %}
+    {% endif %}
+        <div class="row">
+            <div class="col-md-6 mx-auto login-form-1">
+                <h3>Acesso à solicitação de matrícula</h3>
+                <p>
+                    <br />
+                    Edital: {{ chamada.edital.identificacao }} - {{ chamada.edital.titulo }}<br />
+                    Chamada: {{ chamada.chamada }}<br />
+                    De: {{ chamada.inicio_solicitacoes }}<br />
+                    Até: {{ chamada.fim_solicitacoes }}
+                    <br />
+                    <br />
+                </p>
+                {% if form.selecionado %}
+                    <div class="alert alert-success" role="alert">
+                        Foi enviado um email para <b>{{form.selecionado.email}}</b> com o link de acesso.
+                    </div>
+                {% else %}
+                <form action="{{ app_path }}" method="post">
+                    {% csrf_token %}
+                    <input type="hidden" name="next" value="{{ next }}">
+                    <div class="form-group">
+                        {{ form.chave.errors }}
+                        <input type="text" class="form-control" placeholder="E-mail, nº de inscrição, CPF ou passaporte" name="chave" value="" />
+                    </div>
+                    <div class="form-group">
+                        <input type="submit" class="btnSubmit" value="Solicitar acesso" />
+                    </div>
+                </form>
+                {% endif %}
+            </div>
+        </div>
+
+</div>
+{% endblock content %}
+{% block footer %}{% endblock footer %}

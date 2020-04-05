@@ -1,0 +1,100 @@
+{% extends "pre_matricula/base.html" %}
+
+{% load i18n static %}
+{% load static %}
+
+{% block extrastyle %}
+<style>
+.login-container{
+  margin-top: 5%;
+  margin-bottom: 5%;
+}
+.login-form-1{
+  padding: 5%;
+  box-shadow: 0 5px 8px 0 rgba(0, 0, 0, 0.2), 0 9px 26px 0 rgba(0, 0, 0, 0.19);
+}
+.login-form-1 h3{
+  text-align: center;
+  color: #333;
+}
+
+.login-container form{
+  padding: 10%;
+}
+.btnSubmit
+{
+  width: 50%;
+  border-radius: 1rem;
+  padding: 1.5%;
+  border: none;
+  cursor: pointer;
+}
+.login-form-1 .btnSubmit{
+  font-weight: 600;
+  color: #fff;
+  background-color: #0062cc;
+}
+.login-form-1 .ForgetPwd{
+  color: #0062cc;
+  font-weight: 600;
+  text-decoration: none;
+}
+.errorlist {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    font-size: 90%;
+    color: #bb3d3d;
+}
+</style>
+{% endblock extrastyle %}
+{% block content %}
+    {% if form.non_field_errors %}
+    {% for error in form.non_field_errors %}
+    <div id="error" v-if="error_seen">
+        {{ error }}
+        <!--<input type="hidden" value="{% trans "Authentication failure" %}">
+        <input type="hidden" value="{{ error }}">
+        <input type="hidden" value="error">-->
+    </div>
+    {% endfor %}
+    {% endif %}
+
+    {% if user.is_authenticated %}
+    <p class="errornote">
+    {% blocktrans trimmed %}
+        You are authenticated as {{ username }}, but are not authorized to
+        access this page. Would you like to login to a different account?
+    {% endblocktrans %}
+    </p>
+    {% endif %}
+
+
+    <div class="row">
+
+        <div class="col-md-6 mx-auto login-form-1">
+            <h3>Acesso à secretaria</h3>
+            <form action="{{ app_path }}" method="post">
+                {% csrf_token %}
+                <input type="hidden" name="next" value="{{ next }}">
+                <div class="form-group">
+                    {{ form.username.errors }}
+                    <input type="text" class="form-control" placeholder="Seu usuário no SUAP" name="username" value="" />
+                </div>
+                <div class="form-group">
+                    {{ form.password.errors }}
+                    <input type="password" class="form-control" placeholder="Sua senha no SUAP" name="password"  value="" />
+                </div>
+                <div class="form-group">
+                    <input type="submit" class="btnSubmit" value="{% trans 'Log in' %}" />
+                </div>
+                <div class="form-group">
+                    <a href="https://suap.ifrn.edu.br/comum/solicitar_trocar_senha/" class="ForgetPwd">Esqueceu sua senha?</a>
+                </div>
+            </form>
+        </div>
+    </div>
+
+{% endblock content %}
+
+{% block footer %}{% endblock footer %}
