@@ -26,7 +26,7 @@ def selecionado_passes_test(test_func):
     return decorator
 
 def public_login_required(function=None):
-    actual_decorator = selecionado_passes_test(lambda u: u.is_authenticated)
+    actual_decorator = selecionado_passes_test(lambda u: u is not None and u.is_authenticated)
     if function:
         return actual_decorator(function)
     return actual_decorator
