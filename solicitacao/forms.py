@@ -59,8 +59,8 @@ class SolicitacaoForm(ModelForm):
 
     class Meta:
         model = Solicitacao
-        fields = ['cota_sistec', 'cota_mec', 'convenio', 'data_conclusao_intercambio',
-            'linha_pesquisa', 'aluno_especial', 'nacionalidade', 'cpf', 'passaporte',
+        fields = ['data_conclusao_intercambio',
+            'linha_pesquisa',
             'nome', 'nome_social', 'sexo', 'data_nascimento', 'estado_civil', 'nome_pai',
             'estado_civil_pai', 'pai_falecido', 'nome_mae', 'estado_civil_mae',
             'mae_falecida', 'responsavel', 'email_responsavel', 'parentesco_responsavel',
@@ -79,5 +79,4 @@ class SolicitacaoForm(ModelForm):
             'estado_emissao_carteira_reservista', 'nivel_ensino_anterior',
             'ano_carteira_reservista', 'tipo_certidao', 'numero_certidao',
             'folha_certidao', 'livro_certidao', 'data_emissao_certidao',
-            'matricula_certidao', 'autorizacao_carteira_estudantil', 'enviada_em',
-            'sha512_foto', 'sha512_solicitacao']
+            'matricula_certidao', 'autorizacao_carteira_estudantil']
