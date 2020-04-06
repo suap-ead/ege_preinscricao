@@ -1,7 +1,7 @@
 from uuid import uuid1
 from django.db.models import Model, TextChoices
 from django.db.models import CharField, DateField, BooleanField, NullBooleanField, DateTimeField
-from django.db.models import URLField, EmailField, FileField
+from django.db.models import URLField, EmailField, FileField, OneToOneField
 # from django.db.models import ImageField
 from django.contrib.auth.models import User
 from django.db.models import ForeignKey, CASCADE
@@ -114,6 +114,11 @@ class Selecionado(Model):
     email = EmailField("E-Mail")
     inscricao = CharField("Inscrição", max_length=250, **nullable)
 
+    convenio = NullFK("Convênio", Convenio, )
+    cota_sistec = NullFK("Cota SISTEC", CotaSISTEC)
+    cota_mec = NullFK("Cota MEC", CotaMEC, )
+    aluno_especial = NullBooleanField("Aluno especial?")
+
     class Meta:
         verbose_name = "Selecionado"
         verbose_name_plural = "Selecionados"
@@ -135,19 +140,10 @@ class Selecionado(Model):
 class Solicitacao(Model):
 
     # Dados da solicitação de matrícula
-    selecionado = FK("Selecionado", Selecionado)
-    cota_sistec = NullFK("Cota SISTEC", CotaSISTEC)
-    cota_mec = NullFK("Cota MEC", CotaMEC, )
-    convenio = NullFK("Convênio", Convenio, )
+    selecionado = OneToOneField(Selecionado, verbose_name="Selecionado", on_delete=CASCADE)
     data_conclusao_intercambio = DateField("Conclusão do intercâmbio", **nullable)
     linha_pesquisa = FK("Linha de pesquisa", LinhaPesquisa, help_text='Obrigatório para alunos de Mestrado e Doutourado. Caso não saiba, escreva "A definir".')
-    aluno_especial = NullBooleanField("Aluno especial?")
     # numero_pasta = CharField("Número da pasta", max_length=250, null=True, blank=False)
-
-    # Identificação
-    nacionalidade = FK("Nacionalidade", Nacionalidade)
-    cpf = CharField("CPF", max_length=11, **nullable)
-    passaporte = CharField("Passaporte", max_length=250, **nullable)
 
     # Dados pessoais 
     nome = CharField("Nome", max_length=250)
@@ -175,7 +171,7 @@ class Solicitacao(Model):
     complemento = CharField("Complemento", max_length=250)
     bairro = CharField("Bairro", max_length=250)
     cidade = FK("Cidade", Cidade, related_name="enderecos")
-    estado = CharField("Estado", max_length=250)
+    estado = FK("Estado", Estado)
     tipo_zona_residencial = FK("Zona residencial", ZonaResidencial)
 
     # Informações para Contato
@@ -199,7 +195,7 @@ class Solicitacao(Model):
     # Outras informações
     tipo_sanguineo = NullFK("Tipo sanguíneo", TipoSanguineo)
     pais_origem = NullFK("País de origem", PaisOrigem, help_text="Obrigatório para estrangeiros")
-    estado_naturalidade = NullFK("Tipo de veículo utilizado no transporte escolar", Estado, related_name="naturais")
+    estado_naturalidade = NullFK("Estado da naturalidade", Estado, related_name="naturais")
     naturalidade = NullFK("Naturalidade", Cidade, related_name="naturalidades")
     raca = NullFK("Raça", Raca)
 
@@ -245,7 +241,9 @@ class Solicitacao(Model):
     autorizacao_carteira_estudantil = BooleanField("Autorização para emissão da carteira estudantil", help_text="O aluno autoriza o envio de seus dados pessoais para o Sistema Brasileiro de Educação (SEB) para fins de emissão da carteira de estudante digital de acordo com a Medida Provisória Nº 895, de 6 de setembro de 2019")
 
     # Solicitação
-    enviada_em = DateTimeField("Enviada em")
+    iniciada_em = DateTimeField("Enviada em", auto_now_add=True)
+    salvo_em = DateTimeField("Enviada em", auto_now=True)
+    enviada_em = DateTimeField("Enviada em", **nullable)
     sha512_foto = CharField("SHA 512 da foto", max_length=255)
     sha512_solicitacao = CharField("SHA 512 dos dados e arquivo", max_length=255)
 
@@ -254,7 +252,7 @@ class Solicitacao(Model):
         verbose_name_plural = "Solicitações"
 
     def __str__(self):
-       return self.selecionado
+       return "%s" % self.selecionado
 
 
 class Documento(Model):

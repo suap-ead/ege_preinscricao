@@ -18,11 +18,18 @@
     <tbody>
       {% for chamada in chamadas_em_aberto %}
       <tr>
-        <td>{{ chamada.edital.identificacao }} - {{ chamada.edital.titulo }} <br />
-        Chamada: <small>{{ chamada.chamada }}</small><br />
-        De: <small>{{ chamada.inicio_solicitacoes }}</small><br />Até: <small>{{ chamada.fim_solicitacoes }}</small></td>
-        <td><a href="{% url 'solicitacao:solicitacao' chamada.id %}" class="btn btn-primary btn-sm" role="button">Solicitar matrícula</a>
-          <a href="{{ chamada.edital.pagina }}" class="btn btn-outline-secondary btn-sm" role="button">Ver edital</a></td>
+        <td>
+          {{ chamada.edital.identificacao }} - {{ chamada.edital.titulo }} <br />
+          Chamada: <small>{{ chamada.chamada }}</small><br />
+          De: <small>{{ chamada.inicio_solicitacoes }}</small><br />
+          Até: <small>{{ chamada.fim_solicitacoes }}</small>
+        </td>
+        <td>
+          {% if not request.selecionado or request.selecionado.chamada.id == chamada.id %}
+          <a href="{% url 'solicitacao:solicitacao' chamada.id %}" class="btn btn-primary btn-sm" role="button">Solicitar matrícula</a>
+          {% endif %}
+          <a href="{{ chamada.edital.pagina }}" class="btn btn-outline-secondary btn-sm" role="button">Ver edital</a>
+        </td>
       </tr>
       {% empty %}
       <tr><td colspan="3">Não há.</td></tr>
@@ -36,10 +43,15 @@
     <tbody>
       {% for chamada in futuras_chamadas %}
       <tr>
-        <td>{{ chamada.edital.identificacao }} - {{ chamada.edital.titulo }} <br />
-        De: <small>{{ chamada.inicio_solicitacoes }}</small><br />Até: <small>{{ chamada.fim_solicitacoes }}</small></td>
-        <td><a href="#" class="btn btn-primary btn-sm" role="button">Solicitar matrícula</a>
-          <a href="{{ chamada.edital.pagina }}" class="btn btn-outline-secondary btn-sm" role="button">Ver edital</a></td>
+        <td>
+          {{ chamada.edital.identificacao }} - {{ chamada.edital.titulo }} <br />
+          Chamada: <small>{{ chamada.chamada }} ({{ chamada.tipo_chamada }})</small><br />
+          De: <small>{{ chamada.inicio_solicitacoes }}</small><br />
+          Até: <small>{{ chamada.fim_solicitacoes }}</small>
+        </td>
+        <td>
+          <a href="{{ chamada.edital.pagina }}" class="btn btn-outline-secondary btn-sm" role="button">Ver edital</a>
+        </td>
       </tr>
       {% empty %}
       <tr><td colspan="3">Não há.</td></tr>
@@ -54,10 +66,15 @@
     <tbody>
       {% for chamada in chamadas_passadas %}
       <tr>
-        <td>{{ chamada.edital.identificacao }} - {{ chamada.edital.titulo }} <br />
-        De: <small>{{ chamada.inicio_solicitacoes }}</small><br />Até: <small>{{ chamada.fim_solicitacoes }}</small></td>
-        <td><a href="#" class="btn btn-primary btn-sm" role="button">Solicitar matrícula</a>
-          <a href="{{ chamada.edital.pagina }}" class="btn btn-outline-secondary btn-sm" role="button">Ver edital</a></td>
+        <td>
+          {{ chamada.edital.identificacao }} - {{ chamada.edital.titulo }} <br />
+          Chamada: <small>{{ chamada.chamada }} ({{ chamada.tipo_chamada }})</small><br />
+          De: <small>{{ chamada.inicio_solicitacoes }}</small><br />
+          Até: <small>{{ chamada.fim_solicitacoes }}</small>
+        </td>
+        <td>
+          <a href="{{ chamada.edital.pagina }}" class="btn btn-outline-secondary btn-sm" role="button">Ver edital</a>
+        </td>
       </tr>
       {% empty %}
         <tr><td colspan="3">Não há.</td></tr>

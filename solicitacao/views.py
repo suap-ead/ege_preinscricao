@@ -8,48 +8,19 @@ from django.http import HttpResponse, JsonResponse, HttpResponseRedirect
 from django.utils.decorators import method_decorator
 from django.contrib.auth import REDIRECT_FIELD_NAME
 from django.db.models import Q
+from django.contrib.auth.middleware import AuthenticationMiddleware
 from sc4py.datetime import now
-from .models import Chamada, PublicAuthToken
+from .models import Chamada, PublicAuthToken, Solicitacao
 from .forms import SolicitacaoForm, SelecionadoForm, EntrarForm
 from .decorators import public_login_required
-from django.contrib.auth.middleware import AuthenticationMiddleware
 
 
 def index(request):
-    chamadas_em_aberto = Chamada.objects.filter(inicio_solicitacoes__lte=now(), fim_solicitacoes__gte=now())
-    futuras_chamadas = Chamada.objects.filter(inicio_solicitacoes__gte=now())
-    chamadas_passadas = Chamada.objects.filter(fim_solicitacoes__lte=now())
+    default_order = ["inicio_solicitacoes", "id"]
+    chamadas_em_aberto = Chamada.objects.filter(inicio_solicitacoes__lte=now(), fim_solicitacoes__gte=now()).order_by(*default_order)
+    futuras_chamadas = Chamada.objects.filter(inicio_solicitacoes__gte=now()).order_by(*default_order)
+    chamadas_passadas = Chamada.objects.filter(fim_solicitacoes__lte=now()).order_by(*default_order)
     return render(request, template_name='pre_matricula/index.html', context=locals())
-
-@public_login_required
-def solicitacao(request, chamada_id):
-    if request.method == 'POST':
-        form = SolicitacaoForm(request.POST)
-        if form.is_valid():
-            return HttpResponseRedirect('/thanks/')
-    else:
-        form = SolicitacaoForm()
-
-    return render(request, 'pre_matricula/solicitacao.html', {'form': form})
-
-@login_required
-def selecionado(request):
-    # if this is a POST request we need to process the form data
-    if request.method == 'POST':
-        # create a form instance and populate it with data from the request:
-        form = SelecionadoForm(request.POST)
-        # check whether it's valid:
-        if form.is_valid():
-            # process the data in form.cleaned_data as required
-            # ...
-            # redirect to a new URL:
-            return HttpResponseRedirect('/thanks/')
-
-    # if a GET (or any other method) we'll create a blank form
-    else:
-        form = SelecionadoForm()
-
-    return render(request, 'pre_matricula/selecionado.html', {'form': form})
 
 
 def entrar(request, chamada_id=None):
@@ -76,4 +47,33 @@ def autenticar(request, chamada_id, inscricao, token):
 
 
 def sair(request):
-    return render(request, 'pre_matricula/acesso/sair.html')
+    try:
+        del request.session['selecionado_id']
+    except KeyError:
+        pass
+    return redirect('solicitacao:index')
+
+
+@public_login_required
+def solicitacao(request, chamada_id):
+    solicitacao=getattr(request.selecionado, 'solicitacao', None)
+    if request.method == 'POST':
+        form = SolicitacaoForm(request.POST, instance=solicitacao)
+        if form.is_valid():
+            form.instance.selecionado = request.selecionado
+            form.save()
+            form.messages = [
+                "Solicitação salva com sucesso."
+            ]
+    else:
+        form = SolicitacaoForm(instance=solicitacao)
+
+    return render(
+        request, 
+        'pre_matricula/solicitacao.html', 
+        {
+            'form': form, 
+            'chamada': request.selecionado.chamada, 
+            "selecionado": request.selecionado
+        }
+    )
