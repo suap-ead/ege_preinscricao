@@ -1,8 +1,11 @@
 from uuid import uuid1
+import hashlib
 from django.db.models import Model, TextChoices
 from django.db.models import CharField, DateField, BooleanField, NullBooleanField, DateTimeField
 from django.db.models import URLField, EmailField, FileField, OneToOneField
 # from django.db.models import ImageField
+from django.db.models.signals import post_save, post_delete, pre_save
+from django.dispatch import receiver
 from django.contrib.auth.models import User
 from django.db.models import ForeignKey, CASCADE
 from dominio_suap.models import *
@@ -45,6 +48,10 @@ class DocumentoExigido(Model):
     class Meta:
         verbose_name = "Documento exigido"
         verbose_name_plural = "Documentos exigidos"
+
+    @property
+    def label_form(self):
+        self.documentacao
 
     def __str__(self):
         tem = []
@@ -268,7 +275,6 @@ class Documento(Model):
     def __str__(self):
        return "%s - %s" % (self.solicitacao, self.documentacao)
 
-
 class PublicAuthToken(Model):
     chamada = FK("Chamada", Chamada)
     selecionado = FK("Selecionado", Selecionado)
@@ -278,3 +284,14 @@ class PublicAuthToken(Model):
     def save(self):
         self.token = "%s" % uuid1()
         super().save()
+
+
+@receiver(pre_save, sender=Documento)
+def post_documento_save(sender, instance, **kwargs):
+    str = 'valor para sha512'  # mudar para o valor correto
+    instance.sha512_arquivo = hashlib.sha512(str.encode()).hexdigest()
+
+@receiver(post_delete, sender=Documento)
+def post_documento_delete(sender, instance, **kwargs):
+    instance.arquivo.delete(False) 
+    

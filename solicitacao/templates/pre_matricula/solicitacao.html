@@ -1,6 +1,7 @@
 {% extends "pre_matricula/base.html" %}
 {% load i18n admin_urls static admin_list %}
 {% load common_utils %}
+{% load static %}
 
 {% block content %}
     {% if selecionado.solicitacao %}
@@ -76,7 +77,39 @@
 
       <!-- form: begin -->
       <div class="tab-pane fade" id="file" role="tabpanel" aria-labelledby="file-tab">
-        ARQUIVOS
+        <h3>Documentos Exigidos</h3>
+          <form method="post" enctype="multipart/form-data">
+            {% csrf_token %}
+            {{ documentoForm.as_p }}
+            <button type="submit">Enviar Arquivo</button>
+          </form>
+          <hr>
+          <table class="table" style="font-size: 12px;">
+            <thead>
+              <tr>
+                <th>Tipo</th>
+                <th>Nome</th>
+                <th>Código</th>
+                <th width="1%">Ações</th>
+              </tr>
+            </thead>
+            <tbody>
+              {% for documento in documentos %}
+              <tr>
+                <td>{{documento.documentacao}}</td>
+                <td>{{documento.arquivo}}</td>
+                <td>{{documento.sha512_arquivo}}</td>
+                <td>
+                  <a href="/pre_matricula/{{documento.id}}/remove_documento" class="btn btn-outline-secondary btn-sm" role="button">Remover</a>
+                </td>
+              </tr>
+              {% empty %}
+                <tr>
+                  <td colspan="3">Nenhum arquivo anexado.</td>
+                </tr>
+              {% endfor %}
+            </tbody>
+          </table>
       </div>
       <!-- form: end -->
 

@@ -1,10 +1,11 @@
 from django.conf import settings
+from django import forms
 from django.forms import Form, ModelForm, ValidationError, CharField
 from django.db.models import Q
 from django.core.exceptions import ObjectDoesNotExist
 from django.core.mail import send_mail
 from django.http.request import HttpRequest
-from .models import Selecionado, Solicitacao, PublicAuthToken
+from .models import Selecionado, Solicitacao, PublicAuthToken, Documento
 
  
 
@@ -56,7 +57,6 @@ class SelecionadoForm(ModelForm):
             'cpf', 'passaporte', 'nome', 'nome_social', 'email', 'inscricao']
 
 class SolicitacaoForm(ModelForm):
-
     class Meta:
         model = Solicitacao
         fields = ['data_conclusao_intercambio',
@@ -80,3 +80,15 @@ class SolicitacaoForm(ModelForm):
             'ano_carteira_reservista', 'tipo_certidao', 'numero_certidao',
             'folha_certidao', 'livro_certidao', 'data_emissao_certidao',
             'matricula_certidao', 'autorizacao_carteira_estudantil']
+        widgets = {
+            'data_conclusao_intercambio': forms.DateInput(format=('%m/%d/%Y'), attrs={'class':'form-control', 'placeholder':'Select a date', 'type':'date'}),
+            'data_nascimento': forms.DateInput(format=('%m/%d/%Y'), attrs={'class':'form-control', 'placeholder':'Select a date', 'type':'date'}),
+            'data_emissao_rg': forms.DateInput(format=('%m/%d/%Y'), attrs={'class':'form-control', 'placeholder':'Select a date', 'type':'date'}),
+            'data_emissao_titulo_eleitor': forms.DateInput(format=('%m/%d/%Y'), attrs={'class':'form-control', 'placeholder':'Select a date', 'type':'date'}),
+            'data_emissao_certidao': forms.DateInput(format=('%m/%d/%Y'), attrs={'class':'form-control', 'placeholder':'Select a date', 'type':'date'}),
+        }
+class DocumentoForm(forms.ModelForm):
+    class Meta:
+        model = Documento
+        fields=['documentacao', 'arquivo', 'solicitacao']
+        widgets = {'solicitacao': forms.HiddenInput()}

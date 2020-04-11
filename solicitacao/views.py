@@ -1,5 +1,6 @@
 import json
 from django.conf import settings
+from django.conf.urls.static import static
 from django.shortcuts import redirect, get_object_or_404, render
 from django.contrib.auth.decorators import login_required
 from django.views import View
@@ -10,8 +11,8 @@ from django.contrib.auth import REDIRECT_FIELD_NAME
 from django.db.models import Q
 from django.contrib.auth.middleware import AuthenticationMiddleware
 from sc4py.datetime import now
-from .models import Chamada, PublicAuthToken, Solicitacao
-from .forms import SolicitacaoForm, SelecionadoForm, EntrarForm
+from .models import Chamada, PublicAuthToken, Solicitacao, DocumentoExigido, Documento
+from .forms import SolicitacaoForm, SelecionadoForm, EntrarForm, DocumentoForm
 from .decorators import public_login_required
 
 
@@ -57,23 +58,40 @@ def sair(request):
 @public_login_required
 def solicitacao(request, chamada_id):
     solicitacao=getattr(request.selecionado, 'solicitacao', None)
-    if request.method == 'POST':
+    if request.method == 'POST' and request.FILES['arquivo']:
+        documentoForm = DocumentoForm(request.POST, request.FILES)
+        if documentoForm.is_valid():
+            documentoForm.save()
+            documentoForm.messages = ["Arquivo armazenado com sucesso."]
+            return HttpResponseRedirect("/pre_matricula/%s/solicitacao#file" % (solicitacao.id))
+    elif request.method == 'POST':
         form = SolicitacaoForm(request.POST, instance=solicitacao)
         if form.is_valid():
             form.instance.selecionado = request.selecionado
             form.save()
-            form.messages = [
-                "Solicitação salva com sucesso."
-            ]
+            form.messages = ["Solicitação salva com sucesso."]
     else:
         form = SolicitacaoForm(instance=solicitacao)
+
+    params = {
+        "form": form,
+        "chamada": request.selecionado.chamada,
+        "selecionado": request.selecionado
+    }
+    if solicitacao is not None:
+        params["documentoForm"] = DocumentoForm(initial={'solicitacao': solicitacao.id})
+    if solicitacao is not None:
+        params["documentos"] = Documento.objects.filter(solicitacao_id=solicitacao.id)
 
     return render(
         request, 
         'pre_matricula/solicitacao.html', 
-        {
-            'form': form, 
-            'chamada': request.selecionado.chamada, 
-            "selecionado": request.selecionado
-        }
+        params
     )
+
+@public_login_required
+def remove_documento(request, documento_id):
+    doc = Documento.objects.get(id = documento_id)
+    solicitacao_id = doc.solicitacao.id
+    doc.delete()
+    return HttpResponseRedirect("/pre_matricula/%s/solicitacao#file" % (solicitacao_id))
