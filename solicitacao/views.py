@@ -58,13 +58,7 @@ def sair(request):
 @public_login_required
 def solicitacao(request, chamada_id):
     solicitacao=getattr(request.selecionado, 'solicitacao', None)
-    if request.method == 'POST' and request.FILES['arquivo']:
-        documentoForm = DocumentoForm(request.POST, request.FILES)
-        if documentoForm.is_valid():
-            documentoForm.save()
-            documentoForm.messages = ["Arquivo armazenado com sucesso."]
-            return HttpResponseRedirect("/pre_matricula/%s/solicitacao#file" % (solicitacao.id))
-    elif request.method == 'POST':
+    if request.method == 'POST':
         form = SolicitacaoForm(request.POST, instance=solicitacao)
         if form.is_valid():
             form.instance.selecionado = request.selecionado
@@ -76,7 +70,8 @@ def solicitacao(request, chamada_id):
     params = {
         "form": form,
         "chamada": request.selecionado.chamada,
-        "selecionado": request.selecionado
+        "selecionado": request.selecionado,
+        "documentosExigidos": DocumentoExigido.objects.filter(edital_id=chamada_id)
     }
     if solicitacao is not None:
         params["documentoForm"] = DocumentoForm(initial={'solicitacao': solicitacao.id})
@@ -95,3 +90,13 @@ def remove_documento(request, documento_id):
     solicitacao_id = doc.solicitacao.id
     doc.delete()
     return HttpResponseRedirect("/pre_matricula/%s/solicitacao#file" % (solicitacao_id))
+
+@public_login_required
+def adicionar_documento(request):
+    if request.method == 'POST' and request.FILES['arquivo']:
+        documentoForm = DocumentoForm(request.POST, request.FILES)
+        if documentoForm.is_valid():
+            documentoForm.save()
+            documentoForm.messages = ["Arquivo armazenado com sucesso."]
+
+    return HttpResponseRedirect("/pre_matricula/%s/solicitacao#file" % (request.POST['solicitacao']))
