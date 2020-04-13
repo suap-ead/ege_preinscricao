@@ -5,7 +5,7 @@ from django.db.models import Q
 from django.core.exceptions import ObjectDoesNotExist
 from django.core.mail import send_mail
 from django.http.request import HttpRequest
-from .models import Selecionado, Solicitacao, PublicAuthToken, Documento
+from .models import Selecionado, Solicitacao, PublicAuthToken, Documento, SolicitacaoConcluida
 
  
 
@@ -91,4 +91,10 @@ class DocumentoForm(forms.ModelForm):
     class Meta:
         model = Documento
         fields=['documentacao', 'arquivo', 'solicitacao']
+        widgets = {'solicitacao': forms.HiddenInput()}
+
+class SolicitacaoConcluidaForm(forms.ModelForm):
+    class Meta:
+        model = SolicitacaoConcluida
+        fields=['veracidade', 'confirmacao', 'solicitacao']
         widgets = {'solicitacao': forms.HiddenInput()}

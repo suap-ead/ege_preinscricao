@@ -79,68 +79,75 @@
       <!-- form: begin -->
       <div class="tab-pane fade" id="file" role="tabpanel" aria-labelledby="file-tab">
         <h3>Documentos Exigidos</h3>
-          <form class="form" action="/pre_matricula/adicionar_documento/" method="post" enctype="multipart/form-data">
-            {% csrf_token %}
-            {{ documentoForm.as_p }}
-            <button type="submit">Enviar Arquivo</button>
-          </form>
+        <form class="form" action="/pre_matricula/adicionar_documento/" method="post" enctype="multipart/form-data">
+          {% csrf_token %}
+          {{ documentoForm.as_p }}
+          <button class="btn btn-success" type="submit">Enviar Arquivo</button>
+        </form>
 
-          <hr>
-          <h5>Lista de Enviados</h5>
-          <table class="table table-striped table-bordered table-sm">
-            <thead>
+        <hr>
+        <h5>Lista de Documentos exigidos</h5>
+        <table class="table table-striped table-bordered table-sm">
+          <thead>
+            <tr>
+              <th>Tipo</th>
+              <th width="1%">Enviado?</th>
+            </tr>
+          </thead>
+          <tbody>
+            {% for documento in documentosExigidos %}
+            <tr>
+              <td>{{documento.documentacao}}</td>
+              <td>{% ocorreu_upload solicitacaoId documento.documentacao %}</td>
+            </tr>
+            {% empty %}
               <tr>
-                <th>Tipo</th>
-                <th width="1%">Enviado?</th>
+                <td colspan="3">Nenhum arquivo anexado.</td>
               </tr>
-            </thead>
-            <tbody>
-              {% for documento in documentosExigidos %}
-              <tr>
-                <td>{{documento.documentacao}}</td>
-                <td>{% ocorreu_upload chamada.id documento.documentacao %}</td>
-              </tr>
-              {% empty %}
-                <tr>
-                  <td colspan="3">Nenhum arquivo anexado.</td>
-                </tr>
-              {% endfor %}
-            </tbody>
-          </table>
+            {% endfor %}
+          </tbody>
+        </table>
 
-          <hr>
-          <h5>Lista de Documentos exigidos</h5>
-          <table class="table table-striped table-bordered table-sm">
-            <thead>
+        <hr>
+        <h5>Lista de Enviados</h5>
+        <table class="table table-striped table-bordered table-sm">
+          <thead>
+            <tr>
+              <th>Tipo</th>
+              <th>Nome</th>
+              <th width="1%">Ações</th>
+            </tr>
+          </thead>
+          <tbody>
+            {% for documento in documentos %}
+            <tr>
+              <td>{{documento.documentacao}}</td>
+              <td>{{documento.arquivo}}</td>
+              <!-- <td>{{documento.sha512_arquivo}}</td> -->
+              <td>
+                <a href="/pre_matricula/{{documento.id}}/remove_documento" class="btn btn-outline-secondary btn-sm" role="button">Remover</a>
+              </td>
+            </tr>
+            {% empty %}
               <tr>
-                <th>Tipo</th>
-                <th>Nome</th>
-                <th width="1%">Ações</th>
+                <td colspan="3">Nenhum arquivo anexado.</td>
               </tr>
-            </thead>
-            <tbody>
-              {% for documento in documentos %}
-              <tr>
-                <td>{{documento.documentacao}}</td>
-                <td>{{documento.arquivo}}</td>
-                <!-- <td>{{documento.sha512_arquivo}}</td> -->
-                <td>
-                  <a href="/pre_matricula/{{documento.id}}/remove_documento" class="btn btn-outline-secondary btn-sm" role="button">Remover</a>
-                </td>
-              </tr>
-              {% empty %}
-                <tr>
-                  <td colspan="3">Nenhum arquivo anexado.</td>
-                </tr>
-              {% endfor %}
-            </tbody>
-          </table>
+            {% endfor %}
+          </tbody>
+        </table>
       </div>
       <!-- form: end -->
 
       <!-- send: begin -->
       <div class="tab-pane fade" id="send" role="tabpanel" aria-labelledby="send-tab">
-        ARQUIVOS
+        <br>
+        <h4>Concluir Inscrição</h4>
+        <p>Lorem ipsum dolor, sit amet consectetur adipisicing elit. At asperiores possimus eos aut sunt, optio deleniti ea totam aperiam porro assumenda, ad quibusdam nulla nesciunt. Nihil amet quo explicabo aut?</p>
+        <form class="form" action="/pre_matricula/concluir_solicitacao/" method="post">
+          {% csrf_token %}
+          {{ solicitacaoConcluidaForm.as_p }}
+          <button class="btn btn-success" type="submit">Concluir Inscrição</button>
+        </form>
       </div>
       <!-- send: end -->
 

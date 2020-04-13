@@ -12,7 +12,7 @@ from django.db.models import Q
 from django.contrib.auth.middleware import AuthenticationMiddleware
 from sc4py.datetime import now
 from .models import Chamada, PublicAuthToken, Solicitacao, DocumentoExigido, Documento
-from .forms import SolicitacaoForm, SelecionadoForm, EntrarForm, DocumentoForm
+from .forms import SolicitacaoForm, SelecionadoForm, EntrarForm, DocumentoForm, SolicitacaoConcluidaForm
 from .decorators import public_login_required
 
 
@@ -71,12 +71,13 @@ def solicitacao(request, chamada_id):
         "form": form,
         "chamada": request.selecionado.chamada,
         "selecionado": request.selecionado,
-        "documentosExigidos": DocumentoExigido.objects.filter(edital_id=chamada_id)
+        "documentosExigidos": DocumentoExigido.objects.filter(edital_id=request.selecionado.chamada.edital),
     }
     if solicitacao is not None:
+        params["solicitacaoId"] = solicitacao.id
         params["documentoForm"] = DocumentoForm(initial={'solicitacao': solicitacao.id})
-    if solicitacao is not None:
         params["documentos"] = Documento.objects.filter(solicitacao_id=solicitacao.id)
+        params["solicitacaoConcluidaForm"] = SolicitacaoConcluidaForm(initial={'solicitacao': solicitacao.id})
 
     return render(
         request, 
@@ -98,5 +99,13 @@ def adicionar_documento(request):
         if documentoForm.is_valid():
             documentoForm.save()
             documentoForm.messages = ["Arquivo armazenado com sucesso."]
+    return HttpResponseRedirect("/pre_matricula/%s/solicitacao#file" % (request.POST['solicitacao']))
 
+@public_login_required
+def concluir_solicitacao(request):
+    if request.method == 'POST':
+        form = SolicitacaoConcluidaForm(request.POST)
+        if form.is_valid():
+            form.save()
+            form.messages = ["Inscrição efetuada com sucesso."]
     return HttpResponseRedirect("/pre_matricula/%s/solicitacao#file" % (request.POST['solicitacao']))

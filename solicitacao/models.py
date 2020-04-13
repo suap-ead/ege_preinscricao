@@ -1,5 +1,7 @@
 from uuid import uuid1
-import hashlib
+import hashlib, json
+from django.core import serializers
+# from rest_framework import serializers
 from django.db.models import Model, TextChoices
 from django.db.models import CharField, DateField, BooleanField, NullBooleanField, DateTimeField
 from django.db.models import URLField, EmailField, FileField, OneToOneField
@@ -275,6 +277,7 @@ class Documento(Model):
     def __str__(self):
        return "%s - %s" % (self.solicitacao, self.documentacao)
 
+
 class PublicAuthToken(Model):
     chamada = FK("Chamada", Chamada)
     selecionado = FK("Selecionado", Selecionado)
@@ -286,10 +289,28 @@ class PublicAuthToken(Model):
         super().save()
 
 
+class SolicitacaoConcluida(Model):
+    solicitacao = OneToOneField(Solicitacao, verbose_name="Solicitação", on_delete=CASCADE)
+    veracidade = BooleanField("Confirmo que todas as informacões declaradas são verdadeiras.")
+    confirmacao = BooleanField("Confirmo que após concluir o meu cadastro não poderei mais alterar os dados e arquivos enviados.")
+    sha512_solicitacao = CharField("SHA 512 da solicitação", max_length=255)
+
+
+
 @receiver(pre_save, sender=Documento)
 def post_documento_save(sender, instance, **kwargs):
-    str = 'valor para sha512'  # mudar para o valor correto
+    str = serializers.serialize('json', [ instance ])
     instance.sha512_arquivo = hashlib.sha512(str.encode()).hexdigest()
+
+@receiver(pre_save, sender=SolicitacaoConcluida)
+def post_solicitacao_concluida_save(sender, instance, **kwargs):
+    solicitacao = instance.solicitacao
+    solicitacaoJson = serializers.serialize('json', [solicitacao, instance])
+    documentos = Documento.objects.filter(solicitacao_id=instance.solicitacao.id)
+    documentosJson = serializers.serialize('json', documentos, fields=('sha512_arquivo'))
+    str = solicitacaoJson + documentosJson
+    instance.sha512_solicitacao = hashlib.sha512(str.encode()).hexdigest()
+    pass
 
 @receiver(post_delete, sender=Documento)
 def post_documento_delete(sender, instance, **kwargs):
