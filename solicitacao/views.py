@@ -74,7 +74,7 @@ def solicitacao(request, chamada_id):
         "documentosExigidos": DocumentoExigido.objects.filter(edital_id=request.selecionado.chamada.edital),
     }
     if solicitacao is not None:
-        params["solicitacaoId"] = solicitacao.id
+        params["solicitacao"] = solicitacao
         params["documentoForm"] = DocumentoForm(initial={'solicitacao': solicitacao.id})
         params["documentos"] = Documento.objects.filter(solicitacao_id=solicitacao.id)
         params["solicitacaoConcluidaForm"] = SolicitacaoConcluidaForm(initial={'solicitacao': solicitacao.id})

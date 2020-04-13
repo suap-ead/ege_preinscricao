@@ -98,7 +98,7 @@
             {% for documento in documentosExigidos %}
             <tr>
               <td>{{documento.documentacao}}</td>
-              <td>{% ocorreu_upload solicitacaoId documento.documentacao %}</td>
+              <td>{% ocorreu_upload solicitacao.id documento.documentacao %}</td>
             </tr>
             {% empty %}
               <tr>
@@ -142,10 +142,110 @@
       <div class="tab-pane fade" id="send" role="tabpanel" aria-labelledby="send-tab">
         <br>
         <h4>Concluir Inscrição</h4>
-        <p>Lorem ipsum dolor, sit amet consectetur adipisicing elit. At asperiores possimus eos aut sunt, optio deleniti ea totam aperiam porro assumenda, ad quibusdam nulla nesciunt. Nihil amet quo explicabo aut?</p>
         <form class="form" action="/pre_matricula/concluir_solicitacao/" method="post">
           {% csrf_token %}
-          {{ solicitacaoConcluidaForm.as_p }}
+          {% if chamada.edital.tem_ppi %}
+            <div class="card">
+              <div class="card-header">
+                Autodeclaração de Etnia
+              </div>
+              <div class="card-body">
+                <p>
+                  DECLARO que sou <b>{{solicitacao.raca}}</b>, para o fim específico de atender aos
+                  termos do <b>Edital {{chamada.edital.identificacao|add:" - "|add:chamada.edital.titulo}}</b> no que se refere à
+                  reserva de vagas da lista diferenciada com a condição de etnia.
+                </p>
+                <div class="form-check">
+                  <input
+                    class="form-check-input"
+                    type="checkbox"
+                    value="{{ solicitacaoConcluidaForm.autodeclaracao_etnia.value }}"
+                    name="{{ solicitacaoConcluidaForm.autodeclaracao_etnia.name }}"
+                    id="{{ solicitacaoConcluidaForm.autodeclaracao_etnia.auto_id }}"
+                  >
+                  <label class="form-check-label" for="{{ solicitacaoConcluidaForm.autodeclaracao_etnia.auto_id }}">
+                    {{ solicitacaoConcluidaForm.autodeclaracao_etnia.label }}
+                  </label>
+                </div>
+              </div>
+            </div>
+            <br>
+          {% endif %}
+          <div class="card">
+            <div class="card-header">
+              Organização Didática
+            </div>
+            <div class="card-body">
+              <p>Declaro que estou ciente das normas previstas na Organização Didática* do IFRN e que:</p>
+              <ol>
+                <li>Terei que frequentar as aulas presenciais, independente do turno, se assim a Instituição determinar;</li>
+                <li>Terei de renovar minha matrícula, periodicamente, durante o período de renovação de matrícula, previsto no Calendário Acadêmico, sob pena de ter a matrícula cancelada pela instituição;</li>
+                <li>Caso deixe de frequentar as aulas (acessar o ambiente virtual), nos 10 (dez) primeiros dias úteis do início do curso, sem que seja apresentada uma justificativa, serei desligado do IFRN, sendo minha vaga preenchida por outro candidato, de acordo com a ordem classificatória do processo seletivo.</li>
+                <li>O estudante não poderá ocupar matrículas simultâneas no mesmo campus ou em diferentes campi do IFRN, nas seguintes situações, independente da modalidade de ensino: em mais de um curso de pós-graduação stricto sensu, em mais de um curso de pós-graduação lato sensu; em mais de um curso de graduação; em mais de um curso técnico de nível médio. Não será permitida a matrícula simultânea em mais de dois cursos.</li>
+                <li>Para os alunos de graduação, estou ciente da Lei Federal nº 12.089 de 11 de novembro de 2009, que proíbe que uma mesma pessoa ocupe 2 (duas) vagas simultaneamente em instituições públicas de ensino superior.</li>
+              </ol>
+              <p>Diante do exposto, assumo o compromisso de seguir as normas institucionais, e peço deferimento.​</p>
+              <div class="form-check">
+                <input
+                  class="form-check-input"
+                  type="checkbox"
+                  value="{{ solicitacaoConcluidaForm.organizacao_didatica.value }}"
+                  name="{{ solicitacaoConcluidaForm.organizacao_didatica.name }}"
+                  id="{{ solicitacaoConcluidaForm.organizacao_didatica.auto_id }}"
+                >
+                <label class="form-check-label" for="{{ solicitacaoConcluidaForm.organizacao_didatica.auto_id }}">
+                  {{ solicitacaoConcluidaForm.organizacao_didatica.label }}
+                </label>
+              </div>
+            </div>
+          </div>
+          <br>
+          <div class="card">
+            <div class="card-header">
+              Declarações Legais
+            </div>
+            <div class="card-body">
+              <p>Declaro, também, estar ciente de que, a comprovação da falsidade desta declaração, em procedimento que me assegure o contraditório e a ampla defesa, implicará no cancelamento da minha matrícula nesta Instituição Federal de Ensino, sem prejuízo das sanções penais cabíveis.</p>
+              <div class="form-check">
+                <input
+                  class="form-check-input"
+                  type="checkbox"
+                  value="{{ solicitacaoConcluidaForm.penal.value }}"
+                  name="{{ solicitacaoConcluidaForm.penal.name }}"
+                  id="{{ solicitacaoConcluidaForm.penal.auto_id }}"
+                >
+                <label class="form-check-label" for="{{ solicitacaoConcluidaForm.penal.auto_id }}">
+                  {{ solicitacaoConcluidaForm.penal.label }}
+                </label>
+              </div>
+            </div>
+          </div>
+          <br>
+          <div class="form-check">
+            <input
+              class="form-check-input"
+              type="checkbox"
+              value="{{ solicitacaoConcluidaForm.veracidade.value }}"
+              name="{{ solicitacaoConcluidaForm.veracidade.name }}"
+              id="{{ solicitacaoConcluidaForm.veracidade.auto_id }}"
+            >
+            <label class="form-check-label" for="{{ solicitacaoConcluidaForm.veracidade.auto_id }}">
+              {{ solicitacaoConcluidaForm.veracidade.label }}
+            </label>
+          </div>
+          <div class="form-check">
+            <input
+              class="form-check-input"
+              type="checkbox"
+              value="{{ solicitacaoConcluidaForm.confirmacao.value }}"
+              name="{{ solicitacaoConcluidaForm.confirmacao.name }}"
+              id="{{ solicitacaoConcluidaForm.confirmacao.auto_id }}"
+            >
+            <label class="form-check-label" for="{{ solicitacaoConcluidaForm.confirmacao.auto_id }}">
+              {{ solicitacaoConcluidaForm.confirmacao.label }}
+            </label>
+          </div>
+          <br>
           <button class="btn btn-success" type="submit">Concluir Inscrição</button>
         </form>
       </div>
