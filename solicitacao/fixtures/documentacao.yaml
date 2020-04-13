@@ -1,0 +1,48 @@
+- model: solicitacao.documentacao
+  pk: 1
+  fields:
+    identificacao: Fotos 3x4 recente
+- model: solicitacao.documentacao
+  pk: 2
+  fields:
+    identificacao: "C\xE9dula de identidade (leg\xEDvel)"
+- model: solicitacao.documentacao
+  pk: 3
+  fields:
+    identificacao: "Cadastro de pessoa f\xEDsica \u2013 CPF (leg\xEDvel)"
+- model: solicitacao.documentacao
+  pk: 4
+  fields:
+    identificacao: "T\xEDtulo de eleitor (leg\xEDvel)"
+- model: solicitacao.documentacao
+  pk: 5
+  fields:
+    identificacao: "Certid\xE3o de quita\xE7\xE3o eleitoral (leg\xEDvel)"
+- model: solicitacao.documentacao
+  pk: 6
+  fields:
+    identificacao: "Certificado de alistamento militar, de dispensa de incorpora\xE7\
+      \xE3o ou de reservista, no caso dos maiores de 18 anos do sexo masculino (leg\xED\
+      vel)"
+- model: solicitacao.documentacao
+  pk: 7
+  fields:
+    identificacao: "Certid\xE3o de nascimento ou casamento (leg\xEDvel)"
+- model: solicitacao.documentacao
+  pk: 8
+  fields:
+    identificacao: "Hist\xF3rico final (leg\xEDvel)"
+- model: solicitacao.documentacao
+  pk: 9
+  fields:
+    identificacao: "Diploma de gradua\xE7\xE3o (leg\xEDvel)"
+- model: solicitacao.documentacao
+  pk: 10
+  fields:
+    identificacao: "Declara\xE7\xE3o da institui\xE7\xE3o em que tem v\xEDnculo constando\
+      \ que est\xE1 atuando como profissional em exerc\xEDcio na rede p\xFAblica de\
+      \ ensino (leg\xEDvel)"
+- model: solicitacao.documentacao
+  pk: 11
+  fields:
+    identificacao: "Laudo atestando defici\xEAncia (leg\xEDvel)"
