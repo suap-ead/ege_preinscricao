@@ -72,6 +72,7 @@ def solicitacao(request, chamada_id):
         "chamada": request.selecionado.chamada,
         "selecionado": request.selecionado,
         "documentosExigidos": DocumentoExigido.objects.filter(edital_id=request.selecionado.chamada.edital),
+        "solicitacaoId": NotImplementedError,
     }
     if solicitacao is not None:
         params["solicitacao"] = solicitacao
