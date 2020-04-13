@@ -20,7 +20,6 @@
     }
     label {
       margin: 0;
-      font-weight: bold;
     }
     .helptext {
       width: 100%;
@@ -46,7 +45,7 @@
   <nav class="navbar navbar-expand-md fixed-top navbar-dark bg-primary">
     <a class="navbar-brand" href="{% url 'solicitacao:index' %}">Solicitação de matrículas</a>
     {% if request.selecionado %}
-    <form class="form-inline mt-2 mt-md-0" action="{% url 'solicitacao:sair' %}">
+    <form class="form-inline mt-2 mt-md-0" action="{% url 'solicitacao:auth_sair' %}">
       <!-- <input class="form-control mr-sm-2" type="text" placeholder="Search" aria-label="Search"> -->
       <button class="btn btn-success my-2 my-sm-0" type="submit">Sair</button>
     </form>

@@ -1,0 +1,27 @@
+{% load i18n admin_urls static admin_list %}
+{% load common_utils %}
+{% load static %}
+{% load documento_exigido %}
+
+<div class="row">
+  <div class="col">
+    <h5>Identificação da solicitação</h5>
+    <p><label>Edital:</label><br /><a href="{{chamada.edital.pagina}}" target="_blank">{{chamada.edital.identificacao}} - {{chamada.edital.titulo}}</a></p>
+    <p><label>Chamada:</label><br />{{ chamada.chamada }}</p>
+    <p><label>De:</label><br />{{ chamada.inicio_solicitacoes }}</p>
+    <p><label>Até:</label><br />{{ chamada.fim_solicitacoes }}</p>
+    <p><label>Matriz/Curso:</label><br />{{selecionado.matriz_curso}}</p>
+    <p><label>Ano letivo:</label><br />{{ selecionado.ano_letivo }}</p>
+    <p><label>Período letivo:</label><br />{{ selecionado.periodo_letivo }}</p>
+    <p><label>Forma de ingresso:</label><br />{{ selecionado.turno }}</p>
+    <p><label>Polo EAD:</label><br />{{ selecionado.forma_ingresso }}</p>
+    <p><label>Lista de seleção:</label><br />{{selecionado.lista}}</p>
+    <p><label>Nacionalidade:</label><br />{{ selecionado.nacionalidade }}</p>
+    <p><label>CPF:</label><br />{{ selecionado.cpf }}</p>
+    <p><label>Passaporte:</label><br />{{ selecionado.passaporte }}</p>
+    <p><label>Nome:</label><br />{{ selecionado.nome }}</p>
+    <p><label>Nome social:</label><br />{{ selecionado.nome_social }}</p>
+    <p><label>E-Mail:</label><br />{{ selecionado.email }}</p>
+    <p><label>Inscrição:</label><br />{{ selecionado.inscricao }}</p>
+  </div>
+</div>

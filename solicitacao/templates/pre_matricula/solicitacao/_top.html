@@ -1,0 +1,25 @@
+{% load i18n admin_urls static admin_list %}
+{% load common_utils %}
+{% load static %}
+{% load documento_exigido %}
+
+{% if selecionado.solicitacao.apenas_leitura %}
+  <div class="jumbotron">
+    Você não pode mais enviar o formulário e os arquivos pois 
+    <b>{{ selecionado.solicitacao.apenas_leitura_motivo|lower }}</b>.
+  </div>
+{% endif %}
+
+{% if selecionado.solicitacao %}
+  <ul class="nav nav-tabs" id="myTab" role="tablist">
+    <li class="nav-item">
+      <a class="nav-link active" id="form-tab" data-toggle="tab" href="#form" role="tab" aria-controls="form" aria-selected="true">Formulário</a>
+    </li>
+    <li class="nav-item">
+      <a class="nav-link" id="file-tab" data-toggle="tab" href="#file" role="tab" aria-controls="file" aria-selected="false">Arquivos</a>
+    </li>
+    <li class="nav-item">
+      <a class="nav-link" id="send-tab" data-toggle="tab" href="{% url 'solicitacao:concluir' %}" role="tab" aria-controls="send" aria-selected="false">Concluir</a>
+    </li>
+  </ul>
+{% endif %}

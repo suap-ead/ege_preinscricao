@@ -21,7 +21,7 @@ def selecionado_passes_test(test_func):
             if hasattr(request, 'selecionado') and test_func(request.selecionado):
                 return view_func(request, *args, **kwargs)
             path = request.build_absolute_uri()
-            return redirect(resolve_url("solicitacao:entrar", kwargs.get("chamada_id", None)))
+            return redirect(resolve_url("solicitacao:auth_entrar", kwargs.get("chamada_id", None)))
         return _wrapped_view
     return decorator
 

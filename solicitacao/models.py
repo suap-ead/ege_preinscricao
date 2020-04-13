@@ -1,6 +1,7 @@
 from uuid import uuid1
 import hashlib, json
 from django.core import serializers
+from django.utils.timezone import now
 # from rest_framework import serializers
 from django.db.models import Model, TextChoices
 from django.db.models import CharField, DateField, BooleanField, NullBooleanField, DateTimeField
@@ -263,6 +264,23 @@ class Solicitacao(Model):
     def __str__(self):
        return "%s" % self.selecionado
 
+    @property
+    def apenas_leitura(self):        
+        return self.solicitacaoconcluida is not None or self.selecionado.chamada.fim_solicitacoes > now()
+
+    @property
+    def apenas_leitura_motivo(self):
+        if self.solicitacaoconcluida:
+            return "A solicitação já foi concluída por você"            
+
+        if self.selecionado.chamada.fim_solicitacoes > now():
+            return "O período de envio já foi expirou"
+        return "Ainda pode enviar"
+
+    @property
+    def pode_aceitar(self):
+        documentos_entregues = [x.documentacao.id for x in s.documento_set.all()]
+        return DocumentoExigido.objects.filter(edital=self.selecionado.chamada.edital).exclude(documentacao_id__in=documentos_entregues).exists()
 
 class Documento(Model):
     solicitacao = FK("Solicitação", Solicitacao)
@@ -291,9 +309,20 @@ class PublicAuthToken(Model):
 
 class SolicitacaoConcluida(Model):
     solicitacao = OneToOneField(Solicitacao, verbose_name="Solicitação", on_delete=CASCADE)
-    veracidade = BooleanField("Confirmo que todas as informacões declaradas são verdadeiras.")
+    veracidade = BooleanField("Reconheço que as informações prestadas são verdadeiras.")
     confirmacao = BooleanField("Confirmo que após concluir o meu cadastro não poderei mais alterar os dados e arquivos enviados.")
     sha512_solicitacao = CharField("SHA 512 da solicitação", max_length=255)
+
+    class Meta:
+        verbose_name = "Documento"
+        verbose_name_plural = "Documentos"
+
+    def __str__(self):
+       return "%s - %s" % (self.solicitacao, self.documentacao)
+
+    def save(self):
+        self.token = "%s" % uuid1()
+        super().save()
 
 
 

@@ -1,4 +1,5 @@
 from django.conf import settings
+from django.shortcuts import resolve_url
 from django import forms
 from django.forms import Form, ModelForm, ValidationError, CharField
 from django.db.models import Q
@@ -25,7 +26,12 @@ class EntrarForm(Form):
             publicAuthToken = PublicAuthToken(chamada=self.chamada, selecionado=selecionado)
             publicAuthToken.save()
             try:
-                full_url = f"{self.request._current_scheme_host}/{settings.URL_PATH_PREFIX}{self.chamada.id}/{selecionado.inscricao}/{publicAuthToken.token}/autenticar/"
+                params = {
+                    "chamada_id": self.chamada.id,
+                    "inscricao": selecionado.inscricao,
+                    "token": publicAuthToken.token,
+                }
+                full_url = self.request._current_scheme_host + resolve_url("solicitacao:auth_autenticar", **params)
                 send_mail(
                     'Acesso à solicitação de matrícula online do IFRN',
                     "Para terminar teu acesso, clique no link %s. Esta código só é válida por 2h." % (full_url),
@@ -87,14 +93,38 @@ class SolicitacaoForm(ModelForm):
             'data_emissao_titulo_eleitor': forms.DateInput(format=('%m/%d/%Y'), attrs={'class':'form-control', 'placeholder':'Select a date', 'type':'date'}),
             'data_emissao_certidao': forms.DateInput(format=('%m/%d/%Y'), attrs={'class':'form-control', 'placeholder':'Select a date', 'type':'date'}),
         }
+
+
+class ReadonlySolicitacaoForm(SolicitacaoForm):
+    class Meta:
+        model = SolicitacaoForm.Meta.model
+        fields = SolicitacaoForm.Meta.fields
+        widgets = {}
+
+
 class DocumentoForm(forms.ModelForm):
     class Meta:
         model = Documento
         fields=['documentacao', 'arquivo', 'solicitacao']
         widgets = {'solicitacao': forms.HiddenInput()}
 
+
 class SolicitacaoConcluidaForm(forms.ModelForm):
     class Meta:
         model = SolicitacaoConcluida
         fields=['veracidade', 'confirmacao', 'solicitacao']
         widgets = {'solicitacao': forms.HiddenInput()}
+
+    def clean_veracidade(self):
+        c = self.cleaned_data['veracidade']
+        print("['veracidade']", c)
+        if c:
+            return self.cleaned_data['veracidade']
+        raise ValidationError("Não posso concluir a solicitação se você não aceitar este termo.")
+
+    def clean_confirmacao(self):
+        c = self.cleaned_data['confirmacao']
+        print("['confirmacao']", c)
+        if c:
+            return self.cleaned_data['confirmacao']
+        raise ValidationError("Não posso concluir a solicitação se você não aceitar este termo.")
