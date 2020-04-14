@@ -34,7 +34,7 @@
         <form method="post">
           {% csrf_token %}
 
-          {% include "pre_matricula/_solicitacao_identificacao.html" %}
+          {% include "pre_matricula/solicitacao/_identificacao.html" %}
 
           <hr /> 
           <h5>Dados do formulário</h5>
@@ -107,7 +107,7 @@
             {% for documento in documentosExigidos %}
             <tr class="{% ocorreu_upload solicitacaoId documento.documentacao %}">
               <td>{{documento.documentacao}}</td>
-              <td>{% ocorreu_upload solicitacaoId documento.documentacao %}</td>
+              <td>{% ocorreu_upload solicitacao.id documento.documentacao %}</td>
             </tr>
             {% empty %}
               <tr>
@@ -158,7 +158,7 @@
           Saiba que, caso sua solicitação de matrícula não seja <b>concluída</b> até o prazo final de solicitação, em <b>{{chamada.fim_solicitacoes}}</b>, sua solicitação poderá ser indeferida, portanto, sua solicitação matrícula não será aceita.
         </div>
 
-        {% include "pre_matricula/_solicitacao_identificacao.html" %}
+        {% include "pre_matricula/solicitacao/_identificacao.html" %}
 
         <hr /> 
         <h5>Dados do formulário</h5>

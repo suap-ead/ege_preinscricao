@@ -311,6 +311,9 @@ class SolicitacaoConcluida(Model):
     solicitacao = OneToOneField(Solicitacao, verbose_name="Solicitação", on_delete=CASCADE)
     veracidade = BooleanField("Reconheço que as informações prestadas são verdadeiras.")
     confirmacao = BooleanField("Confirmo que após concluir o meu cadastro não poderei mais alterar os dados e arquivos enviados.")
+    autodeclaracao_etnia = BooleanField("Autodeclaro minha Etnia")
+    organizacao_didatica = BooleanField("Declaro que estou ciente")
+    penal = BooleanField("Declaro que estou ciente")
     sha512_solicitacao = CharField("SHA 512 da solicitação", max_length=255)
 
     class Meta:

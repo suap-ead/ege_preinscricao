@@ -13,7 +13,7 @@
 {% if selecionado.solicitacao %}
   <ul class="nav nav-tabs" id="myTab" role="tablist">
     <li class="nav-item">
-      <a class="nav-link active" id="form-tab" data-toggle="tab" href="#form" role="tab" aria-controls="form" aria-selected="true">Formulário</a>
+      <a class="nav-link active" id="form-tab" data-toggle="tab" href="{% url 'solicitacao:formulario' selecionado.chamada_id  %}" role="tab" aria-controls="form" aria-selected="true">Formulário</a>
     </li>
     <li class="nav-item">
       <a class="nav-link" id="file-tab" data-toggle="tab" href="#file" role="tab" aria-controls="file" aria-selected="false">Arquivos</a>

@@ -52,7 +52,7 @@ def solicitacao_index(request):
     chamadas_em_aberto = Chamada.objects.filter(inicio_solicitacoes__lte=now(), fim_solicitacoes__gte=now()).order_by(*default_order)
     futuras_chamadas = Chamada.objects.filter(inicio_solicitacoes__gte=now()).order_by(*default_order)
     chamadas_passadas = Chamada.objects.filter(fim_solicitacoes__lte=now()).order_by(*default_order)
-    return render(request, template_name='pre_matricula/index.html', context=locals())
+    return render(request, template_name='pre_matricula/solicitacao/index.html', context=locals())
 
 
 @public_login_required
@@ -69,34 +69,36 @@ def solicitacao_formulario(request, chamada_id):
 
     params = {
         "form": form,
-        "chamada": request.selecionado.chamada,
         "selecionado": request.selecionado,
-        "documentosExigidos": DocumentoExigido.objects.filter(edital_id=request.selecionado.chamada.edital),
+        "chamada": request.selecionado.chamada,
+        # "documentosExigidos": DocumentoExigido.objects.filter(edital_id=request.selecionado.chamada.edital),
     }
-    if solicitacao is not None:
-        params["solicitacaoId"] = solicitacao.id
-        params["documentoForm"] = DocumentoForm(initial={'solicitacao': solicitacao.id})
-        params["documentos"] = Documento.objects.filter(solicitacao_id=solicitacao.id)
-        if SolicitacaoConcluida.objects.filter(solicitacao_id=solicitacao.id).first() is not None:
-            params["solicitacaoConcluidaForm"] = SolicitacaoConcluidaForm(instance=solicitacao.solicitacaoconcluida)
-        else:
-            params["solicitacaoConcluidaForm"] = SolicitacaoConcluidaForm(initial={'solicitacao': solicitacao.id})
+    # if solicitacao is not None:
+    #     params["solicitacao"] = solicitacao
+    #     params["documentoForm"] = DocumentoForm(initial={'solicitacao': solicitacao.id})
+    #     params["documentos"] = Documento.objects.filter(solicitacao_id=solicitacao.id)
+    #     if SolicitacaoConcluida.objects.filter(solicitacao_id=solicitacao.id).first() is not None:
+    #         params["solicitacaoConcluidaForm"] = SolicitacaoConcluidaForm(instance=solicitacao.solicitacaoconcluida)
+    #     else:
+    #         params["solicitacaoConcluidaForm"] = SolicitacaoConcluidaForm(initial={'solicitacao': solicitacao.id})
 
-    return render(
-        request, 
-        'pre_matricula/solicitacao.html', 
-        params
-    )
+    return render(request, 'pre_matricula/solicitacao/formulario.html', params)
 
 
 @public_login_required
-def solicitacao_anexar(request):
+def solicitacao_anexar(request, chamada_id=None):
+    selecionado = request.selecionado
+    solicitacao = request.selecionado.solicitacao
     if request.method == 'POST' and request.FILES['arquivo']:
         documentoForm = DocumentoForm(request.POST, request.FILES)
         if documentoForm.is_valid():
             documentoForm.save()
             documentoForm.messages = ["Arquivo armazenado com sucesso."]
-    return HttpResponseRedirect("/pre_matricula/%s/solicitacao#file" % (request.POST['solicitacao']))
+    else:
+        documentoForm = DocumentoForm(initial={'solicitacao': solicitacao})
+    documentos = Documento.objects.filter(solicitacao_id=solicitacao.id)
+    print(render(request, template_name='pre_matricula/solicitacao/anexar.html', context=locals()))
+    return render(request, template_name='pre_matricula/solicitacao/anexar.html', context=locals())
 
 
 @public_login_required

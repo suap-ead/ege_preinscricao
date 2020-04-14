@@ -112,7 +112,12 @@ class DocumentoForm(forms.ModelForm):
 class SolicitacaoConcluidaForm(forms.ModelForm):
     class Meta:
         model = SolicitacaoConcluida
-        fields=['veracidade', 'confirmacao', 'solicitacao']
+        fields=['veracidade',
+            'confirmacao',
+            'solicitacao',
+            'autodeclaracao_etnia',
+            'organizacao_didatica',
+            'penal']
         widgets = {'solicitacao': forms.HiddenInput()}
 
     def clean_veracidade(self):

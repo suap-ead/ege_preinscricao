@@ -1,58 +1,13 @@
-{% extends "pre_matricula/base.html" %}
+{% extends "pre_matricula/solicitacao/base.html" %}
 {% load i18n admin_urls static admin_list %}
 {% load common_utils %}
 {% load static %}
 {% load documento_exigido %}
 
-{% block content %}
-
-    {% if selecionado.solicitacao.apenas_leitura %}
-    <div class="jumbotron">
-      Você não pode mais enviar o formulário e os arquivos pois <b>{{ selecionado.solicitacao.apenas_leitura_motivo|lower }}</b>.
-    </div>
-
-    {% endif %}
-    {% if selecionado.solicitacao %}
-    <ul class="nav nav-tabs" id="myTab" role="tablist">
-      <li class="nav-item">
-        <a class="nav-link active" id="form-tab" data-toggle="tab" href="#form" role="tab" aria-controls="form" aria-selected="true">Formulário</a>
-      </li>
-      <li class="nav-item">
-        <a class="nav-link" id="file-tab" data-toggle="tab" href="#file" role="tab" aria-controls="file" aria-selected="false">Arquivos</a>
-      </li>
-      <li class="nav-item">
-        <a class="nav-link" id="send-tab" data-toggle="tab" href="#send" role="tab" aria-controls="send" aria-selected="false">Concluir</a>
-      </li>
-    </ul>
-    {% endif %}
-    <div class="tab-content" id="myTabContent">
+{% block conteudo_interno %}
 
       <!-- form: begin -->
-      <div class="tab-pane fade show active" id="form" role="tabpanel" aria-labelledby="form-tab">
-        <br>
-        <h3>Formulário de solicitação de matrícula</h3>
-        <form method="post">
-          {% csrf_token %}
-
-          {% include "pre_matricula/_solicitacao_identificacao.html" %}
-
-          <hr /> 
-          <h5>Dados do formulário</h5>
-          {% if selecionado.solicitacao.apenas_leitura %}
-            <fieldset disabled="disabled">
-              {{ form.as_p }}
-            </fieldset>
-          {% else %}
-            {{ form.as_p }}
-            <button class="btn btn-success my-2 my-sm-0" type="submit">Salvar</button>
-          {% endif %}
-
-        </form>          
-      </div>
-      <!-- form: end -->
-
-      <!-- form: begin -->
-      <div class="tab-pane fade" id="file" role="tabpanel" aria-labelledby="file-tab">
+      <div class="tab-pane fade show active" id="file" role="tabpanel" aria-labelledby="file-tab">
         <h3>Documentos Exigidos</h3>
         <div class="alert alert-warning" role="alert">
           <p>Só será aceito para validação arquivo do tipo PDF em formato A4-retrato legíveis, arquivos em outros formatos ou condições serão desconsiderados. Desta forma:</p>
@@ -88,7 +43,7 @@
         </div>
   
         <h5>Enviar documento</h5>
-        <form class="form" action="/pre_matricula/adicionar_documento/" method="post" enctype="multipart/form-data">
+        <form class="form" method="post" enctype="multipart/form-data">
           {% csrf_token %}
           {{ documentoForm.as_p }}
           <button class="btn btn-success" type="submit">Enviar Arquivo</button>
@@ -107,7 +62,7 @@
             {% for documento in documentosExigidos %}
             <tr class="{% ocorreu_upload solicitacaoId documento.documentacao %}">
               <td>{{documento.documentacao}}</td>
-              <td>{% ocorreu_upload solicitacaoId documento.documentacao %}</td>
+              <td>{% ocorreu_upload solicitacao.id documento.documentacao %}</td>
             </tr>
             {% empty %}
               <tr>
@@ -145,48 +100,5 @@
           </tbody>
         </table>
       </div>
-      <!-- form: end -->
 
-      <!-- send: begin -->
-      <div class="tab-pane fade" id="send" role="tabpanel" aria-labelledby="send-tab">
-        <br>
-        <h3>Concluir solicitação de matrícula</h3>
-        <div class="alert alert-warning" role="alert">
-          Confira se os dados abaixo estão corretos, se todos os arquivos foram anexados, e, se estiver tudo corrreto, confirme a conclusão da solicitação de matrícula.
-        </div>
-        <div class="alert alert-warning" role="alert">
-          Saiba que, caso sua solicitação de matrícula não seja <b>concluída</b> até o prazo final de solicitação, em <b>{{chamada.fim_solicitacoes}}</b>, sua solicitação poderá ser indeferida, portanto, sua solicitação matrícula não será aceita.
-        </div>
-
-        {% include "pre_matricula/_solicitacao_identificacao.html" %}
-
-        <hr /> 
-        <h5>Dados do formulário</h5>
-        <fieldset disabled="disabled">
-          {{ form.as_p }}
-        </fieldset>
-
-        <form class="form" method="post">
-          <hr /> 
-          <h5>Termos de aceite</h5>
-          
-          {% if request.GET.dados_invalidos %}
-          <div class="alert alert-danger" role="alert">A solicitação não será aceita se você não concordar com todos os termos.</div>
-          {% endif %}
-          <div class="alert alert-info" role="alert">Só marque os termos de aceite que você realmente aceita/concorda.</div>
-
-          {% csrf_token %}
-          {% if selecionado.solicitacao.apenas_leitura %}
-            <fieldset disabled="disabled">
-              {{ solicitacaoConcluidaForm.as_p }}
-            </fieldset>
-          {% else %}
-            {{ solicitacaoConcluidaForm.as_p }}
-            <button class="btn btn-success" type="submit">Concluir inscrição</button>
-          {% endif %}
-        </form>
-      </div>
-      <!-- send: end -->
-
-    </div>
-{% endblock content %}
+{% endblock conteudo_interno %}

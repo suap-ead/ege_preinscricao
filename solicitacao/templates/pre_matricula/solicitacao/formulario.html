@@ -1,0 +1,31 @@
+{% extends "pre_matricula/solicitacao/base.html" %}
+{% load i18n admin_urls static admin_list %}
+{% load common_utils %}
+{% load static %}
+{% load documento_exigido %}
+
+{% block conteudo_interno %}
+    <!-- form: begin -->
+    <div class="tab-pane fade show active" id="form" role="tabpanel" aria-labelledby="form-tab">
+      <br>
+      <h3>Formulário de solicitação de matrícula</h3>
+      <form method="post">
+        {% csrf_token %}
+
+        {% include "pre_matricula/solicitacao/_identificacao.html" %}
+
+        <hr /> 
+        <h5>Dados do formulário</h5>
+        {% if selecionado.solicitacao.apenas_leitura %}
+          <fieldset disabled="disabled">
+            {{ form.as_p }}
+          </fieldset>
+        {% else %}
+          {{ form.as_p }}
+          <button class="btn btn-success my-2 my-sm-0" type="submit">Salvar</button>
+        {% endif %}
+
+      </form>          
+    </div>
+    <!-- form: end -->
+{% endblock conteudo_interno %}
