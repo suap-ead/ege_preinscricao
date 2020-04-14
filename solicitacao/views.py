@@ -57,32 +57,20 @@ def solicitacao_index(request):
 
 @public_login_required
 def solicitacao_formulario(request, chamada_id):
-    solicitacao=getattr(request.selecionado, 'solicitacao', None)
+    selecionado = request.selecionado
+    chamada = selecionado.chamada
+    solicitacao=getattr(selecionado, 'solicitacao', None)
     if request.method == 'POST':
         form = SolicitacaoForm(request.POST, instance=solicitacao)
         if form.is_valid():
-            form.instance.selecionado = request.selecionado
+            form.instance.selecionado = selecionado
             form.save()
             form.messages = ["Solicitação salva com sucesso."]
     else:
         form = SolicitacaoForm(instance=solicitacao)
+    active_tab = "form"
 
-    params = {
-        "form": form,
-        "selecionado": request.selecionado,
-        "chamada": request.selecionado.chamada,
-        # "documentosExigidos": DocumentoExigido.objects.filter(edital_id=request.selecionado.chamada.edital),
-    }
-    # if solicitacao is not None:
-    #     params["solicitacao"] = solicitacao
-    #     params["documentoForm"] = DocumentoForm(initial={'solicitacao': solicitacao.id})
-    #     params["documentos"] = Documento.objects.filter(solicitacao_id=solicitacao.id)
-    #     if SolicitacaoConcluida.objects.filter(solicitacao_id=solicitacao.id).first() is not None:
-    #         params["solicitacaoConcluidaForm"] = SolicitacaoConcluidaForm(instance=solicitacao.solicitacaoconcluida)
-    #     else:
-    #         params["solicitacaoConcluidaForm"] = SolicitacaoConcluidaForm(initial={'solicitacao': solicitacao.id})
-
-    return render(request, 'pre_matricula/solicitacao/formulario.html', params)
+    return render(request, 'pre_matricula/solicitacao/formulario.html', context=locals())
 
 
 @public_login_required
@@ -97,7 +85,8 @@ def solicitacao_anexar(request, chamada_id=None):
     else:
         documentoForm = DocumentoForm(initial={'solicitacao': solicitacao})
     documentos = Documento.objects.filter(solicitacao_id=solicitacao.id)
-    print(render(request, template_name='pre_matricula/solicitacao/anexar.html', context=locals()))
+    documentosExigidos = DocumentoExigido.objects.filter(edital_id=selecionado.chamada.edital.id)
+    active_tab = "file"
     return render(request, template_name='pre_matricula/solicitacao/anexar.html', context=locals())
 
 
@@ -108,6 +97,17 @@ def solicitacao_concluir(request):
         if form.is_valid():
             form.save()
             form.messages = ["Inscrição efetuada com sucesso."]
+
+    # if solicitacao is not None:
+    #     params["solicitacao"] = solicitacao
+    #     params["documentoForm"] = DocumentoForm(initial={'solicitacao': solicitacao.id})
+    #     params["documentos"] = Documento.objects.filter(solicitacao_id=solicitacao.id)
+    #     if SolicitacaoConcluida.objects.filter(solicitacao_id=solicitacao.id).first() is not None:
+    #         params["solicitacaoConcluidaForm"] = SolicitacaoConcluidaForm(instance=solicitacao.solicitacaoconcluida)
+    #     else:
+    #         params["solicitacaoConcluidaForm"] = SolicitacaoConcluidaForm(initial={'solicitacao': solicitacao.id})
+
+    active_tab = "send"
     return HttpResponseRedirect("/pre_matricula/%s/solicitacao#concluir?dados_invalidos=True" % (request.POST['solicitacao']))
 
 

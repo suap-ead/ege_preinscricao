@@ -60,7 +60,7 @@
           </thead>
           <tbody>
             {% for documento in documentosExigidos %}
-            <tr class="{% ocorreu_upload solicitacaoId documento.documentacao %}">
+            <tr class="{% ocorreu_upload solicitacao.id documento.documentacao %}">
               <td>{{documento.documentacao}}</td>
               <td>{% ocorreu_upload solicitacao.id documento.documentacao %}</td>
             </tr>

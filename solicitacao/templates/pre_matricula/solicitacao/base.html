@@ -15,13 +15,13 @@
     {% if selecionado.solicitacao %}
     <ul class="nav nav-tabs" id="myTab" role="tablist">
       <li class="nav-item">
-        <a class="nav-link active" id="form-tab" href="{% url 'solicitacao:formulario' selecionado.chamada_id %}" role="tab" aria-controls="form" aria-selected="true">Formulário</a>
+        <a class="nav-link {% if active_tab == 'form' %}active{% endif %}" id="form-tab" href="{% url 'solicitacao:formulario' selecionado.chamada_id %}" role="tab" aria-controls="form" aria-selected="true">Formulário</a>
       </li>
       <li class="nav-item">
-        <a class="nav-link" id="file-tab" href="{% url 'solicitacao:anexar' selecionado.chamada_id %}" role="tab" aria-controls="file" aria-selected="false">Arquivos</a>
+        <a class="nav-link {% if active_tab == 'file' %}active{% endif %}" id="file-tab" href="{% url 'solicitacao:anexar' selecionado.chamada_id %}" role="tab" aria-controls="file" aria-selected="false">Arquivos</a>
       </li>
       <li class="nav-item">
-        <a class="nav-link" id="send-tab" data-toggle="tab" href="#send" role="tab" aria-controls="send" aria-selected="false">Concluir</a>
+        <a class="nav-link {% if active_tab == 'send' %}active{% endif %}" id="send-tab" data-toggle="tab" href="#send" role="tab" aria-controls="send" aria-selected="false">Concluir</a>
       </li>
     </ul>
     {% endif %}
