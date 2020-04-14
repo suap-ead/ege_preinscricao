@@ -5,6 +5,7 @@ from django.conf import settings
 from django.conf.urls.static import static
 from rest_framework import urls, schemas
 
+admin.site.site_url = '/' + settings.URL_PATH_PREFIX
 
 urlpatterns = [
     path(
