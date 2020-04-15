@@ -1,0 +1,186 @@
+- model: dominio_suap.matrizcurso
+  pk: 1
+  fields:
+    suap_id: '637'
+    titulo: "FIC+ Inform\xE1tica Avan\xE7ada"
+- model: dominio_suap.matrizcurso
+  pk: 2
+  fields:
+    suap_id: '1076'
+    titulo: "T\xE9cnico de N\xEDvel M\xE9dio em Inform\xE1tica para Internet, na Forma\
+      \ Concomitante [2017] - EAD"
+- model: dominio_suap.matrizcurso
+  pk: 3
+  fields:
+    suap_id: '615'
+    titulo: "Tecnologia em Gest\xE3o Ambiental EaD [2012] - Campus EaD (UAB)"
+- model: dominio_suap.matrizcurso
+  pk: 4
+  fields:
+    suap_id: '1422'
+    titulo: "Especializa\xE7\xE3o em Educa\xE7\xE3o Profissional"
+- model: dominio_suap.matrizcurso
+  pk: 5
+  fields:
+    suap_id: '1327'
+    titulo: "Especializa\xE7\xE3o em Pr\xE1ticas Assertivas da Educa\xE7\xE3o Profissional\
+      \ Integrada \xE0 Educa\xE7\xE3o de Jovens e Adultos - com \xCAnfase em Gest\xE3\
+      o"
+- model: dominio_suap.matrizcurso
+  pk: 6
+  fields:
+    suap_id: '1310'
+    titulo: "Curso Superior de Licenciatura em Forma\xE7\xE3o Pedag\xF3gica para Graduados\
+      \ n\xE3o Licenciados (em Rede) - EAD 2018"
+- model: dominio_suap.matrizcurso
+  pk: 7
+  fields:
+    suap_id: '259'
+    titulo: "Aperfei\xE7oamento para Professores dos Munic\xEDpios do Rio Grande do\
+      \ Norte: L\xEDngua Portuguesa, Matem\xE1tica e Cidadania EaD [2009] - Campus\
+      \ EaD (UAB)"
+- model: dominio_suap.matrizcurso
+  pk: 8
+  fields:
+    suap_id: '420'
+    titulo: "T\xE9cnico de N\xEDvel M\xE9dio em Seguran\xE7a do Trabalho, na Forma\
+      \ Subsequente [2012] - Campus EaD (ETEC)"
+- model: dominio_suap.matrizcurso
+  pk: 9
+  fields:
+    suap_id: '421'
+    titulo: "T\xE9cnico de N\xEDvel M\xE9dio em Guia de Turismo, na Forma Subsequente\
+      \ [2012] - Campus EaD (ETEC)"
+- model: dominio_suap.matrizcurso
+  pk: 10
+  fields:
+    suap_id: '486'
+    titulo: "Especializa\xE7\xE3o em Literatura e Ensino EaD [2012] (UAB)"
+- model: dominio_suap.matrizcurso
+  pk: 11
+  fields:
+    suap_id: '487'
+    titulo: "Especializa\xE7\xE3o em Ensino da L\xEDngua Portuguesa e Matem\xE1tica\
+      \ em uma Perspectiva Transdisciplinar [2012] - Campus ZL (UAB)"
+- model: dominio_suap.matrizcurso
+  pk: 12
+  fields:
+    suap_id: '563'
+    titulo: "T\xE9cnico de N\xEDvel M\xE9dio em Alimenta\xE7\xE3o Escolar, na Forma\
+      \ Subsequente [Profuncionario 2013] - Campus ZL (ETEC)"
+- model: dominio_suap.matrizcurso
+  pk: 13
+  fields:
+    suap_id: '564'
+    titulo: "T\xE9cnico de N\xEDvel M\xE9dio em Infraestrutura Escolar, na Forma Subsequente\
+      \ [Profuncionario 2013] - Campus ZL (ETEC)"
+- model: dominio_suap.matrizcurso
+  pk: 14
+  fields:
+    suap_id: '565'
+    titulo: "T\xE9cnico de N\xEDvel M\xE9dio em Multimeios Did\xE1ticos, na Forma\
+      \ Subsequente [Profuncionario 2013] - Campus ZL (ETEC)"
+- model: dominio_suap.matrizcurso
+  pk: 15
+  fields:
+    suap_id: '566'
+    titulo: "T\xE9cnico de N\xEDvel M\xE9dio em Secretaria Escolar, na Forma Subsequente\
+      \ [Profuncionario 2013] - Campus ZL (ETEC)"
+- model: dominio_suap.matrizcurso
+  pk: 16
+  fields:
+    suap_id: '861'
+    titulo: "T\xE9cnico de N\xEDvel M\xE9dio em Inform\xE1tica para Internet, na Forma\
+      \ Subsequente [2015] - EaD"
+- model: dominio_suap.matrizcurso
+  pk: 17
+  fields:
+    suap_id: '820'
+    titulo: "FIC+ Produ\xE7\xE3o de Material Did\xE1tico para EaD"
+- model: dominio_suap.matrizcurso
+  pk: 18
+  fields:
+    suap_id: '889'
+    titulo: "FIC+ em Moodle Avan\xE7ado, na modalidade a dist\xE2ncia"
+- model: dominio_suap.matrizcurso
+  pk: 19
+  fields:
+    suap_id: '754'
+    titulo: "FIC+ Uso de Novas Tecnologias da Informa\xE7\xE3o e Comunica\xE7\xE3\
+      o na Educa\xE7\xE3o"
+- model: dominio_suap.matrizcurso
+  pk: 20
+  fields:
+    suap_id: '858'
+    titulo: "Aperfei\xE7oamento em Educa\xE7\xE3o Profissional Integrada \xE0 Educa\xE7\
+      \xE3o B\xE1sica na Modalidade de Educa\xE7\xE3o de Jovens e Adultos [2015] -\
+      \ PROEJA (UAB)"
+- model: dominio_suap.matrizcurso
+  pk: 21
+  fields:
+    suap_id: '1329'
+    titulo: "Aperfei\xE7oamento em Uso de Tecnologias da Informa\xE7\xE3o e Comunica\xE7\
+      \xE3o na Educa\xE7\xE3o [2018] - Campus ZL"
+- model: dominio_suap.matrizcurso
+  pk: 22
+  fields:
+    suap_id: '485'
+    titulo: "Especializa\xE7\xE3o em Educa\xE7\xE3o Ambiental e Geografia do Semi-\xC1\
+      rido EaD [2009] (UAB)"
+- model: dominio_suap.matrizcurso
+  pk: 23
+  fields:
+    suap_id: '441'
+    titulo: Licenciatura em Letras Espanhol EaD - Campus ZL
+- model: dominio_suap.matrizcurso
+  pk: 24
+  fields:
+    suap_id: '1326'
+    titulo: "Especializa\xE7\xE3o em Pr\xE1ticas Assertivas da Educa\xE7\xE3o Profissional\
+      \ Integrada \xE0 Educa\xE7\xE3o de Jovens e Adultos - com \xCAnfase em Did\xE1\
+      tica"
+- model: dominio_suap.matrizcurso
+  pk: 25
+  fields:
+    suap_id: '315'
+    titulo: "FIC+ Forma\xE7\xE3o em Educa\xE7\xE3o a Dist\xE2ncia EaD"
+- model: dominio_suap.matrizcurso
+  pk: 26
+  fields:
+    suap_id: '1152'
+    titulo: "Especializa\xE7\xE3o em Tecnologias Educacionais e Educa\xE7\xE3o a Dist\xE2\
+      ncia [2018]"
+- model: dominio_suap.matrizcurso
+  pk: 27
+  fields:
+    suap_id: '994'
+    titulo: "FIC em Forma\xE7\xE3o Docente para a Educa\xE7\xE3o Profissional e Tecnol\xF3\
+      gica - EAD"
+- model: dominio_suap.matrizcurso
+  pk: 28
+  fields:
+    suap_id: '859'
+    titulo: "Especializa\xE7\xE3o em Educa\xE7\xE3o Profissional Integrada \xE0 Educa\xE7\
+      \xE3o B\xE1sica na Modalidade de Educa\xE7\xE3o de Jovens e Adultos [2015] -\
+      \ PROEJA (UAB)"
+- model: dominio_suap.matrizcurso
+  pk: 29
+  fields:
+    suap_id: '577'
+    titulo: "Especializa\xE7\xE3o em Gest\xE3o P\xFAblica EaD [2013] (UAB)"
+- model: dominio_suap.matrizcurso
+  pk: 30
+  fields:
+    suap_id: '773'
+    titulo: "Especializa\xE7\xE3o em Ensino de Matem\xE1tica para o Ensino M\xE9dio\
+      \ [2010] - (UAB)"
+- model: dominio_suap.matrizcurso
+  pk: 31
+  fields:
+    suap_id: '1707'
+    titulo: "FIC+ de Agente em Inclus\xE3o Digital"
+- model: dominio_suap.matrizcurso
+  pk: 32
+  fields:
+    suap_id: '1708'
+    titulo: "Especializa\xE7\xE3o em Educa\xE7\xE3o Inclusiva EaD"
