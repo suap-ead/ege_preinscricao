@@ -1,9 +1,9 @@
 from django.contrib import admin
-# from import_export.admin import ImportExportModelAdmin
+from import_export.admin import ImportExportModelAdmin
 from django.contrib.admin import register, ModelAdmin, TabularInline
 from .models import *
 
-class BaseAdmin(ModelAdmin):
+class BaseAdmin(ImportExportModelAdmin):
     list_display = ['suap_id', 'titulo']
     search_fields = ['suap_id', 'titulo']
 

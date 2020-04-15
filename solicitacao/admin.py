@@ -1,10 +1,10 @@
 from django.contrib.admin import register, ModelAdmin, TabularInline
-# from import_export.admin import ImportExportModelAdmin
+from import_export.admin import ImportExportModelAdmin
 from .models import Documentacao, Edital, DocumentoExigido, Chamada, Selecionado, Solicitacao
 
 
 @register(Documentacao)
-class DocumentacaoAdmin(ModelAdmin):
+class DocumentacaoAdmin(ImportExportModelAdmin):
     list_display = ['identificacao']
     search_fields = ['identificacao']
 
@@ -14,7 +14,7 @@ class DocumentoExigidoInline(TabularInline):
 
 
 @register(Edital)
-class EditalAdmin(ModelAdmin):
+class EditalAdmin(ImportExportModelAdmin):
     list_display = ['identificacao', 'titulo', 'pagina']
     search_fields = ['identificacao', 'titulo']
 
@@ -26,7 +26,7 @@ class SelecionadoInline(TabularInline):
 
 
 @register(Chamada)
-class ChamadaAdmin(ModelAdmin):
+class ChamadaAdmin(ImportExportModelAdmin):
     list_display = ['chamada', 'edital', 'tipo_chamada', 'inicio_solicitacoes', 'fim_solicitacoes']
     list_filter = ['tipo_chamada',  'edital__identificacao']
     search_fields = ['edital__identificacao', 'chamada']
