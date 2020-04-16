@@ -26,5 +26,6 @@ python manage.py loaddata ./dominio_suap/fixtures/tipo_veiculo.yaml
 python manage.py loaddata ./dominio_suap/fixtures/transporte_publico.yaml
 python manage.py loaddata ./dominio_suap/fixtures/turno.yaml
 python manage.py loaddata ./dominio_suap/fixtures/zona_residencial.yaml
+python manage.py loaddata ./dominio_suap/fixtures/matriz_curso.yaml
 
 python manage.py loaddata ./solicitacao/fixtures/documentacao.yaml
