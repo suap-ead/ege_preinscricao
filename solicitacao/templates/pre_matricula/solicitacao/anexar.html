@@ -42,12 +42,25 @@
           </ol>
         </div>
   
-        <h5>Enviar documento</h5>
-        <form class="form" method="post" enctype="multipart/form-data">
-          {% csrf_token %}
-          {{ documentoForm.as_p }}
-          <button class="btn btn-success" type="submit">Enviar Arquivo</button>
-        </form>
+        {% if not selecionado.solicitacao.apenas_leitura %}
+        <div class="row">
+          <div class="col">
+        
+            <div class="card">
+              <div class="card-header">Enviar documento</div>
+              <div class="card-body">
+                <form class="form" method="post" enctype="multipart/form-data">
+                  {% csrf_token %}
+                  {{ form.as_p }}
+                  <button class="btn btn-success" type="submit">Enviar Arquivo</button>
+                </form>
+              </div>
+            </div>
+
+          </div>
+        </div>
+        {% endif %}
+  
 
         <hr>
         <h5>Lista de Documentos exigidos</h5>
@@ -86,10 +99,14 @@
             {% for documento in documentos %}
             <tr>
               <td>{{documento.documentacao}}</td>
-              <td>{{documento.arquivo}}</td>
+              <td><a href="{{ documento.arquivo.url }}">{{documento.arquivo}}</a></td>
               <!-- <td>{{documento.sha512_arquivo}}</td> -->
               <td>
-                <a href="/pre_matricula/{{documento.id}}/documento_remover" class="btn btn-outline-secondary btn-sm" role="button">Remover</a>
+                {% if not selecionado.solicitacao.apenas_leitura %}
+                <a href="{% url 'solicitacao:documento_remover' documento.id %}" class="btn btn-outline-secondary btn-sm" role="button">Remover</a>
+                {% else %}
+                  -
+                {% endif %}
               </td>
             </tr>
             {% empty %}

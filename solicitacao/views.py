@@ -10,10 +10,11 @@ from django.utils.decorators import method_decorator
 from django.contrib.auth import REDIRECT_FIELD_NAME
 from django.db.models import Q
 from django.contrib.auth.middleware import AuthenticationMiddleware
-from sc4py.datetime import now
-from .models import Chamada, PublicAuthToken, Solicitacao, DocumentoExigido, Documento, SolicitacaoConcluida
-from .forms import SolicitacaoForm, SelecionadoForm, EntrarForm, DocumentoForm, SolicitacaoConcluidaForm
+from .models import Chamada, PublicAuthToken, Solicitacao, DocumentoExigido, Documento
+from .forms import EntrarForm, SolicitacaoForm, ConclusaoForm, DocumentoForm
 from .decorators import public_login_required
+from django.utils.timezone import now
+
 
 
 def auth_entrar(request, chamada_id=None):
@@ -59,7 +60,7 @@ def solicitacao_index(request):
 def solicitacao_formulario(request, chamada_id):
     selecionado = request.selecionado
     chamada = selecionado.chamada
-    solicitacao=getattr(selecionado, 'solicitacao', None)
+    solicitacao = getattr(request.selecionado, 'solicitacao', None)
     if request.method == 'POST':
         form = SolicitacaoForm(request.POST, instance=solicitacao)
         if form.is_valid():
@@ -70,7 +71,8 @@ def solicitacao_formulario(request, chamada_id):
         form = SolicitacaoForm(instance=solicitacao)
     active_tab = "form"
 
-    return render(request, 'pre_matricula/solicitacao/formulario.html', context=locals())
+    result = render(request, 'pre_matricula/solicitacao/formulario.html', context=locals())
+    return result 
 
 
 @public_login_required
@@ -78,12 +80,13 @@ def solicitacao_anexar(request, chamada_id=None):
     selecionado = request.selecionado
     solicitacao = request.selecionado.solicitacao
     if request.method == 'POST' and request.FILES['arquivo']:
-        documentoForm = DocumentoForm(request.POST, request.FILES)
-        if documentoForm.is_valid():
-            documentoForm.save()
-            documentoForm.messages = ["Arquivo armazenado com sucesso."]
+        form = DocumentoForm(request.POST, request.FILES)
+        if form.is_valid():
+            form.save()
+            form.messages = ["Arquivo armazenado com sucesso."]
+            form = DocumentoForm(initial={'solicitacao': solicitacao})
     else:
-        documentoForm = DocumentoForm(initial={'solicitacao': solicitacao})
+        form = DocumentoForm(initial={'solicitacao': solicitacao})
     documentos = Documento.objects.filter(solicitacao_id=solicitacao.id)
     documentosExigidos = DocumentoExigido.objects.filter(edital_id=selecionado.chamada.edital.id)
     active_tab = "file"
@@ -91,29 +94,33 @@ def solicitacao_anexar(request, chamada_id=None):
 
 
 @public_login_required
-def solicitacao_concluir(request):
+def solicitacao_concluir(request, chamada_id):
+    selecionado = request.selecionado
+    if selecionado.chamada.id != chamada_id:
+        raise Exception("Você não tem permissão para aceitar os termos desta solicitação de matrícula.")
+
+    if not selecionado.solicitacao.pode_aceitar:
+        raise Exception("Você não tem permissão para aceitar os termos desta solicitação de matrícula. Motivo: você ainda não aceitou enviou todos os arquivos.")
+
     if request.method == 'POST':
-        form = SolicitacaoConcluidaForm(request.POST)
+        form = ConclusaoForm(request.POST, instance=selecionado.solicitacao)
+        print("FORM", form.is_valid())
         if form.is_valid():
             form.save()
-            form.messages = ["Inscrição efetuada com sucesso."]
+            form.messages = ["Solicitação concluída com sucesso."]
+            return redirect("solicitacao:formulario", chamada_id=selecionado.chamada.id)
 
-    # if solicitacao is not None:
-    #     params["solicitacao"] = solicitacao
-    #     params["documentoForm"] = DocumentoForm(initial={'solicitacao': solicitacao.id})
-    #     params["documentos"] = Documento.objects.filter(solicitacao_id=solicitacao.id)
-    #     if SolicitacaoConcluida.objects.filter(solicitacao_id=solicitacao.id).first() is not None:
-    #         params["solicitacaoConcluidaForm"] = SolicitacaoConcluidaForm(instance=solicitacao.solicitacaoconcluida)
-    #     else:
-    #         params["solicitacaoConcluidaForm"] = SolicitacaoConcluidaForm(initial={'solicitacao': solicitacao.id})
-
+    form = ConclusaoForm(instance=selecionado.solicitacao)
     active_tab = "send"
-    return HttpResponseRedirect("/pre_matricula/%s/solicitacao#concluir?dados_invalidos=True" % (request.POST['solicitacao']))
+    return render(request, template_name='pre_matricula/solicitacao/concluir.html', context=locals())
 
 
 @public_login_required
 def documento_remover(request, documento_id):
-    doc = Documento.objects.get(id = documento_id)
-    solicitacao_id = doc.solicitacao.id
+    doc = Documento.objects.get(id=documento_id)
+    if request.selecionado.solicitacao.id != doc.solicitacao.id:
+        raise Exception("Você não tem permissão para excluir este arquivo")
+    if hasattr(request.selecionado, 'solicitacao') and request.selecionado.solicitacao.apenas_leitura:
+        return redirect("solicitacao:formulario", chamada_id=chamada_id)
     doc.delete()
-    return HttpResponseRedirect("/pre_matricula/%s/solicitacao#file" % (solicitacao_id))
+    return redirect("solicitacao:formulario", chamada_id=request.selecionado.chamada.id)

@@ -6,28 +6,30 @@
 
 {% block content %}
 
-    {% if selecionado.solicitacao.apenas_leitura %}
-    <div class="jumbotron">
-      Você não pode mais enviar o formulário e os arquivos pois <b>{{ selecionado.solicitacao.apenas_leitura_motivo|lower }}</b>.
-    </div>
-    {% endif %}
+  <ol>
+    <li>Prencher o formulário {% if selecionado.solicitacao %}<span class="badge badge-success">OK</span>{% else %}<span class="badge badge-secondary">Falta</span>{% endif %}</li>
+    <li>Enviar todos os documentos {% if selecionado.solicitacao.pode_aceitar %}<span class="badge badge-success">OK</span>{% else %}<span class="badge badge-secondary">Falta</span>{% endif %}</li>
+    <li>Preencher e aceitar todas as declarações {% if selecionado.solicitacao.sha512_solicitacao %}<span class="badge badge-success">OK</span>{% else %}<span class="badge badge-secondary">Falta</span>{% endif %}</li>
+  </ol>
+  {% if selecionado.solicitacao.apenas_leitura %}
+    <div class="jumbotron">Você não pode mais enviar o formulário e os arquivos pois <b>{{ selecionado.solicitacao.apenas_leitura_motivo|lower }}</b>.</div>
+  {% endif %}
 
-    {% if selecionado.solicitacao %}
-    <ul class="nav nav-tabs" id="myTab" role="tablist">
-      <li class="nav-item">
-        <a class="nav-link {% if active_tab == 'form' %}active{% endif %}" id="form-tab" href="{% url 'solicitacao:formulario' selecionado.chamada_id %}" role="tab" aria-controls="form" aria-selected="true">Formulário</a>
-      </li>
-      <li class="nav-item">
-        <a class="nav-link {% if active_tab == 'file' %}active{% endif %}" id="file-tab" href="{% url 'solicitacao:anexar' selecionado.chamada_id %}" role="tab" aria-controls="file" aria-selected="false">Arquivos</a>
-      </li>
-      <li class="nav-item">
-        <a class="nav-link {% if active_tab == 'send' %}active{% endif %}" id="send-tab" data-toggle="tab" href="#send" role="tab" aria-controls="send" aria-selected="false">Concluir</a>
-      </li>
-    </ul>
-    {% endif %}
+  {% if selecionado.solicitacao %}
+  <ul class="nav nav-tabs" id="myTab" role="tablist">
+                                                 <li class="nav-item"><a class="nav-link {% if active_tab == 'form' %}active{% endif %}" {% if active_tab == 'form' %}style="background: #dee2e6;"{% endif %} id="form-tab" role="tab" aria-controls="form" aria-selected="true" href="{% url 'solicitacao:formulario' selecionado.chamada_id %}">Formulário</a></li>
+    {% if selecionado.solicitacao %}             <li class="nav-item"><a class="nav-link {% if active_tab == 'file' %}active{% endif %}" {% if active_tab == 'file' %}style="background: #dee2e6;"{% endif %} id="file-tab" role="tab" aria-controls="file" aria-selected="false" href="{% url 'solicitacao:anexar' selecionado.chamada_id %}">Arquivos</a></li>{% endif %}
+    {% if selecionado.solicitacao.pode_aceitar %}<li class="nav-item"><a class="nav-link {% if active_tab == 'send' %}active{% endif %}" {% if active_tab == 'send' %}style="background: #dee2e6;"{% endif %} id="send-tab" role="tab" aria-controls="send" aria-selected="false" href="{% url 'solicitacao:concluir' selecionado.chamada_id %}">Concluir</a></li>{% endif %}
+  </ul>
+  {% endif %}
 
-    <div class="tab-content" id="myTabContent">
-      {% block conteudo_interno %}{% endblock conteudo_interno %}
-    </div>
+  <br>
+  <div class="tab-content" id="myTabContent">{% block conteudo_interno %}{% endblock conteudo_interno %}</div>
 
 {% endblock content %}
+
+{% block body_end_js %}
+<script>
+jQuery("select, input[type='text'], textarea").addClass('form-control').parent().addClass('form-group')
+</script>
+{% endblock body_end_js %}

@@ -7,23 +7,23 @@
 {% block conteudo_interno %}
     <!-- form: begin -->
     <div class="tab-pane fade show active" id="form" role="tabpanel" aria-labelledby="form-tab">
-      <br>
       <h3>Formulário de solicitação de matrícula</h3>
+      {% include "pre_matricula/solicitacao/_identificacao.html" %}
+      
       <form method="post">
+        {% if selecionado.solicitacao.apenas_leitura %}<fieldset disabled="disabled">{% endif %}
         {% csrf_token %}
+        <br />
+        <div class="card">
+          <div class="card-header">Formulário de solicitação de matrícula</div>
+          <div class="card-body">
+              {{ form.as_p }}
+          </div>
+        </div>
 
-        {% include "pre_matricula/solicitacao/_identificacao.html" %}
-
-        <hr /> 
-        <h5>Dados do formulário</h5>
-        {% if selecionado.solicitacao.apenas_leitura %}
-          <fieldset disabled="disabled">
-            {{ form.as_p }}
-          </fieldset>
-        {% else %}
-          {{ form.as_p }}
-          <button class="btn btn-success my-2 my-sm-0" type="submit">Salvar</button>
-        {% endif %}
+        {% if not selecionado.solicitacao.apenas_leitura %}<br /><button class="btn btn-success my-2 my-sm-0" type="submit">Salvar</button>{% endif %}
+    
+        {% if selecionado.solicitacao.apenas_leitura %}</fieldset>{% endif %}
 
       </form>          
     </div>

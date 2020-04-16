@@ -1,192 +1,46 @@
-{% extends "pre_matricula/base.html" %}
-{% load i18n admin_urls static admin_list %}
+{% extends "pre_matricula/solicitacao/base.html" %}
 {% load common_utils %}
 {% load static %}
-{% load documento_exigido %}
 
-{% block content %}
+{% block conteudo_interno %}
 
-    {% if selecionado.solicitacao.apenas_leitura %}
-    <div class="jumbotron">
-      Você não pode mais enviar o formulário e os arquivos pois <b>{{ selecionado.solicitacao.apenas_leitura_motivo|lower }}</b>.
-    </div>
+<div class="tab-pane fade show active" id="form" role="tabpanel" aria-labelledby="form-tab">
+  <h3>Formulário de solicitação de matrícula</h3>
+  <form method="post">
+    {% csrf_token %}
 
+    {% include "pre_matricula/solicitacao/_identificacao.html" %}
+
+    {% if selecionado.solicitacao.apenas_leitura %}<fieldset disabled="disabled">{% endif %}
+
+    {% include "pre_matricula/solicitacao/_declaracao.html" with field=form.organizacao_didatica  %}
+
+    {% if selecionado.lista == 'PPI' %}
+      <br>
+      <div class="card">
+        <div class="card-header">Autodeclaração de etnia</div>
+        <div class="card-body">
+          DECLARO que sou uma pessoa <b>{{selecionado.solicitacao.raca}}</b>, para o fim específico de atender aos
+          termos do <b>Edital {{selecionado.chamada.edital.identificacao}} - {{selecionado.chamada.edital.titulo}}</b> no que se refere à
+          reserva de vagas da lista diferenciada com a condição de etnia.
+          <div class="form-check">
+            <input class="form-check-input" type="checkbox" value="True" {% if form.autodeclaracao_etnia.value %} checked="" {% endif %} name="{{ form.autodeclaracao_etnia.name }}" id="{{ form.autodeclaracao_etnia.auto_id }}" required="">
+            <label class="form-check-label" for="{{ form.autodeclaracao_etnia.auto_id }}"><b>Declaro ser verdade</b></label> 
+          </div>
+        </div>
+      </div>
     {% endif %}
-    {% if selecionado.solicitacao %}
-    <ul class="nav nav-tabs" id="myTab" role="tablist">
-      <li class="nav-item">
-        <a class="nav-link active" id="form-tab" data-toggle="tab" href="#form" role="tab" aria-controls="form" aria-selected="true">Formulário</a>
-      </li>
-      <li class="nav-item">
-        <a class="nav-link" id="file-tab" data-toggle="tab" href="#file" role="tab" aria-controls="file" aria-selected="false">Arquivos</a>
-      </li>
-      <li class="nav-item">
-        <a class="nav-link" id="send-tab" data-toggle="tab" href="#send" role="tab" aria-controls="send" aria-selected="false">Concluir</a>
-      </li>
-    </ul>
-    {% endif %}
-    <div class="tab-content" id="myTabContent">
 
-      <!-- form: begin -->
-      <div class="tab-pane fade show active" id="form" role="tabpanel" aria-labelledby="form-tab">
-        <br>
-        <h3>Formulário de solicitação de matrícula</h3>
-        <form method="post">
-          {% csrf_token %}
+    {% include "pre_matricula/solicitacao/_declaracao.html" with field=form.penal  %}
+    {% include "pre_matricula/solicitacao/_declaracao.html" with field=form.veracidade  %}
+    {% include "pre_matricula/solicitacao/_declaracao.html" with field=form.confirmacao  %}
+      
+    
+    {% if not selecionado.solicitacao.apenas_leitura %}<br /><button class="btn btn-success my-2 my-sm-0" type="submit">Concluir</button>{% endif %}
+    
+    {% if selecionado.solicitacao.apenas_leitura %}</fieldset>{% endif %}
 
-          {% include "pre_matricula/solicitacao/_identificacao.html" %}
+  </form>          
+</div>
 
-          <hr /> 
-          <h5>Dados do formulário</h5>
-          {% if selecionado.solicitacao.apenas_leitura %}
-            <fieldset disabled="disabled">
-              {{ form.as_p }}
-            </fieldset>
-          {% else %}
-            {{ form.as_p }}
-            <button class="btn btn-success my-2 my-sm-0" type="submit">Salvar</button>
-          {% endif %}
-
-        </form>          
-      </div>
-      <!-- form: end -->
-
-      <!-- form: begin -->
-      <div class="tab-pane fade" id="file" role="tabpanel" aria-labelledby="file-tab">
-        <h3>Documentos Exigidos</h3>
-        <div class="alert alert-warning" role="alert">
-          <p>Só será aceito para validação arquivo do tipo PDF em formato A4-retrato legíveis, arquivos em outros formatos ou condições serão desconsiderados. Desta forma:</p>
-          <ol>
-            <li>Páginas HTML, imagens ou documentos do Word, por exemplo, não serão aceitos.</li>
-            <li>Assim sendo se o arquivo estiver originalmente em um destes formatos, primeiro converta em PDF.</li>
-            <li>Formas de fazer isso? Imprimir para PDF, exportar como PDF, ferramenta de conversão para PDF ou sites que convertam para PDF.</li>
-          </ol>
-        </div>
-        <div class="alert alert-warning" role="alert">
-          <p>Se o arquivo só existe em forma analógica, (por exemplo, impresso), este deverá ser digilitazado para então ser enviado. Desta forma:</p>
-          <ol>
-            <li>Digitalize, prerencialmente, usando um scanner.</li>
-            <li>Se você não tem acesso a um scanner, você poderá utilizar um celular. Nestes casos, considere:
-              <ol>
-                <li>Colocar o documento sobre uma superfície não reflexiva de uma única cor, como uma folha de papel em branco ou lençol, por exemplo. Cerâmica podem ter reflexo, ou seja, normalmente não são boa escolha.</li>
-                <li>Ilumine bem o ambiente, e em especial o documento, ou seja, escolha o cômodo melhor iluminado ou use a luz natual de uma varanda, por exemplo.</li>
-                <li>Desligue o flash.</li>
-                <li>Se ao digitalizar o documento verifique se você consegue ler. Se houver dúvidas ou dificuldades, refaça os passos anteriores até ter uma digitalização legível.</li>
-                <li>Usar um software que digitalize, enquadre, recorte e converta para PDF facilitará o seu trabalho. 
-                    O CamScanner, por exemplo é uma opção válida 
-                    (<a href="https://play.google.com/store/apps/details?id=com.intsig.camscanner&hl=pt-br" target="_blank">Android</a>, 
-                    <a href="https://apps.apple.com/br/app/camscanner-documento-scan/id388627783">iOS</a>).
-                    Fique a vontade me procurar outro.</li>
-              </ol>
-            </li>
-            <li>Se a digilitação resultou em um arquivo de imagem (JPG, JPEG, TIFF, PNG, outro) ao invés de um PDF, converta para PDF.
-              <ol>
-                <li>Formas de fazer isso? Imprimir para PDF, exportar como PDF, ferramenta de conversão para PDF ou sites que convertam para PDF.</li>
-              </ol>
-            </li>
-          </ol>
-        </div>
-  
-        <h5>Enviar documento</h5>
-        <form class="form" action="/pre_matricula/adicionar_documento/" method="post" enctype="multipart/form-data">
-          {% csrf_token %}
-          {{ documentoForm.as_p }}
-          <button class="btn btn-success" type="submit">Enviar Arquivo</button>
-        </form>
-
-        <hr>
-        <h5>Lista de Documentos exigidos</h5>
-        <table class="table table-bordered table-sm">
-          <thead>
-            <tr>
-              <th>Tipo</th>
-              <th width="1%">Situação</th>
-            </tr>
-          </thead>
-          <tbody>
-            {% for documento in documentosExigidos %}
-            <tr class="{% ocorreu_upload solicitacaoId documento.documentacao %}">
-              <td>{{documento.documentacao}}</td>
-              <td>{% ocorreu_upload solicitacaoId documento.documentacao %}</td>
-            </tr>
-            {% empty %}
-              <tr>
-                <td colspan="3">Nenhum arquivo anexado.</td>
-              </tr>
-            {% endfor %}
-          </tbody>
-        </table>
-
-        <hr>
-        <h5>Lista de Enviados</h5>
-        <table class="table table-striped table-bordered table-sm">
-          <thead>
-            <tr>
-              <th>Tipo</th>
-              <th>Nome</th>
-              <th width="1%">Ações</th>
-            </tr>
-          </thead>
-          <tbody>
-            {% for documento in documentos %}
-            <tr>
-              <td>{{documento.documentacao}}</td>
-              <td>{{documento.arquivo}}</td>
-              <!-- <td>{{documento.sha512_arquivo}}</td> -->
-              <td>
-                <a href="/pre_matricula/{{documento.id}}/documento_remover" class="btn btn-outline-secondary btn-sm" role="button">Remover</a>
-              </td>
-            </tr>
-            {% empty %}
-              <tr>
-                <td colspan="3">Nenhum arquivo anexado.</td>
-              </tr>
-            {% endfor %}
-          </tbody>
-        </table>
-      </div>
-      <!-- form: end -->
-
-      <!-- send: begin -->
-      <div class="tab-pane fade" id="send" role="tabpanel" aria-labelledby="send-tab">
-        <br>
-        <h3>Concluir solicitação de matrícula</h3>
-        <div class="alert alert-warning" role="alert">
-          Confira se os dados abaixo estão corretos, se todos os arquivos foram anexados, e, se estiver tudo corrreto, confirme a conclusão da solicitação de matrícula.
-        </div>
-        <div class="alert alert-warning" role="alert">
-          Saiba que, caso sua solicitação de matrícula não seja <b>concluída</b> até o prazo final de solicitação, em <b>{{chamada.fim_solicitacoes}}</b>, sua solicitação poderá ser indeferida, portanto, sua solicitação matrícula não será aceita.
-        </div>
-
-        {% include "pre_matricula/solicitacao/_identificacao.html" %}
-
-        <hr /> 
-        <h5>Dados do formulário</h5>
-        <fieldset disabled="disabled">
-          {{ form.as_p }}
-        </fieldset>
-
-        <form class="form" method="post">
-          <hr /> 
-          <h5>Termos de aceite</h5>
-          
-          {% if request.GET.dados_invalidos %}
-          <div class="alert alert-danger" role="alert">A solicitação não será aceita se você não concordar com todos os termos.</div>
-          {% endif %}
-          <div class="alert alert-info" role="alert">Só marque os termos de aceite que você realmente aceita/concorda.</div>
-
-          {% csrf_token %}
-          {% if selecionado.solicitacao.apenas_leitura %}
-            <fieldset disabled="disabled">
-              {{ solicitacaoConcluidaForm.as_p }}
-            </fieldset>
-          {% else %}
-            {{ solicitacaoConcluidaForm.as_p }}
-            <button class="btn btn-success" type="submit">Concluir inscrição</button>
-          {% endif %}
-        </form>
-      </div>
-      <!-- send: end -->
-
-    </div>
-{% endblock content %}
+{% endblock conteudo_interno %}

@@ -1,12 +1,12 @@
 from django.conf import settings
 from django.shortcuts import resolve_url
 from django import forms
-from django.forms import Form, ModelForm, ValidationError, CharField
+from django.forms import Form, ModelForm, ValidationError, CharField, BooleanField
 from django.db.models import Q
 from django.core.exceptions import ObjectDoesNotExist
 from django.core.mail import send_mail
 from django.http.request import HttpRequest
-from .models import Selecionado, Solicitacao, PublicAuthToken, Documento, SolicitacaoConcluida
+from .models import Selecionado, Solicitacao, PublicAuthToken, Documento, ListaSelecao
 
  
 
@@ -41,7 +41,6 @@ class EntrarForm(Form):
                     html_message="Para terminar teu acesso, clique no link <a href='%s'>%s</a>. Esta código só é válida por 2h." % (full_url, full_url)
                 )
             except Exception as e:
-                print(e)
                 raise ValidationError("Falha ao enviar email para %s" % selecionado.email)
             self.selecionado = selecionado
         except ObjectDoesNotExist as e:
@@ -50,23 +49,14 @@ class EntrarForm(Form):
 
     def validate(self, value):
         super().validate(value)
-
         for email in value:
             validate_email(email)
 
-class SelecionadoForm(ModelForm):
-
-    class Meta:
-        model = Selecionado
-        fields = ['chamada', 'matriz_curso', 'ano_letivo', 'periodo_letivo',
-            'turno', 'forma_ingresso', 'polo', 'lista', 'nacionalidade',
-            'cpf', 'passaporte', 'nome', 'nome_social', 'email', 'inscricao']
 
 class SolicitacaoForm(ModelForm):
     class Meta:
         model = Solicitacao
-        fields = ['data_conclusao_intercambio',
-            'linha_pesquisa',
+        fields = [
             'nome', 'nome_social', 'sexo', 'data_nascimento', 'estado_civil', 'nome_pai',
             'estado_civil_pai', 'pai_falecido', 'nome_mae', 'estado_civil_mae',
             'mae_falecida', 'responsavel', 'email_responsavel', 'parentesco_responsavel',
@@ -85,7 +75,8 @@ class SolicitacaoForm(ModelForm):
             'estado_emissao_carteira_reservista', 'nivel_ensino_anterior',
             'ano_carteira_reservista', 'tipo_certidao', 'numero_certidao',
             'folha_certidao', 'livro_certidao', 'data_emissao_certidao',
-            'matricula_certidao', 'autorizacao_carteira_estudantil']
+            'matricula_certidao', 'data_conclusao_intercambio',
+            'linha_pesquisa','autorizacao_carteira_estudantil']
         widgets = {
             'data_conclusao_intercambio': forms.DateInput(format=('%m/%d/%Y'), attrs={'class':'form-control', 'placeholder':'Select a date', 'type':'date'}),
             'data_nascimento': forms.DateInput(format=('%m/%d/%Y'), attrs={'class':'form-control', 'placeholder':'Select a date', 'type':'date'}),
@@ -95,13 +86,6 @@ class SolicitacaoForm(ModelForm):
         }
 
 
-class ReadonlySolicitacaoForm(SolicitacaoForm):
-    class Meta:
-        model = SolicitacaoForm.Meta.model
-        fields = SolicitacaoForm.Meta.fields
-        widgets = {}
-
-
 class DocumentoForm(forms.ModelForm):
     class Meta:
         model = Documento
@@ -109,27 +93,34 @@ class DocumentoForm(forms.ModelForm):
         widgets = {'solicitacao': forms.HiddenInput()}
 
 
-class SolicitacaoConcluidaForm(forms.ModelForm):
+class ConclusaoForm(ModelForm):
+
     class Meta:
-        model = SolicitacaoConcluida
-        fields=['veracidade',
-            'confirmacao',
-            'solicitacao',
-            'autodeclaracao_etnia',
-            'organizacao_didatica',
-            'penal']
-        widgets = {'solicitacao': forms.HiddenInput()}
+        model = Solicitacao
+        fields = ['organizacao_didatica', 'autodeclaracao_etnia', 'penal', 'veracidade', 'confirmacao', ]
+
+    def clean_organizacao_didatica(self):
+        if not self.cleaned_data['organizacao_didatica']:
+            raise ValidationError("Não posso concluir a solicitação se você não aceitar este termo.")
+        return self.cleaned_data['organizacao_didatica']
+
+    def clean_autodeclaracao_etnia(self):
+        if self.instance.selecionado.lista == ListaSelecao.PPI:
+            if not self.cleaned_data['autodeclaracao_etnia']:
+                raise ValidationError("Não posso concluir a solicitação se você não aceitar este termo.")
+        return self.cleaned_data['autodeclaracao_etnia']
+
+    def clean_penal(self):
+        if not self.cleaned_data['penal']:
+            raise ValidationError("Não posso concluir a solicitação se você não aceitar este termo.")
+        return self.cleaned_data['penal']
 
     def clean_veracidade(self):
-        c = self.cleaned_data['veracidade']
-        print("['veracidade']", c)
-        if c:
-            return self.cleaned_data['veracidade']
-        raise ValidationError("Não posso concluir a solicitação se você não aceitar este termo.")
+        if not self.cleaned_data['veracidade']:
+            raise ValidationError("Não posso concluir a solicitação se você não aceitar este termo.")
+        return self.cleaned_data['veracidade']
 
     def clean_confirmacao(self):
-        c = self.cleaned_data['confirmacao']
-        print("['confirmacao']", c)
-        if c:
-            return self.cleaned_data['confirmacao']
-        raise ValidationError("Não posso concluir a solicitação se você não aceitar este termo.")
+        if not self.cleaned_data['confirmacao']:
+            raise ValidationError("Não posso concluir a solicitação se você não aceitar este termo.")
+        return self.cleaned_data['confirmacao']
