@@ -177,7 +177,7 @@ class Solicitacao(Model):
     cep = CharField("CEP", max_length=9, help_text='Formato: "99999-999"', **nullable)
     logradouro = CharField("Logradouro", max_length=250)
     numero = CharField("Número", max_length=250)
-    complemento = CharField("Complemento", max_length=250)
+    complemento = CharField("Complemento", max_length=250, **nullable)
     bairro = CharField("Bairro", max_length=250)
     cidade = FK("Cidade", Cidade, related_name="enderecos")
     estado = FK("Estado", Estado)
