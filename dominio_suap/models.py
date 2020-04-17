@@ -1,4 +1,5 @@
 from django.db import models
+from solicitacao.fields import nullable, nullable_phone, FK, NullFK
 
 
 class BaseModel(models.Model):
