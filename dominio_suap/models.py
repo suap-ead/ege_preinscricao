@@ -188,6 +188,7 @@ class Estado(BaseModel):
 
 
 class Cidade(BaseModel):
+  estado = FK("Estado", Estado)
   class Meta:
     verbose_name = "Cidade"
     verbose_name_plural = "Cidades"
