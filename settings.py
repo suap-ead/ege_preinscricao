@@ -1,7 +1,7 @@
 import os
 from sc4py.env import env
-URL_PATH_PREFIX = env("URL_PATH_PREFIX", "pre_matricula/")
-os.environ.setdefault("URL_PATH_PREFIX", env("", "pre_matricula/"))
+URL_PATH_PREFIX = env("URL_PATH_PREFIX", "sead/pre_matricula/")
+os.environ.setdefault("URL_PATH_PREFIX", env("", "sead/pre_matricula/"))
 os.environ.setdefault("MY_APPS", "solicitacao,dominio_suap,import_export")
 os.environ.setdefault("POSTGRES_DB", env("POSTGRES_DB_PRE_MATRICULA", "sead_pre_matricula"))
 EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
