@@ -1,12 +1,12 @@
 import os
-from sc4py.env import env, env_as_bool
+from sc4py.env import env, env_as_bool, env_as_int
 URL_PATH_PREFIX = env("URL_PATH_PREFIX", "sead/pre_matricula/")
 os.environ.setdefault("URL_PATH_PREFIX", env("", "sead/pre_matricula/"))
 os.environ.setdefault("MY_APPS", "solicitacao,dominio_suap,import_export")
 os.environ.setdefault("POSTGRES_DB", env("POSTGRES_DB_PRE_MATRICULA", "sead_pre_matricula"))
 EMAIL_BACKEND = env("DJANGO_EMAIL_BACKEND", 'django.core.mail.backends.console.EmailBackend')
 EMAIL_HOST = env("DJANGO_EMAIL_HOST", None)
-EMAIL_PORT = env("DJANGO_EMAIL_PORT", None)
+EMAIL_PORT = env_as_int("DJANGO_EMAIL_PORT", None)
 EMAIL_HOST_USER = env("DJANGO_EMAIL_HOST_USER", None)
 EMAIL_HOST_PASSWORD = env("DJANGO_EMAIL_HOST_PASSWORD", None)
 EMAIL_USE_TLS = env_as_bool("DJANGO_EMAIL_USE_TLS", None)
