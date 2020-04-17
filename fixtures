@@ -5,6 +5,7 @@ python manage.py loaddata ./dominio_suap/fixtures/ano_letivo.yaml
 python manage.py loaddata ./dominio_suap/fixtures/convenio.yaml
 python manage.py loaddata ./dominio_suap/fixtures/estado.yaml
 python manage.py loaddata ./dominio_suap/fixtures/estado_civil.yaml
+python manage.py loaddata ./dominio_suap/fixtures/cidade.yaml
 python manage.py loaddata ./dominio_suap/fixtures/forma_ingresso.yaml
 python manage.py loaddata ./dominio_suap/fixtures/nacionalidade.yaml
 python manage.py loaddata ./dominio_suap/fixtures/nivel_ensino.yaml
