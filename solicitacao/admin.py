@@ -32,8 +32,14 @@ class ChamadaAdmin(ImportExportModelAdmin):
     search_fields = ['edital__identificacao', 'chamada']
 
     autocomplete_fields = ['edital']
-    inlines = [SelecionadoInline]
 
+
+
+@register(Selecionado)
+class SelecionadoAdmin(ImportExportModelAdmin):
+    list_display = ['nome', 'chamada', 'cpf']
+    list_filter = ['chamada',  'chamada__edital__identificacao']
+    search_fields = ['edital__identificacao', 'chamada']
 
 
 class DocumentoInline(TabularInline):
