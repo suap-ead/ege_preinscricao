@@ -151,7 +151,7 @@ class Solicitacao(Model):
     # Dados da solicitação de matrícula
     selecionado = OneToOneField(Selecionado, verbose_name="Selecionado", on_delete=CASCADE)
     data_conclusao_intercambio = DateField("Conclusão do intercâmbio", **nullable)
-    linha_pesquisa = FK("Linha de pesquisa", LinhaPesquisa, help_text='Obrigatório para alunos de Mestrado e Doutourado. Caso não saiba, escreva "A definir".')
+    linha_pesquisa = NullFK("Linha de pesquisa", LinhaPesquisa, help_text='Obrigatório para alunos de Mestrado e Doutourado. Caso não saiba, escreva "A definir".')
     # numero_pasta = CharField("Número da pasta", max_length=250, null=True, blank=False)
 
     # Dados pessoais 
@@ -192,9 +192,9 @@ class Solicitacao(Model):
 
     # Deficiências, transtornos e superdotação
     aluno_pne = BooleanField("Portador de necessidades especiais")
-    tipo_necessidade_especial = FK("Deficiência", TipoNecessidadeEspecial)
-    tipo_transtorno = FK("Transtorno", TipoTranstorno)
-    superdotacao = FK("Superdotação", TipoSuperdotacao)
+    tipo_necessidade_especial = NullFK("Deficiência", TipoNecessidadeEspecial)
+    tipo_transtorno = NullFK("Transtorno", TipoTranstorno)
+    superdotacao = NullFK("Superdotação", TipoSuperdotacao)
 
     # Transporte rscolar utilizado
     utiliza_transporte_escolar_publico = NullBooleanField("Utiliza transporte escolar público")
