@@ -78,6 +78,7 @@
       </tr>
       <tr>
         <td colspan="2" style="padding: 5px">
+          {% if not selecionado.solicitacao.apenas_leitura %}
           <div>
             <form class="form" method="post" enctype="multipart/form-data" id="send_file_{{ documento.documentacao.id }}">
               {% csrf_token %}
@@ -91,6 +92,7 @@
           </div>
           <br>
           <a href="{% url 'solicitacao:documento_remover' documento.id %}" class="btn btn-outline-secondary btn-sm" role="button">Remover</a>
+          {% endif %}
           <a href="{{ documento.arquivo.url }}">{{documento.arquivo}}</a>
         </td>
       </tr>
