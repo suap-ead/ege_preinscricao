@@ -35,15 +35,16 @@ def auth_entrar(request, chamada_id=None):
 
 def auth_autenticar(request, token):
     pat = PublicAuthToken.objects.filter(token=token).select_related('selecionado').first()
-    if pat is not None:
-        selecionado = pat.selecionado
-        if pat.criado_em < now() - timedelta(hours=2):
-            return render(request, 'pre_matricula/acesso/token_expirado.html', locals())
-        request.session['selecionado_id'] = selecionado.id
-        PublicAuthToken.objects.filter(criado_em__lt=now() - timedelta(hours=2)).delete()
-        pat.delete()
-        return redirect("solicitacao:formulario", chamada_id=selecionado.chamada_id)
-    return render(request, 'pre_matricula/acesso/token_nao_encontrado.html')
+    if pat is None:
+        return render(request, 'pre_matricula/acesso/token_nao_encontrado.html')
+        
+    selecionado = pat.selecionado
+    if pat.criado_em < now() - timedelta(hours=2):
+        return render(request, 'pre_matricula/acesso/token_expirado.html', locals())
+    request.session['selecionado_id'] = selecionado.id
+    PublicAuthToken.objects.filter(criado_em__lt=now() - timedelta(hours=2)).delete()
+    pat.delete()
+    return redirect("solicitacao:formulario", chamada_id=selecionado.chamada_id)
 
 
 def auth_sair(request):
