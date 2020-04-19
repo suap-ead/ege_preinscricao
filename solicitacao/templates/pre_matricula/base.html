@@ -9,34 +9,17 @@
   <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"></script>
   <style>
-    body {
-      padding-top: 70px;
-    }
+    body { padding-top: 70px; }
     select,
     input[type=text],
-    select, input[type="text"], input[type="email"] {
-      width: 100%;
-      margin: 0;
-    }
-    label {
-      margin: 0;
-    }
-    .helptext {
-      width: 100%;
-      display: block;
-      font-size: 80%;
-      color: gray;
-    }
-    .footer {
-      width: 100%;
-      background-color: #f5f5f5;
-    }
-    .Enviado {
-      background-color: #8ced85;
-    }
-    .Pendente {
-      background-color: #f28172;
-    }
+    select, input[type="text"], input[type="email"] { width: 100%; margin: 0; }
+    label { margin: 0; }
+    .helptext { width: 100%; display: block; font-size: 80%; color: gray; }
+    .footer { width: 100%; background-color: #f5f5f5; }
+    .Enviado { background-color: #8ced85; }
+    .Pendente { background-color: #f28172; }
+    .footer { padding: 15px; }
+    .footer > p { margin-bottom: 0; }
   </style>
   {% block extrastyle %}{% endblock extrastyle %}
 </head>
@@ -61,6 +44,7 @@
   {% block footer %}
   <br />
   <footer class="footer text-center">
+    <p class="center">Acesso para <a href="admin">administradores</a>.</p>
     <p>
       Instituto Federal de Educação, Ciência e Tecnologia do Rio Grande do Norte ©2011. Todos os direitos reservados.
       <br />

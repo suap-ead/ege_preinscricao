@@ -5,7 +5,7 @@ from django.core.exceptions import ValidationError
 from django.utils.timezone import now
 # from rest_framework import serializers
 from django.db.models import Model, TextChoices
-from django.db.models import CharField, DateField, BooleanField, NullBooleanField, DateTimeField
+from django.db.models import CharField, DateField, BooleanField, NullBooleanField, DateTimeField, TextField
 from django.db.models import URLField, EmailField, FileField, OneToOneField
 from django.db.models import ImageField
 from django.db.models.signals import post_save, post_delete, pre_save
@@ -38,8 +38,6 @@ class Edital(Model):
     identificacao = CharField("Identificação", max_length=255)
     titulo = CharField("Título", max_length=255)
     pagina = URLField("Página")
-    tem_ppi = BooleanField("Tem lista PPI?")
-    tem_pce = BooleanField("Tem lista PCD?")
 
     class Meta:
         verbose_name = "Edital"
@@ -79,6 +77,7 @@ class Chamada(Model):
     tipo_chamada = CharField("Tipo", max_length=1, choices=TipoChamada.choices, default=TipoChamada.INICIAL)
     inicio_solicitacoes = DateTimeField("Início das solicitações")
     fim_solicitacoes = DateTimeField("Fim das solicitações")
+    instrucoes_adicionais = TextField("Instruções adicionais", **nullable)
 
     class Meta:
         verbose_name = "Chamada"
@@ -136,7 +135,6 @@ class Selecionado(Model):
 
 
 class PublicAuthToken(Model):
-    chamada = FK("Chamada", Chamada)
     selecionado = FK("Selecionado", Selecionado)
     token = CharField("Token", max_length=255)
     criado_em = DateTimeField("Criado em", auto_now=True)

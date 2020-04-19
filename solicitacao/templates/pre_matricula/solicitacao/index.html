@@ -2,82 +2,70 @@
 {% load i18n admin_urls static admin_list %}
 
 {% block content %}
-    <div class="jumbotron">
-      <h1>Sistema de Solicitação de Matrícula - SSM</h1>
-      <h2>Sobre o SSM</h2>
-      <p>O “Sistema de Solicitação de Matrícula” (SSM) atende à necessidade dos alunos que necessitam realizar suas matrículas, mas não podem ou não desejam comparecer presencialmente para este fim.</p>        
-      <p>Só pode solicitar sua matrícula neste sistema os candidatos selecionados nos editais em que constam estas informações.</p>
-      <p>O envio do formulário de solicitação de matrícula não caracteriza a realização da matrícula, apenas é o registro de solicitação e do envio dos dados e arquivos necessários para que a secretária possa dar andamento no processo de matrícula. Ou seja, se os dados estiverem incorretos, os arquivos estiverem incompletos, errados ou inelegíveis a MATRÍCULA NÃO PODERÁ SER CONCLUÍDA.</p>
-    </div>
+  <p>O “Sistema de Solicitação de Matrícula” (SSM) atende à necessidade dos alunos que necessitam realizar suas matrículas, mas não podem ou não desejam comparecer presencialmente para este fim.</p>        
+  <div class="alert alert-secondary" role="alert">O envio do formulário de solicitação de matrícula não caracteriza a realização da matrícula, apenas é o registro de solicitação e do envio dos dados e arquivos necessários para que a secretária possa dar andamento no processo de matrícula. Ou seja, se os dados estiverem incorretos, os arquivos estiverem incompletos, errados ou inelegíveis a MATRÍCULA NÃO PODERÁ SER CONCLUÍDA.</div>
   
-  <h2>Editais chamando alunos a se matricularem</h2>
+  <h2>Matrículas</h2>
 
-  <table class="table">
-    <thead><tr><th>Edital</th><th width="1%">Ações</th></tr></thead>
-    <tbody>
-      {% for chamada in chamadas_em_aberto %}
-      <tr>
-        <td>
-          {{ chamada.edital.identificacao }} - {{ chamada.edital.titulo }} <br />
-          Chamada: <small>{{ chamada.chamada }}</small><br />
-          De: <small>{{ chamada.inicio_solicitacoes }}</small><br />
-          Até: <small>{{ chamada.fim_solicitacoes }}</small>
-        </td>
-        <td>
-          {% if not request.selecionado or request.selecionado.chamada.id == chamada.id %}
-          <a href="{% url 'solicitacao:formulario' chamada.id %}" class="btn btn-primary btn-sm" role="button">Solicitar matrícula</a>
-          {% endif %}
-          <a href="{{ chamada.edital.pagina }}" class="btn btn-outline-secondary btn-sm" role="button">Ver edital</a>
-        </td>
-      </tr>
-      {% empty %}
-      <tr><td colspan="3">Não há.</td></tr>
-      {% endfor %}
-    </tbody>
-  </table>
+  <ul class="nav nav-tabs" id="myTab" role="tablist">
+    <li class="nav-item"><a class="nav-link active" id="aberto-tab" data-toggle="tab" role="tab" href="#aberto" aria-controls="aberto" aria-selected="true">Abertas</a></li>
+    <li class="nav-item"><a class="nav-link {% if not futuras_chamadas %}disabled{% endif %}" id="futuro-tab" data-toggle="tab" role="tab" href="#futuro" aria-controls="futuro" aria-selected="false">Futuras</a></li>
+    <li class="nav-item"><a class="nav-link {% if not chamadas_passadas %}disabled{% endif %}" id="passado-tab" data-toggle="tab" role="tab" href="#passado" aria-controls="passado" aria-selected="false">Passadas</a></li>
+  </ul>
 
-  <h2>Próximos editais a chamar alunos a se matricularem</h2>
-  <table class="table">
-    <thead><tr><th>Edital</th><th width="1%">Ações</th></tr></thead>
-    <tbody>
+  <div class="tab-content" id="myTabContent" style="border-bottom: 1px solid #dee2e6; border-left: 1px solid #dee2e6; border-right: 1px solid #dee2e6; padding: 15px">
+
+    <div class="tab-pane fade show active" id="aberto" role="tabpanel" aria-labelledby="aberto-tab">
+      {% if chamadas_em_aberto %}
+      <div class="alert alert-warning" role="alert">Só pode solicitar sua matrícula neste sistema os candidatos selecionados nos editais listados abaixo.</div>
+      <table class="table">
+        <tbody>
+          {% for chamada in chamadas_em_aberto %}
+          <tr>
+            <td>
+              <b>{{ chamada.edital.identificacao }} - {{ chamada.edital.titulo }}</b><br />
+              Chamada: {{ chamada.chamada }}, de {{ chamada.inicio_solicitacoes }} até {{ chamada.fim_solicitacoes }}.
+              {% if chamada.instrucoes_adicionais %}
+              <div class="alert alert-info small" role="alert" style="padding: 5px 10px;">{{ chamada.instrucoes_adicionais }}</div>
+              {% endif %}
+            </td>
+            <td>
+              {% if not request.selecionado or request.selecionado.chamada.id == chamada.id %}
+              <a href="{% url 'solicitacao:formulario' chamada.id %}" class="btn btn-primary btn-sm" role="button">Solicitar matrícula</a>
+              {% endif %}
+              <a href="{{ chamada.edital.pagina }}" class="btn btn-outline-secondary btn-sm" role="button">Ver edital</a>
+            </td>
+          </tr>
+          <tr><td colspan="2"></td></tr>
+          {% endfor %}
+        </tbody>
+      </table>
+      {% else %}
+      <p>Não há editais com período de matrículas aberto.</p>
+      {% endif %}
+    </div>
+
+    <div class="tab-pane fade show" id="futuro" role="tabpanel" aria-labelledby="futuro-tab">
       {% for chamada in futuras_chamadas %}
-      <tr>
-        <td>
-          {{ chamada.edital.identificacao }} - {{ chamada.edital.titulo }} <br />
-          Chamada: <small>{{ chamada.chamada }} ({{ chamada.tipo_chamada }})</small><br />
-          De: <small>{{ chamada.inicio_solicitacoes }}</small><br />
-          Até: <small>{{ chamada.fim_solicitacoes }}</small>
-        </td>
-        <td>
-          <a href="{{ chamada.edital.pagina }}" class="btn btn-outline-secondary btn-sm" role="button">Ver edital</a>
-        </td>
-      </tr>
+      <p>
+        <a href="{{ chamada.edital.pagina }}"><b>{{ chamada.edital.identificacao }} - {{ chamada.edital.titulo }}</b></a>
+        <br />Chamada: {{ chamada.chamada }}, de {{ chamada.inicio_solicitacoes }} até {{ chamada.fim_solicitacoes }}.
+      </p>
       {% empty %}
-      <tr><td colspan="3">Não há.</td></tr>
+      <p>Não há.</p>
       {% endfor %}
-    </tbody>
-  </table>
+    </div>
 
-  <h2>Chamadas anteriores</h2>
-
-  <table class="table">
-    <thead><tr><th>Edital</th><th width="1%">Ações</th></tr></thead>
-    <tbody>
+    <div class="tab-pane fade show" id="passado" role="tabpanel" aria-labelledby="passado-tab">
       {% for chamada in chamadas_passadas %}
-      <tr>
-        <td>
-          {{ chamada.edital.identificacao }} - {{ chamada.edital.titulo }} <br />
-          Chamada: <small>{{ chamada.chamada }} ({{ chamada.tipo_chamada }})</small><br />
-          De: <small>{{ chamada.inicio_solicitacoes }}</small><br />
-          Até: <small>{{ chamada.fim_solicitacoes }}</small>
-        </td>
-        <td>
-          <a href="{{ chamada.edital.pagina }}" class="btn btn-outline-secondary btn-sm" role="button">Ver edital</a>
-        </td>
-      </tr>
+      <p>
+        <a href="{{ chamada.edital.pagina }}"><b>{{ chamada.edital.identificacao }} - {{ chamada.edital.titulo }}</b></a>
+        <br />Chamada: {{ chamada.chamada }}, de {{ chamada.inicio_solicitacoes }} até {{ chamada.fim_solicitacoes }}.
+      </p>
       {% empty %}
-        <tr><td colspan="3">Não há.</td></tr>
+      <p>Não há.</p>
       {% endfor %}
-    </tbody>
-  </table>
+    </div>
+  </div>
+
 {% endblock content %}
