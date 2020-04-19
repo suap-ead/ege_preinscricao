@@ -116,7 +116,6 @@ def solicitacao_concluir(request, chamada_id):
 
     if request.method == 'POST':
         form = ConclusaoForm(request.POST, instance=selecionado.solicitacao)
-        print("FORM", form.is_valid())
         if form.is_valid():
             form.save()
             form.messages = ["Solicitação concluída com sucesso."]

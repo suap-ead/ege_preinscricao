@@ -323,10 +323,13 @@ class Solicitacao(Model):
     @property
     def pode_aceitar(self):
         documentos_entregues = [x.documentacao.id for x in self.documento_set.all()]
-        return not DocumentoExigido.objects.filter(edital=self.selecionado.chamada.edital).exclude(documentacao_id__in=documentos_entregues).exists()    
+        return not DocumentoExigido.objects.\
+            filter(edital=self.selecionado.chamada.edital).\
+            filter(lista__in=[ListaSelecao.GERAL, self.selecionado.lista]).\
+            exclude(documentacao_id__in=documentos_entregues).\
+            exists()
     
     def save(self):
-        print('SAVE', self.aceitou_algum_termo, self.aceitou_todos_termos)
         # Se aceitou apenas parte dos termos
         if self.aceitou_algum_termo and not self.aceitou_todos_termos:
             raise ValidationError("Tem que aceitar tanto o termo de veracidade das informações"
