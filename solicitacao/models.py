@@ -345,6 +345,7 @@ class Solicitacao(Model):
             self.sha512_solicitacao = hashlib.sha512(json_str.encode()).hexdigest()
         super().save()
 
+
 class Documento(Model):
     solicitacao = FK("Solicitação", Solicitacao)
     documentacao = FK("Documentação", Documentacao)

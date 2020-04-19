@@ -5,116 +5,99 @@
 
 {% block conteudo_interno %}
 
-      <!-- form: begin -->
-      <div class="tab-pane fade show active" id="file" role="tabpanel" aria-labelledby="file-tab">
-        <h3>Documentos Exigidos</h3>
-        <div class="alert alert-warning" role="alert">
-          <p>Só será aceito para validação arquivo do tipo PDF em formato A4-retrato legíveis, arquivos em outros formatos ou condições serão desconsiderados. Desta forma:</p>
-          <ol>
-            <li>Páginas HTML, imagens ou documentos do Word, por exemplo, não serão aceitos.</li>
-            <li>Assim sendo se o arquivo estiver originalmente em um destes formatos, primeiro converta em PDF.</li>
-            <li>Formas de fazer isso? Imprimir para PDF, exportar como PDF, ferramenta de conversão para PDF ou sites que convertam para PDF.</li>
-          </ol>
-        </div>
-        <div class="alert alert-warning" role="alert">
-          <p>Se o arquivo só existe em forma analógica, (por exemplo, impresso), este deverá ser digilitazado para então ser enviado. Desta forma:</p>
-          <ol>
-            <li>Digitalize, prerencialmente, usando um scanner.</li>
-            <li>Se você não tem acesso a um scanner, você poderá utilizar um celular. Nestes casos, considere:
-              <ol>
-                <li>Colocar o documento sobre uma superfície não reflexiva de uma única cor, como uma folha de papel em branco ou lençol, por exemplo. Cerâmica podem ter reflexo, ou seja, normalmente não são boa escolha.</li>
-                <li>Ilumine bem o ambiente, e em especial o documento, ou seja, escolha o cômodo melhor iluminado ou use a luz natual de uma varanda, por exemplo.</li>
-                <li>Desligue o flash.</li>
-                <li>Se ao digitalizar o documento verifique se você consegue ler. Se houver dúvidas ou dificuldades, refaça os passos anteriores até ter uma digitalização legível.</li>
-                <li>Usar um software que digitalize, enquadre, recorte e converta para PDF facilitará o seu trabalho. 
-                    O CamScanner, por exemplo é uma opção válida 
-                    (<a href="https://play.google.com/store/apps/details?id=com.intsig.camscanner&hl=pt-br" target="_blank">Android</a>, 
-                    <a href="https://apps.apple.com/br/app/camscanner-documento-scan/id388627783">iOS</a>).
-                    Fique a vontade me procurar outro.</li>
-              </ol>
-            </li>
-            <li>Se a digilitação resultou em um arquivo de imagem (JPG, JPEG, TIFF, PNG, outro) ao invés de um PDF, converta para PDF.
-              <ol>
-                <li>Formas de fazer isso? Imprimir para PDF, exportar como PDF, ferramenta de conversão para PDF ou sites que convertam para PDF.</li>
-              </ol>
-            </li>
-          </ol>
-        </div>
-  
-        {% if not selecionado.solicitacao.apenas_leitura %}
-        <div class="row">
-          <div class="col">
-        
-            <div class="card">
-              <div class="card-header">Enviar documento</div>
-              <div class="card-body">
-                <form class="form" method="post" enctype="multipart/form-data">
-                  {% csrf_token %}
-                  {{ form.as_p }}
-                  <button class="btn btn-success" type="submit">Enviar Arquivo</button>
-                </form>
-              </div>
-            </div>
+<!-- form: begin -->
+<div class="tab-pane fade show active" id="file" role="tabpanel" aria-labelledby="file-tab">
+  <h3>Documentos Exigidos</h3>
+  <div class="alert alert-warning" role="alert">
+    <p>Só será aceito para validação arquivo do tipo PDF em formato A4-retrato legíveis, arquivos em outros formatos ou condições serão desconsiderados. Desta forma:</p>
+    <ol>
+      <li>Páginas HTML, imagens ou documentos do Word, por exemplo, não serão aceitos.</li>
+      <li>Assim sendo se o arquivo estiver originalmente em um destes formatos, primeiro converta em PDF.</li>
+      <li>Formas de fazer isso? Imprimir para PDF, exportar como PDF, ferramenta de conversão para PDF ou sites que convertam para PDF.</li>
+    </ol>
+  </div>
+  <div class="alert alert-warning" role="alert">
+    <p>Se o arquivo só existe em forma analógica, (por exemplo, impresso), este deverá ser digilitazado para então ser enviado. Desta forma:</p>
+    <ol>
+      <li>Digitalize, prerencialmente, usando um scanner.</li>
+      <li>Se você não tem acesso a um scanner, você poderá utilizar um celular. Nestes casos, considere:
+        <ol>
+          <li>Colocar o documento sobre uma superfície não reflexiva de uma única cor, como uma folha de papel em branco ou lençol, por exemplo. Cerâmica podem ter reflexo, ou seja, normalmente não são boa escolha.</li>
+          <li>Ilumine bem o ambiente, e em especial o documento, ou seja, escolha o cômodo melhor iluminado ou use a luz natual de uma varanda, por exemplo.</li>
+          <li>Desligue o flash.</li>
+          <li>Se ao digitalizar o documento verifique se você consegue ler. Se houver dúvidas ou dificuldades, refaça os passos anteriores até ter uma digitalização legível.</li>
+          <li>Usar um software que digitalize, enquadre, recorte e converta para PDF facilitará o seu trabalho. 
+              O CamScanner, por exemplo é uma opção válida 
+              (<a href="https://play.google.com/store/apps/details?id=com.intsig.camscanner&hl=pt-br" target="_blank">Android</a>, 
+              <a href="https://apps.apple.com/br/app/camscanner-documento-scan/id388627783">iOS</a>).
+              Fique a vontade me procurar outro.</li>
+        </ol>
+      </li>
+      <li>Se a digilitação resultou em um arquivo de imagem (JPG, JPEG, TIFF, PNG, outro) ao invés de um PDF, converta para PDF.
+        <ol>
+          <li>Formas de fazer isso? Imprimir para PDF, exportar como PDF, ferramenta de conversão para PDF ou sites que convertam para PDF.</li>
+        </ol>
+      </li>
+    </ol>
+  </div>
 
+  <hr>
+  <h5>Lista de Documentos exigidos</h5>
+  
+  <table>
+    <tbody>
+      {% for documento in documentosExigidos %}
+      <tr class="alert-danger">
+        <td style="padding: 5px">{{documento.documentacao}}</td>
+        <td style="padding: 5px; width: 1%">{% ocorreu_upload solicitacao.id documento.documentacao %}</td>
+      </tr>
+      {% if not selecionado.solicitacao.apenas_leitura %}
+      <tr>
+        <td colspan="2" style="padding: 5px">
+          <div>
+            <form class="form" method="post" enctype="multipart/form-data" id="send_file_{{ documento.documentacao.id }}">
+              {% csrf_token %}
+
+              <input type="hidden" name="solicitacao" value="1" id="id_solicitacao">
+              <input type="hidden" name="documentacao" id="id_documentacao" value="{{ documento.documentacao.id }}">
+              <input type="file" name="arquivo" id="id_arquivo_{{ documento.documentacao.id }}" required="" style="display: none;"
+                    onchange="document.getElementById('send_file_{{ documento.documentacao.id }}').submit()">
+              <button class="btn btn-success" type="submit" data-id="{{ documento.documentacao.id }}" 
+              onclick="javascript:event.preventDefault(); document.getElementById('id_arquivo_{{ documento.documentacao.id }}').click();">Enviar</button>
+
+            </form>
           </div>
-        </div>
-        {% endif %}
-  
+        </td>
+      </tr>
+      {% endif %}
+      {% endfor %}
+      {% for documento in documentos %}
+      <tr class="alert-success">
+        <td style="padding: 5px">{{documento.documentacao}}</td>
+        <td style="padding: 5px; width: 1%">Enviado</td>
+      </tr>
+      <tr>
+        <td colspan="2" style="padding: 5px">
+          <div>
+            <form class="form" method="post" enctype="multipart/form-data" id="send_file_{{ documento.documentacao.id }}">
+              {% csrf_token %}
+              <input type="hidden" name="solicitacao" value="1" id="id_solicitacao">
+              <input type="hidden" name="documentacao" id="id_documentacao" value="{{ documento.documentacao.id }}">
+              <input type="file" name="arquivo" id="id_arquivo_{{ documento.documentacao.id }}" required="" style="display: none;"
+                    onchange="document.getElementById('send_file_{{ documento.documentacao.id }}').submit()">
+              <button class="btn btn-success" type="submit" data-id="{{ documento.documentacao.id }}" 
+                      onclick="javascript:event.preventDefault(); document.getElementById('id_arquivo_{{ documento.documentacao.id }}').click();">Enviar</button>
+            </form>
+          </div>
+          <br>
+          <a href="{% url 'solicitacao:documento_remover' documento.id %}" class="btn btn-outline-secondary btn-sm" role="button">Remover</a>
+          <a href="{{ documento.arquivo.url }}">{{documento.arquivo}}</a>
+        </td>
+      </tr>
+      {% endfor %}
+    </tbody>
+  </table>
 
-        <hr>
-        <h5>Lista de Documentos exigidos</h5>
-        <table class="table table-bordered table-sm">
-          <thead>
-            <tr>
-              <th>Tipo</th>
-              <th width="1%">Situação</th>
-            </tr>
-          </thead>
-          <tbody>
-            {% for documento in documentosExigidos %}
-            <tr class="{% ocorreu_upload solicitacao.id documento.documentacao %}">
-              <td>{{documento.documentacao}}</td>
-              <td>{% ocorreu_upload solicitacao.id documento.documentacao %}</td>
-            </tr>
-            {% empty %}
-              <tr>
-                <td colspan="3">Nenhum arquivo anexado.</td>
-              </tr>
-            {% endfor %}
-          </tbody>
-        </table>
-
-        <hr>
-        <h5>Lista de Enviados</h5>
-        <table class="table table-striped table-bordered table-sm">
-          <thead>
-            <tr>
-              <th>Tipo</th>
-              <th>Nome</th>
-              <th width="1%">Ações</th>
-            </tr>
-          </thead>
-          <tbody>
-            {% for documento in documentos %}
-            <tr>
-              <td>{{documento.documentacao}}</td>
-              <td><a href="{{ documento.arquivo.url }}">{{documento.arquivo}}</a></td>
-              <!-- <td>{{documento.sha512_arquivo}}</td> -->
-              <td>
-                {% if not selecionado.solicitacao.apenas_leitura %}
-                <a href="{% url 'solicitacao:documento_remover' documento.id %}" class="btn btn-outline-secondary btn-sm" role="button">Remover</a>
-                {% else %}
-                  -
-                {% endif %}
-              </td>
-            </tr>
-            {% empty %}
-              <tr>
-                <td colspan="3">Nenhum arquivo anexado.</td>
-              </tr>
-            {% endfor %}
-          </tbody>
-        </table>
-      </div>
+</div>
 
 {% endblock conteudo_interno %}

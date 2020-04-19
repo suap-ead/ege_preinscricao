@@ -10,7 +10,7 @@ from django.utils.decorators import method_decorator
 from django.contrib.auth import REDIRECT_FIELD_NAME
 from django.db.models import Q
 from django.contrib.auth.middleware import AuthenticationMiddleware
-from .models import Chamada, PublicAuthToken, Solicitacao, DocumentoExigido, Documento
+from .models import Chamada, PublicAuthToken, Solicitacao, DocumentoExigido, Documento, ListaSelecao
 from .forms import EntrarForm, SolicitacaoForm, ConclusaoForm, DocumentoForm
 from .decorators import public_login_required
 from django.utils.timezone import now, timedelta
@@ -95,7 +95,12 @@ def solicitacao_anexar(request, chamada_id=None):
     else:
         form = DocumentoForm(initial={'solicitacao': solicitacao})
     documentos = Documento.objects.filter(solicitacao_id=solicitacao.id)
-    documentosExigidos = DocumentoExigido.objects.filter(edital_id=selecionado.chamada.edital.id)
+    documentosExigidos = DocumentoExigido.objects.filter(
+        edital_id=selecionado.chamada.edital.id,
+        lista__in=[ListaSelecao.GERAL, selecionado.lista]
+    ).exclude(
+        documentacao_id__in=[x.documentacao.id for x in documentos.all()],
+    )
     active_tab = "file"
     return render(request, template_name='pre_matricula/solicitacao/anexar.html', context=locals())
 
@@ -128,6 +133,6 @@ def documento_remover(request, documento_id):
     if request.selecionado.solicitacao.id != doc.solicitacao.id:
         raise Exception("Você não tem permissão para excluir este arquivo")
     if hasattr(request.selecionado, 'solicitacao') and request.selecionado.solicitacao.apenas_leitura:
-        return redirect("solicitacao:formulario", chamada_id=chamada_id)
+        return redirect("solicitacao:anexar", chamada_id=request.selecionado.chamada.id)
     doc.delete()
-    return redirect("solicitacao:formulario", chamada_id=request.selecionado.chamada.id)
+    return redirect("solicitacao:anexar", chamada_id=request.selecionado.chamada.id)
