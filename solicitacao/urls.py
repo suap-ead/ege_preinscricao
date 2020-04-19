@@ -14,6 +14,6 @@ urlpatterns = [
     path('anexar/<int:chamada_id>/', solicitacao_anexar, name='anexar'),
     path('remover/<int:documento_id>/', documento_remover, name='documento_remover'),
     path('<int:chamada_id>/auth/entrar/', auth_entrar, name='auth_entrar'),
-    path('<int:chamada_id>/auth/<slug:inscricao>/<slug:token>/autenticar/', auth_autenticar, name='auth_autenticar'),
+    path('<slug:token>/auth/autenticar/', auth_autenticar, name='auth_autenticar'),
     path('auth/sair/', auth_sair, name='auth_sair'),
 ]

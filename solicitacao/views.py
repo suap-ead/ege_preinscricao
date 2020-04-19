@@ -13,7 +13,7 @@ from django.contrib.auth.middleware import AuthenticationMiddleware
 from .models import Chamada, PublicAuthToken, Solicitacao, DocumentoExigido, Documento
 from .forms import EntrarForm, SolicitacaoForm, ConclusaoForm, DocumentoForm
 from .decorators import public_login_required
-from django.utils.timezone import now
+from django.utils.timezone import now, timedelta
 
 
 
@@ -33,11 +33,17 @@ def auth_entrar(request, chamada_id=None):
     return render(request, 'pre_matricula/acesso/entrar.html', locals())
 
 
-def auth_autenticar(request, chamada_id, inscricao, token):
-    publicAuthToken = get_object_or_404(PublicAuthToken, chamada_id=chamada_id, selecionado__inscricao=inscricao, token=token)
-    publicAuthToken.delete()
-    request.session['selecionado_id'] = publicAuthToken.selecionado.id
-    return redirect("solicitacao:formulario", chamada_id=chamada_id)
+def auth_autenticar(request, token):
+    pat = PublicAuthToken.objects.filter(token=token).select_related('selecionado').first()
+    if pat is not None:
+        selecionado = pat.selecionado
+        if pat.criado_em < now() - timedelta(hours=2):
+            return render(request, 'pre_matricula/acesso/token_expirado.html', locals())
+        request.session['selecionado_id'] = selecionado.id
+        PublicAuthToken.objects.filter(criado_em__lt=now() - timedelta(hours=2)).delete()
+        pat.delete()
+        return redirect("solicitacao:formulario", chamada_id=selecionado.chamada_id)
+    return render(request, 'pre_matricula/acesso/token_nao_encontrado.html')
 
 
 def auth_sair(request):

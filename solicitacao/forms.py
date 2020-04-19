@@ -23,18 +23,14 @@ class EntrarForm(Form):
         c = self.cleaned_data['chave']
         try:
             selecionado = self.chamada.selecionado_set.get(Q(cpf=c) | Q(email=c) | Q(passaporte=c) | Q(inscricao=c))
-            publicAuthToken = PublicAuthToken(chamada=self.chamada, selecionado=selecionado)
+            publicAuthToken = PublicAuthToken(selecionado=selecionado)
             publicAuthToken.save()
+            full_url = self.request._current_scheme_host + resolve_url("solicitacao:auth_autenticar", **{"token": publicAuthToken.token})
             try:
-                params = {
-                    "chamada_id": self.chamada.id,
-                    "inscricao": selecionado.inscricao,
-                    "token": publicAuthToken.token,
-                }
-                full_url = self.request._current_scheme_host + resolve_url("solicitacao:auth_autenticar", **params)
                 send_mail(
                     'Acesso à solicitação de matrícula online do IFRN',
-                    "Para terminar teu acesso, clique no link %s. Esta código só é válida por 2h." % (full_url),
+                    "Para terminar teu acesso, clique no link %s."
+                    " Este código só é válida por 2h e só pode ser usado uma única vez." % (full_url),
                     'ava@ifrn.edu.br',
                     [selecionado.email],
                     fail_silently=False,
