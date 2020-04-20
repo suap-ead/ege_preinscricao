@@ -58,7 +58,7 @@
             <form class="form" method="post" enctype="multipart/form-data" id="send_file_{{ documento.documentacao.id }}">
               {% csrf_token %}
 
-              <input type="hidden" name="solicitacao" value="{{ selecionado.solicitacao_id }} " id="id_solicitacao">
+              <input type="hidden" name="solicitacao" value="{{ selecionado.solicitacao.id }}" id="id_solicitacao">
               <input type="hidden" name="documentacao" id="id_documentacao" value="{{ documento.documentacao.id }}">
               <input type="file" name="arquivo" id="id_arquivo_{{ documento.documentacao.id }}" required="" style="display: none;"
                     onchange="document.getElementById('send_file_{{ documento.documentacao.id }}').submit()">
@@ -82,7 +82,7 @@
           <div>
             <form class="form" method="post" enctype="multipart/form-data" id="send_file_{{ documento.documentacao.id }}">
               {% csrf_token %}
-              <input type="hidden" name="solicitacao" value="{{ selecionado.solicitacao_id }}" id="id_solicitacao">
+              <input type="hidden" name="solicitacao" value="{{ selecionado.solicitacao.id }}" id="id_solicitacao">
               <input type="hidden" name="documentacao" id="id_documentacao" value="{{ documento.documentacao.id }}">
               <input type="file" name="arquivo" id="id_arquivo_{{ documento.documentacao.id }}" required="" style="display: none;"
                     onchange="document.getElementById('send_file_{{ documento.documentacao.id }}').submit()">
