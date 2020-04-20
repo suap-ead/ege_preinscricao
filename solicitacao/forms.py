@@ -1,3 +1,4 @@
+import re
 from django.conf import settings
 from django.shortcuts import resolve_url
 from django import forms
@@ -8,7 +9,6 @@ from django.core.mail import send_mail
 from django.http.request import HttpRequest
 from .models import Selecionado, Solicitacao, PublicAuthToken, Documento, ListaSelecao
 
- 
 
 class EntrarForm(Form):    
     chave = CharField(label="Informe", max_length=250, required=True)
@@ -22,7 +22,9 @@ class EntrarForm(Form):
     def clean_chave(self):
         c = self.cleaned_data['chave']
         try:
-            selecionado = self.chamada.selecionado_set.get(Q(cpf=c) | Q(email=c) | Q(passaporte=c) | Q(inscricao=c))
+            d = re.sub('\D', '', c)
+
+            selecionado = self.chamada.selecionado_set.get(Q(cpf=c) | Q(cpf=d) | Q(email=c) | Q(passaporte=c) | Q(inscricao=c))
             publicAuthToken = PublicAuthToken(selecionado=selecionado)
             publicAuthToken.save()
             full_url = self.request._current_scheme_host + resolve_url("solicitacao:auth_autenticar", **{"token": publicAuthToken.token})
