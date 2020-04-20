@@ -94,7 +94,7 @@ def solicitacao_anexar(request, chamada_id=None):
             form = DocumentoForm(initial={'solicitacao': solicitacao})
     else:
         form = DocumentoForm(initial={'solicitacao': solicitacao})
-    documentos = Documento.objects.filter(solicitacao_id=solicitacao.id).order_by("documentacao")
+    documentos = Documento.objects.filter(solicitacao_id=solicitacao.id)
     documentosExigidos = DocumentoExigido.objects.filter(
         edital_id=selecionado.chamada.edital.id,
         lista__in=[ListaSelecao.GERAL, selecionado.lista]
