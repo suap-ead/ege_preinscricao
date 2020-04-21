@@ -61,7 +61,8 @@ class DocumentoInline(TabularInline):
 @register(Solicitacao)
 class SolicitacaoAdmin(ImportExportModelAdmin):
     list_display = ['nome', 'selecionado']
-    list_filter = ['selecionado__chamada__edital__identificacao', 
+    list_filter = ['confirmacao', 
+                   'selecionado__chamada__edital__identificacao', 
                    'selecionado__matriz_curso__titulo']
     search_fields = ['selecionado__cpf', 'selecionado__email', 'selecionado__inscricao', 'selecionado__nome', 
                      'selecionado__nome_social', 'selecionado__passaporte', 'selecionado__polo__titulo', 
