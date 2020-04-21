@@ -31,12 +31,12 @@ class EntrarForm(Form):
             try:
                 send_mail(
                     'Acesso à solicitação de matrícula online do IFRN',
-                    "Para terminar teu acesso, clique no link %s."
+                    "Para terminar teu acesso, clique no link %s ."
                     " Este código só é válida por 2h e só pode ser usado uma única vez." % (full_url),
                     'ava@ifrn.edu.br',
                     [selecionado.email],
                     fail_silently=False,
-                    html_message="Para terminar teu acesso, clique no link <a href='%s'>%s</a>. Esta código só é válida por 2h." % (full_url, full_url)
+                    html_message="Para terminar teu acesso, clique no link <a href='%s'>%s</a> . Esta código só é válida por 2h." % (full_url, full_url)
                 )
             except Exception as e:
                 raise ValidationError("Falha ao enviar email para %s" % selecionado.email)
