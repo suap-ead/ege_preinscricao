@@ -38,8 +38,10 @@ class ChamadaAdmin(ImportExportModelAdmin):
 @register(Selecionado)
 class SelecionadoAdmin(ImportExportModelAdmin):
     list_display = ['nome', 'chamada', 'cpf']
-    list_filter = ['chamada',  'chamada__edital__identificacao']
-    search_fields = ['edital__identificacao', 'chamada']
+    list_filter = ['chamada__edital__identificacao', 
+                   'matriz_curso__titulo']
+    search_fields = ['cpf', 'email', 'inscricao', 'nome', 'nome_social', 'passaporte', 'passaporte', 'polo__titulo', ]
+
 
 
 class DocumentoInline(TabularInline):
@@ -55,11 +57,15 @@ class DocumentoInline(TabularInline):
     def has_delete_permission(self, request, obj=None):
         return False
 
+
 @register(Solicitacao)
 class SolicitacaoAdmin(ImportExportModelAdmin):
     list_display = ['nome', 'selecionado']
-    list_filter = ['selecionado__chamada__tipo_chamada', 'selecionado__chamada__edital__identificacao']
-    search_fields = ['selecionado__chamada__chamada', 'selecionado__chamada__edital__identificacao']
+    list_filter = ['selecionado__chamada__edital__identificacao', 
+                   'selecionado__matriz_curso__titulo']
+    search_fields = ['selecionado__cpf', 'selecionado__email', 'selecionado__inscricao', 'selecionado__nome', 
+                     'selecionado__nome_social', 'selecionado__passaporte', 'selecionado__polo__titulo', 
+                     'selecionado__chamada__edital__identificacao']
 
     inlines = [DocumentoInline]
 
