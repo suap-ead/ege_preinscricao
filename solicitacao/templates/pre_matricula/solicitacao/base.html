@@ -30,5 +30,6 @@
 {% block body_end_js %}
 <script>
 jQuery("select, input[type='text'], textarea").addClass('form-control').parent().addClass('form-group')
+jQuery("[required]").parent().children("label").css("font-weight", "900")
 </script>
 {% endblock body_end_js %}
