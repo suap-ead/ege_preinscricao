@@ -46,7 +46,7 @@
   
   <table>
     <tbody>
-      {% for documento in documentosExigidos %}
+      {% for documento in selecionado.solicitacao.documentos_a_anexar %}
       <tr class="alert-danger">
         <td style="padding: 5px">{{documento.documentacao}}</td>
         <td style="padding: 5px; width: 1%">{% ocorreu_upload solicitacao.id documento.documentacao %}</td>
@@ -71,7 +71,7 @@
       </tr>
       {% endif %}
       {% endfor %}
-      {% for documento in documentos %}
+      {% for documento in selecionado.solicitacao.documentos_anexados %}
       <tr class="alert-success">
         <td style="padding: 5px">{{documento.documentacao}}</td>
         <td style="padding: 5px; width: 1%">Enviado</td>

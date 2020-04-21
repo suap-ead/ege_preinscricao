@@ -148,7 +148,7 @@ class Solicitacao(Model):
 
     # Dados da solicitação de matrícula
     selecionado = OneToOneField(Selecionado, verbose_name="Selecionado", on_delete=CASCADE)
-    data_conclusao_intercambio = DateField("Conclusão do intercâmbio", **nullable)
+    data_conclusao_intercambio = DateField("Conclusão do intercâmbio", **nullable, help_text="No formato 'dd/mm/aaaa'.")
     linha_pesquisa = NullFK("Linha de pesquisa", LinhaPesquisa, help_text='Obrigatório para alunos de Mestrado e Doutourado. Caso não saiba, escreva "A definir".')
     # numero_pasta = CharField("Número da pasta", max_length=250, null=True, blank=False)
 
@@ -156,7 +156,7 @@ class Solicitacao(Model):
     nome = CharField("Nome", max_length=250)
     nome_social = CharField("Nome social", max_length=250, help_text="Só preencher este campo a pedido do aluno e de acordo com a legislação vigente.", **nullable)
     sexo = FK("Sexo", Sexo)
-    data_nascimento = DateField("Data de nascimento")
+    data_nascimento = DateField("Data de nascimento", help_text="No formato 'dd/mm/aaaa'.")
     estado_civil = FK("Estado civil", EstadoCivil, related_name="solicitacoes")
 
     # Dados familiares
@@ -215,13 +215,13 @@ class Solicitacao(Model):
     numero_rg = CharField("Número do RG", max_length=255, **nullable)
     uf_emissao_rg = NullFK("Estado emissor", Estado, related_name="rgs")
     orgao_emissao_rg = NullFK("Orgão emissor", OrgaoEmissorRG)
-    data_emissao_rg = DateField("Data de emissão", **nullable)
+    data_emissao_rg = DateField("Data de emissão do RG", **nullable, help_text="No formato 'dd/mm/aaaa'.")
 
     # Título de eleitor
     numero_titulo_eleitor = CharField("Título de eleitor", max_length=255, **nullable)
     zona_titulo_eleitor = CharField("Zona", max_length=255, **nullable)
     secao = CharField("Seção", max_length=255, **nullable)
-    data_emissao_titulo_eleitor = DateField("Data de emissão", **nullable)
+    data_emissao_titulo_eleitor = DateField("Data de emissão do título de eleitor", **nullable, help_text="No formato 'dd/mm/aaaa'.")
     uf_emissao_titulo_eleitor = NullFK("Estado emissor", Estado, related_name="titulos")
 
     # Carteira de reservista
@@ -238,7 +238,7 @@ class Solicitacao(Model):
     numero_certidao = CharField("Número de Termo", max_length=255, **nullable)
     folha_certidao = CharField("Folha", max_length=255, **nullable)
     livro_certidao = CharField("Livro", max_length=255, **nullable)
-    data_emissao_certidao = DateField("Data de emissão", **nullable)
+    data_emissao_certidao = DateField("Data de emissão da certidão civil", **nullable, help_text="No formato 'dd/mm/aaaa'.")
     matricula_certidao = CharField("Livro", max_length=255, help_text="Obrigatório para certidões realizadas a partir de 01/01/2010", **nullable)
 
     # Foto
@@ -322,13 +322,28 @@ class Solicitacao(Model):
 
     @property
     def pode_aceitar(self):
-        documentos_entregues = [x.documentacao.id for x in self.documento_set.all()]
-        return not DocumentoExigido.objects.\
-            filter(edital=self.selecionado.chamada.edital).\
-            filter(lista__in=[ListaSelecao.GERAL, self.selecionado.lista]).\
-            exclude(documentacao_id__in=documentos_entregues).\
-            exists()
+        return not self.documentos_a_anexar.exists()
     
+    @property
+    def documentos_a_anexar(self):
+        a_anexar = DocumentoExigido.objects.filter(
+            edital_id=self.selecionado.chamada.edital.id,
+            lista__in=[ListaSelecao.GERAL, self.selecionado.lista]
+        ).exclude( 
+            documentacao_id__in=[x.documentacao.id for x in self.documentos_anexados] 
+        )
+        ## 1 = Sexo masculino
+        print("SEXO", self.sexo_id)
+        if self.sexo_id != 1:
+            # 6 = Documentação
+            return a_anexar.exclude(documentacao__id=6)
+        else:
+            return a_anexar
+
+    @property
+    def documentos_anexados(self):
+        return Documento.objects.filter(solicitacao_id=self.id)
+
     def save(self):
         # Se aceitou apenas parte dos termos
         if self.aceitou_algum_termo and not self.aceitou_todos_termos:
@@ -358,6 +373,7 @@ class Documento(Model):
     class Meta:
         verbose_name = "Documento"
         verbose_name_plural = "Documentos"
+        ordering = ['documentacao']
 
     def __str__(self):
        return "%s - %s" % (self.solicitacao, self.documentacao)
