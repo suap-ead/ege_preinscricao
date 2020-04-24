@@ -42,8 +42,8 @@ def auth_autenticar(request, token):
     if pat.criado_em < now() - timedelta(hours=2):
         return render(request, 'pre_matricula/acesso/token_expirado.html', locals())
     request.session['selecionado_id'] = selecionado.id
-    PublicAuthToken.objects.filter(criado_em__lt=now() - timedelta(hours=2)).delete()
-    pat.delete()
+    # PublicAuthToken.objects.filter(criado_em__lt=now() - timedelta(hours=2)).delete()
+    # pat.delete()
     return redirect("solicitacao:formulario", chamada_id=selecionado.chamada_id)
 
 
