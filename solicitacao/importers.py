@@ -81,7 +81,7 @@ def selecionado_csv_importer(chamada_id, filename, forma_ingresso_id=50):
         polo_key = '\ufeffCampus'
         reader = csv.DictReader(csvfile, delimiter=";")
         for row in reader:
-            if row['Status'] != 'Aprovado':
+            if 'Status' in row and row['Status'] != 'Aprovado':
                 continue
 
             qtd += 1
