@@ -133,6 +133,11 @@ class Selecionado(Model):
 
         return "%s - %s" % (ident, self.chamada)
 
+    def save(self):
+        if self.nome is not None:
+            self.nome = self.nome.upper()
+        super().save()
+
 
 class PublicAuthToken(Model):
     selecionado = FK("Selecionado", Selecionado)
