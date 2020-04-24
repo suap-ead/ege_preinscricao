@@ -49,7 +49,7 @@
 
 {% block content %}
     <div class="alert alert-primary" role="alert">
-        Se você foi selecionado para a <b>chamada</b> a baixo, informe teu e-mail, nº de inscrição, CPF ou passaporte para receber por e-mail um link que irá lhe autorizar a acessar o sistema e submeter tua solicitação de matrícula.
+        Se você foi selecionado para a <b>chamada</b> a baixo, informe: ou o teu e-mail, ou a tua nº de inscrição, ou o teu CPF ou o teu passaporte para receber por e-mail um link que irá lhe autorizar a acessar o sistema e submeter tua solicitação de matrícula.
     </div>
     <div class="alert alert-warning" role="alert">
         Note que a solicitação passará por um processo de validação, ou seja, só se estiver tudo correto é que você terá sua matricula efetivada.
@@ -87,7 +87,7 @@
                     <input type="hidden" name="next" value="{{ next }}">
                     <div class="form-group">
                         {{ form.chave.errors }}
-                        <input type="text" class="form-control" placeholder="E-mail, nº de inscrição, CPF ou passaporte" name="chave" value="" />
+                        <input type="text" class="form-control" placeholder="Ou e-mail, ou nº de inscrição, ou CPF ou passaporte" name="chave" value="" />
                     </div>
                     <div class="form-group">
                         <input type="submit" class="btnSubmit" value="Solicitar acesso" />

@@ -42,7 +42,7 @@ class EntrarForm(Form):
                 raise ValidationError("Falha ao enviar email para %s" % selecionado.email)
             self.selecionado = selecionado
         except ObjectDoesNotExist as e:
-            raise ValidationError("O e-mail, nº de inscrição, CPF ou passaporte não faz parte desta chamada")
+            raise ValidationError("O e-mail, ou nº de inscrição, ou CPF ou passaporte não faz parte desta chamada")
         return self.cleaned_data['chave']
 
     def validate(self, value):
