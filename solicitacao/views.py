@@ -102,12 +102,14 @@ def solicitacao_anexar(request, chamada_id=None):
         documentacao_id__in=[x.documentacao.id for x in documentos.all()],
     )
     active_tab = "file"
+    chamada = selecionado.chamada
     return render(request, template_name='pre_matricula/solicitacao/anexar.html', context=locals())
 
 
 @public_login_required
 def solicitacao_concluir(request, chamada_id):
     selecionado = request.selecionado
+    chamada = selecionado.chamada
     if selecionado.chamada.id != chamada_id:
         raise Exception("Você não tem permissão para aceitar os termos desta solicitação de matrícula.")
 
