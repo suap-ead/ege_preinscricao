@@ -1,6 +1,6 @@
 from django.contrib.admin import register, ModelAdmin, TabularInline
 from import_export.admin import ImportExportModelAdmin
-from .models import Documentacao, Edital, DocumentoExigido, Chamada, Selecionado, Solicitacao, Documento
+from .models import Documentacao, Edital, DocumentoExigido, Chamada, Selecionado, Solicitacao, Documento, PublicAuthToken
 
 
 @register(Documentacao)
@@ -34,6 +34,9 @@ class ChamadaAdmin(ImportExportModelAdmin):
     autocomplete_fields = ['edital']
 
 
+class PublicAuthTokenInline(TabularInline):
+    model = PublicAuthToken
+
 
 @register(Selecionado)
 class SelecionadoAdmin(ImportExportModelAdmin):
@@ -41,6 +44,7 @@ class SelecionadoAdmin(ImportExportModelAdmin):
     list_filter = ['chamada__edital__identificacao', 
                    'matriz_curso__titulo']
     search_fields = ['cpf', 'email', 'inscricao', 'nome', 'nome_social', 'passaporte', 'passaporte', 'polo__titulo', ]
+    inlines = [PublicAuthTokenInline]
 
 
 
