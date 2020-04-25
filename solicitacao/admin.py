@@ -1,4 +1,4 @@
-from django.contrib.admin import register, ModelAdmin, TabularInline
+from django.contrib.admin import register, ModelAdmin, TabularInline, StackedInline
 from import_export.admin import ImportExportModelAdmin
 from .models import Documentacao, Edital, DocumentoExigido, Chamada, Selecionado, Solicitacao, Documento, PublicAuthToken
 
@@ -11,27 +11,32 @@ class DocumentacaoAdmin(ImportExportModelAdmin):
 
 class DocumentoExigidoInline(TabularInline):
     model = DocumentoExigido
+    extra = 0
 
+
+class ChamadaInline(StackedInline):
+    model = Chamada
+    extra = 0
 
 @register(Edital)
 class EditalAdmin(ImportExportModelAdmin):
     list_display = ['identificacao', 'titulo', 'pagina']
     search_fields = ['identificacao', 'titulo']
 
-    inlines = [DocumentoExigidoInline]
+    inlines = [DocumentoExigidoInline, ChamadaInline]
 
 
 class SelecionadoInline(TabularInline):
     model = Selecionado
 
 
-@register(Chamada)
-class ChamadaAdmin(ImportExportModelAdmin):
-    list_display = ['chamada', 'edital', 'tipo_chamada', 'inicio_solicitacoes', 'fim_solicitacoes']
-    list_filter = ['tipo_chamada',  'edital__identificacao']
-    search_fields = ['edital__identificacao', 'chamada']
+# @register(Chamada)
+# class ChamadaAdmin(ImportExportModelAdmin):
+#     list_display = ['chamada', 'edital', 'tipo_chamada', 'inicio_solicitacoes', 'fim_solicitacoes']
+#     list_filter = ['tipo_chamada',  'edital__identificacao']
+#     search_fields = ['edital__identificacao', 'chamada']
 
-    autocomplete_fields = ['edital']
+#     autocomplete_fields = ['edital']
 
 
 class PublicAuthTokenInline(TabularInline):
