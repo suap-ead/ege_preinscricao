@@ -29,14 +29,17 @@
             <p class="form-group">
               {{ form.sexo.label_tag }}
               {{ form.sexo }}
+              <span class="helptext">{{ form.sexo.help_text }}</span>
             </p>
             <p class="form-group">
               {{ form.data_nascimento.label_tag }}
               {{ form.data_nascimento }}
+              <span class="helptext">{{ form.data_nascimento.help_text }}</span>
             </p>
             <p class="form-group">
               {{ form.estado_civil.label_tag }}
               {{ form.estado_civil }}
+              <span class="helptext">{{ form.estado_civil.help_text }}</span>
             </p>
           </div>
         </div>
@@ -44,7 +47,56 @@
         <div class="card">
           <div class="card-header">Dados Familiares</div>
           <div class="card-body">
-              nome
+            <p class="form-group">
+              {{ form.nome_pai.label_tag }}
+              {{ form.nome_pai }}
+              <span class="helptext">{{ form.nome_pai.help_text }}</span>
+            </p>
+            <p class="form-group">
+              {{ form.estado_civil_pai.label_tag }}
+              {{ form.estado_civil_pai }}
+              <span class="helptext">{{ form.estado_civil_pai.help_text }}</span>
+            </p>
+            <p class="form-group">
+              {{ form.pai_falecido.label_tag }}
+              {{ form.pai_falecido }}
+              <span class="helptext">{{ form.pai_falecido.help_text }}</span>
+            </p>
+            <p class="form-group">
+              {{ form.nome_mae.label_tag }}
+              {{ form.nome_mae }}
+              <span class="helptext">{{ form.nome_mae.help_text }}</span>
+            </p>
+            <p class="form-group">
+              {{ form.estado_civil_mae.label_tag }}
+              {{ form.estado_civil_mae }}
+              <span class="helptext">{{ form.estado_civil_mae.help_text }}</span>
+            </p>
+            <p class="form-group">
+              {{ form.mae_falecida.label_tag }}
+              {{ form.mae_falecida }}
+              <span class="helptext">{{ form.mae_falecida.help_text }}</span>
+            </p>
+            <p class="form-group">
+              {{ form.responsavel.label_tag }}
+              {{ form.responsavel }}
+              <span class="helptext">{{ form.responsavel.help_text }}</span>
+            </p>
+            <p class="form-group">
+              {{ form.email_responsavel.label_tag }}
+              {{ form.email_responsavel }}
+              <span class="helptext">{{ form.email_responsavel.help_text }}</span>
+            </p>
+            <p class="form-group">
+              {{ form.parentesco_responsavel.label_tag }}
+              {{ form.parentesco_responsavel }}
+              <span class="helptext">{{ form.parentesco_responsavel.help_text }}</span>
+            </p>
+            <p class="form-group">
+              {{ form.cpf_responsavel.label_tag }}
+              {{ form.cpf_responsavel }}
+              <span class="helptext">{{ form.cpf_responsavel.help_text }}</span>
+            </p>
           </div>
         </div>
         <br>
