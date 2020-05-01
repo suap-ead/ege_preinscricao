@@ -16,14 +16,35 @@
         <div class="card">
           <div class="card-header">Dados Pessoais</div>
           <div class="card-body">
-              bla
+            <p class="form-group">
+              {{ form.nome.label_tag }}
+              {{ form.nome }}
+              <span class="helptext">{{ form.nome.help_text }}</span>
+            </p>
+            <p class="form-group">
+              {{ form.nome_social.label_tag }}
+              {{ form.nome_social }}
+              <span class="helptext">{{ form.nome_social.help_text }}</span>
+            </p>
+            <p class="form-group">
+              {{ form.sexo.label_tag }}
+              {{ form.sexo }}
+            </p>
+            <p class="form-group">
+              {{ form.data_nascimento.label_tag }}
+              {{ form.data_nascimento }}
+            </p>
+            <p class="form-group">
+              {{ form.estado_civil.label_tag }}
+              {{ form.estado_civil }}
+            </p>
           </div>
         </div>
         <br>
         <div class="card">
           <div class="card-header">Dados Familiares</div>
           <div class="card-body">
-              bla
+              nome
           </div>
         </div>
         <br>
