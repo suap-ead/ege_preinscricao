@@ -206,7 +206,21 @@
         <div class="card">
           <div class="card-header">Transporte Escolar Utilizado</div>
           <div class="card-body">
-              bla
+            <p class="form-group">
+              {{ form.utiliza_transporte_escolar_publico.label_tag }}
+              {{ form.utiliza_transporte_escolar_publico }}
+              <span class="helptext">{{ form.utiliza_transporte_escolar_publico.help_text }}</span>
+            </p>
+            <p class="form-group">
+              {{ form.poder_publico_responsavel_transporte.label_tag }}
+              {{ form.poder_publico_responsavel_transporte }}
+              <span class="helptext">{{ form.poder_publico_responsavel_transporte.help_text }}</span>
+            </p>
+            <p class="form-group">
+              {{ form.tipo_veiculo.label_tag }}
+              {{ form.tipo_veiculo }}
+              <span class="helptext">{{ form.tipo_veiculo.help_text }}</span>
+            </p>
           </div>
         </div>
         <br>
