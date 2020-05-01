@@ -3,9 +3,9 @@
   <div class="col">
 
     <div class="card">
-      <div class="card-header">Identificação da solicitação</div>
+      <h5 class="card-header">Identificação da solicitação</h5>
       <div class="card-body">
-          <label>Edital:</label> <b><a href="{{chamada.edital.pagina}}" target="_blank">{{selecionado.chamada.edital.identificacao}} - {{selecionado.chamada.edital.titulo}}</a></b>
+        <label>Edital:</label> <b><a href="{{chamada.edital.pagina}}" target="_blank">{{selecionado.chamada.edital.identificacao}} - {{selecionado.chamada.edital.titulo}}</a></b>
         <br /><label>Inscrição:</label> <b>{{ selecionado.inscricao }}</b>
         <br /><label>Chamada:</label> <b>{{ selecionado.chamada.chamada }},</b> de <b>{{ selecionado.chamada.inicio_solicitacoes }}</b> até  <b>{{ selecionado.chamada.fim_solicitacoes }}</b>
         <br /><label>Matriz/Curso:</label> <b>{{selecionado.matriz_curso}}</b>
@@ -18,7 +18,7 @@
     </div>
     <br />
     <div class="card">
-      <div class="card-header">Identificação do solicitante</div>
+      <h5 class="card-header">Identificação do solicitante</h5>
       <div class="card-body">
         <label>Nacionalidade:</label> <b>{{ selecionado.nacionalidade }}</b>
         {% if selecionado.cpf %}<br><label>CPF:</label> <b>{{ selecionado.cpf }}</b>{% endif %}
