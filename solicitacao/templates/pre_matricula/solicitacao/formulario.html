@@ -227,7 +227,31 @@
         <div class="card">
           <div class="card-header">Outras Informações</div>
           <div class="card-body">
-              bla
+            <p class="form-group">
+              {{ form.tipo_sanguineo.label_tag }}
+              {{ form.tipo_sanguineo }}
+              <span class="helptext">{{ form.tipo_sanguineo.help_text }}</span>
+            </p>
+            <p class="form-group">
+              {{ form.pais_origem.label_tag }}
+              {{ form.pais_origem }}
+              <span class="helptext">{{ form.pais_origem.help_text }}</span>
+            </p>
+            <p class="form-group">
+              {{ form.estado_naturalidade.label_tag }}
+              {{ form.estado_naturalidade }}
+              <span class="helptext">{{ form.estado_naturalidade.help_text }}</span>
+            </p>
+            <p class="form-group">
+              {{ form.naturalidade.label_tag }}
+              {{ form.naturalidade }}
+              <span class="helptext">{{ form.naturalidade.help_text }}</span>
+            </p>
+            <p class="form-group">
+              {{ form.raca.label_tag }}
+              {{ form.raca }}
+              <span class="helptext">{{ form.raca.help_text }}</span>
+            </p>
           </div>
         </div>
         <br>
