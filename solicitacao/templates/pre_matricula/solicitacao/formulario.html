@@ -180,7 +180,26 @@
         <div class="card">
           <div class="card-header">Deficiências, transtornos e superdotação</div>
           <div class="card-body">
-              bla
+            <p class="form-group">
+              {{ form.aluno_pne.label_tag }}
+              {{ form.aluno_pne }}
+              <span class="helptext">{{ form.aluno_pne.help_text }}</span>
+            </p>
+            <p class="form-group">
+              {{ form.tipo_necessidade_especial.label_tag }}
+              {{ form.tipo_necessidade_especial }}
+              <span class="helptext">{{ form.tipo_necessidade_especial.help_text }}</span>
+            </p>
+            <p class="form-group">
+              {{ form.tipo_transtorno.label_tag }}
+              {{ form.tipo_transtorno }}
+              <span class="helptext">{{ form.tipo_transtorno.help_text }}</span>
+            </p>
+            <p class="form-group">
+              {{ form.superdotacao.label_tag }}
+              {{ form.superdotacao }}
+              <span class="helptext">{{ form.superdotacao.help_text }}</span>
+            </p>
           </div>
         </div>
         <br>
