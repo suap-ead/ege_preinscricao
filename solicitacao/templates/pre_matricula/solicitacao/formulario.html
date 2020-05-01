@@ -225,37 +225,6 @@
         </div>
         <br>
         <div class="card">
-          <div class="card-header">Outras Informações</div>
-          <div class="card-body">
-            <p class="form-group">
-              {{ form.tipo_sanguineo.label_tag }}
-              {{ form.tipo_sanguineo }}
-              <span class="helptext">{{ form.tipo_sanguineo.help_text }}</span>
-            </p>
-            <p class="form-group">
-              {{ form.pais_origem.label_tag }}
-              {{ form.pais_origem }}
-              <span class="helptext">{{ form.pais_origem.help_text }}</span>
-            </p>
-            <p class="form-group">
-              {{ form.estado_naturalidade.label_tag }}
-              {{ form.estado_naturalidade }}
-              <span class="helptext">{{ form.estado_naturalidade.help_text }}</span>
-            </p>
-            <p class="form-group">
-              {{ form.naturalidade.label_tag }}
-              {{ form.naturalidade }}
-              <span class="helptext">{{ form.naturalidade.help_text }}</span>
-            </p>
-            <p class="form-group">
-              {{ form.raca.label_tag }}
-              {{ form.raca }}
-              <span class="helptext">{{ form.raca.help_text }}</span>
-            </p>
-          </div>
-        </div>
-        <br>
-        <div class="card">
           <div class="card-header">Dados Escolares Anteriores</div>
           <div class="card-body">
             <p class="form-group">
@@ -405,15 +374,60 @@
           </div>
         </div>
         <br>
-        
-        
-        
-        
-
         <div class="card">
-          <div class="card-header">Formulário de solicitação de matrícula</div>
+          <div class="card-header">Outras Informações</div>
           <div class="card-body">
-              {{ form.as_p }}
+            <p class="form-group">
+              {{ form.tipo_sanguineo.label_tag }}
+              {{ form.tipo_sanguineo }}
+              <span class="helptext">{{ form.tipo_sanguineo.help_text }}</span>
+            </p>
+            <p class="form-group">
+              {{ form.pais_origem.label_tag }}
+              {{ form.pais_origem }}
+              <span class="helptext">{{ form.pais_origem.help_text }}</span>
+            </p>
+            <p class="form-group">
+              {{ form.estado_naturalidade.label_tag }}
+              {{ form.estado_naturalidade }}
+              <span class="helptext">{{ form.estado_naturalidade.help_text }}</span>
+            </p>
+            <p class="form-group">
+              {{ form.naturalidade.label_tag }}
+              {{ form.naturalidade }}
+              <span class="helptext">{{ form.naturalidade.help_text }}</span>
+            </p>
+            <p class="form-group">
+              {{ form.raca.label_tag }}
+              {{ form.raca }}
+              <span class="helptext">{{ form.raca.help_text }}</span>
+            </p>
+          </div>
+        </div>
+        <br>
+        <div class="card">
+          <div class="card-header">Dados da solicitação de matrícula</div>
+          <div class="card-body">
+            <p class="form-group">
+              {{ form.selecionado.label_tag }}
+              {{ form.selecionado }}
+              <span class="helptext">{{ form.selecionado.help_text }}</span>
+            </p>
+            <p class="form-group">
+              {{ form.data_conclusao_intercambio.label_tag }}
+              {{ form.data_conclusao_intercambio }}
+              <span class="helptext">{{ form.data_conclusao_intercambio.help_text }}</span>
+            </p>
+            <p class="form-group">
+              {{ form.linha_pesquisa.label_tag }}
+              {{ form.linha_pesquisa }}
+              <span class="helptext">{{ form.linha_pesquisa.help_text }}</span>
+            </p>
+            <p class="form-group">
+              {{ form.autorizacao_carteira_estudantil.label_tag }}
+              {{ form.autorizacao_carteira_estudantil }}
+              <span class="helptext">{{ form.autorizacao_carteira_estudantil.help_text }}</span>
+            </p>
           </div>
         </div>
 
