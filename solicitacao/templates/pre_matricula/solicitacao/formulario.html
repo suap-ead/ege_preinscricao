@@ -305,7 +305,31 @@
         <div class="card">
           <div class="card-header">Título de Eleitor</div>
           <div class="card-body">
-              bla
+            <p class="form-group">
+              {{ form.numero_titulo_eleitor.label_tag }}
+              {{ form.numero_titulo_eleitor }}
+              <span class="helptext">{{ form.numero_titulo_eleitor.help_text }}</span>
+            </p>
+            <p class="form-group">
+              {{ form.zona_titulo_eleitor.label_tag }}
+              {{ form.zona_titulo_eleitor }}
+              <span class="helptext">{{ form.zona_titulo_eleitor.help_text }}</span>
+            </p>
+            <p class="form-group">
+              {{ form.secao.label_tag }}
+              {{ form.secao }}
+              <span class="helptext">{{ form.secao.help_text }}</span>
+            </p>
+            <p class="form-group">
+              {{ form.data_emissao_titulo_eleitor.label_tag }}
+              {{ form.data_emissao_titulo_eleitor }}
+              <span class="helptext">{{ form.data_emissao_titulo_eleitor.help_text }}</span>
+            </p>
+            <p class="form-group">
+              {{ form.uf_emissao_titulo_eleitor.label_tag }}
+              {{ form.uf_emissao_titulo_eleitor }}
+              <span class="helptext">{{ form.uf_emissao_titulo_eleitor.help_text }}</span>
+            </p>
           </div>
         </div>
         <br>
