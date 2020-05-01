@@ -258,7 +258,21 @@
         <div class="card">
           <div class="card-header">Dados Escolares Anteriores</div>
           <div class="card-body">
-              bla
+            <p class="form-group">
+              {{ form.nivel_ensino_anterior.label_tag }}
+              {{ form.nivel_ensino_anterior }}
+              <span class="helptext">{{ form.nivel_ensino_anterior.help_text }}</span>
+            </p>
+            <p class="form-group">
+              {{ form.tipo_instituicao_origem.label_tag }}
+              {{ form.tipo_instituicao_origem }}
+              <span class="helptext">{{ form.tipo_instituicao_origem.help_text }}</span>
+            </p>
+            <p class="form-group">
+              {{ form.ano_conclusao_estudo_anterior.label_tag }}
+              {{ form.ano_conclusao_estudo_anterior }}
+              <span class="helptext">{{ form.ano_conclusao_estudo_anterior.help_text }}</span>
+            </p>
           </div>
         </div>
         <br>
