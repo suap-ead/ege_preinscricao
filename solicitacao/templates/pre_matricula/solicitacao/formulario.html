@@ -149,7 +149,31 @@
         <div class="card">
           <div class="card-header">Contato</div>
           <div class="card-body">
-              bla
+            <p class="form-group">
+              {{ form.telefone_principal.label_tag }}
+              {{ form.telefone_principal }}
+              <span class="helptext">{{ form.telefone_principal.help_text }}</span>
+            </p>
+            <p class="form-group">
+              {{ form.telefone_secundario.label_tag }}
+              {{ form.telefone_secundario }}
+              <span class="helptext">{{ form.telefone_secundario.help_text }}</span>
+            </p>
+            <p class="form-group">
+              {{ form.telefone_adicional_1.label_tag }}
+              {{ form.telefone_adicional_1 }}
+              <span class="helptext">{{ form.telefone_adicional_1.help_text }}</span>
+            </p>
+            <p class="form-group">
+              {{ form.telefone_adicional_2.label_tag }}
+              {{ form.telefone_adicional_2 }}
+              <span class="helptext">{{ form.telefone_adicional_2.help_text }}</span>
+            </p>
+            <p class="form-group">
+              {{ form.email_pessoal.label_tag }}
+              {{ form.email_pessoal }}
+              <span class="helptext">{{ form.email_pessoal.help_text }}</span>
+            </p>
           </div>
         </div>
         <br>
