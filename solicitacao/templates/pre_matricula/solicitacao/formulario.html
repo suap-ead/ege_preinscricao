@@ -279,7 +279,26 @@
         <div class="card">
           <div class="card-header">Registro Geral (RG)</div>
           <div class="card-body">
-              bla
+            <p class="form-group">
+              {{ form.numero_rg.label_tag }}
+              {{ form.numero_rg }}
+              <span class="helptext">{{ form.numero_rg.help_text }}</span>
+            </p>
+            <p class="form-group">
+              {{ form.uf_emissao_rg.label_tag }}
+              {{ form.uf_emissao_rg }}
+              <span class="helptext">{{ form.uf_emissao_rg.help_text }}</span>
+            </p>
+            <p class="form-group">
+              {{ form.orgao_emissao_rg.label_tag }}
+              {{ form.orgao_emissao_rg }}
+              <span class="helptext">{{ form.orgao_emissao_rg.help_text }}</span>
+            </p>
+            <p class="form-group">
+              {{ form.data_emissao_rg.label_tag }}
+              {{ form.data_emissao_rg }}
+              <span class="helptext">{{ form.data_emissao_rg.help_text }}</span>
+            </p>
           </div>
         </div>
         <br>
