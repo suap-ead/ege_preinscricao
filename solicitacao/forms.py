@@ -75,6 +75,9 @@ class SolicitacaoForm(ModelForm):
             'folha_certidao', 'livro_certidao', 'data_emissao_certidao',
             'matricula_certidao', 'data_conclusao_intercambio',
             'linha_pesquisa','autorizacao_carteira_estudantil']
+        widgets = {
+            'cidade': forms.Select(attrs={'class':'select2'}),
+        }
         # widgets = {
         #     'data_conclusao_intercambio': forms.DateInput(format=('%m/%d/%Y'), attrs={'class':'form-control', 'placeholder':'Select a date', 'type':'date'}),
         #     'data_nascimento': forms.DateInput(format=('%m/%d/%Y'), attrs={'class':'form-control', 'placeholder':'Select a date', 'type':'date'}),
