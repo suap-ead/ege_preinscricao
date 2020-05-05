@@ -14,6 +14,7 @@ from django.contrib.auth.models import User
 from django.db.models import ForeignKey, CASCADE
 from dominio_suap.models import *
 from .fields import nullable, nullable_phone, FK, NullFK
+from .validators import validate_file_extension
 
 
 class ListaSelecao(TextChoices):
@@ -372,7 +373,7 @@ class Solicitacao(Model):
 class Documento(Model):
     solicitacao = FK("Solicitação", Solicitacao)
     documentacao = FK("Documentação", Documentacao)
-    arquivo = FileField("Arquivo")
+    arquivo = FileField("Arquivo", validators=[validate_file_extension])
     sha512_arquivo = CharField("SHA 512 do arquivo", max_length=255)
 
     class Meta:
