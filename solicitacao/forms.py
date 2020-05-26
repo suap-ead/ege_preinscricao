@@ -1,4 +1,6 @@
 import re
+# import _imaging
+# from PIL import Image
 from django.conf import settings
 from django.shortcuts import resolve_url
 from django import forms
@@ -7,7 +9,7 @@ from django.db.models import Q
 from django.core.exceptions import ObjectDoesNotExist
 from django.core.mail import send_mail
 from django.http.request import HttpRequest
-from .models import Selecionado, Solicitacao, PublicAuthToken, Documento, ListaSelecao
+from .models import Selecionado, Solicitacao, PublicAuthToken, Documento, ListaSelecao, Foto
 
 
 class EntrarForm(Form):    
@@ -125,3 +127,12 @@ class ConclusaoForm(ModelForm):
         if not self.cleaned_data['confirmacao']:
             raise ValidationError("Não posso concluir a solicitação se você não aceitar este termo.")
         return self.cleaned_data['confirmacao']
+
+class FotoForm(ModelForm):
+    x = forms.FloatField(widget=forms.HiddenInput())
+    y = forms.FloatField(widget=forms.HiddenInput())
+    width = forms.FloatField(widget=forms.HiddenInput())
+    height = forms.FloatField(widget=forms.HiddenInput())
+    class Meta:
+        model = Foto
+        fields=['file', 'x', 'y', 'width', 'height']

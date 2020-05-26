@@ -396,3 +396,13 @@ class Documento(Model):
     def delete(self):
         self.arquivo.delete(False) 
         super().delete()
+
+class Foto(Model):
+    solicitacao = FK("Solicitação", Solicitacao)
+    file = models.ImageField()
+    descricao = models.CharField(max_length=255, blank=True)
+    data_upload = models.DateTimeField(auto_now_add=True)
+
+    class Meta:
+        verbose_name = 'Foto'
+        verbose_name_plural = 'Fotos'
