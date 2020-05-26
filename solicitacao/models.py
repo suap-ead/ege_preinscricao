@@ -399,7 +399,7 @@ class Documento(Model):
 
 class Foto(Model):
     solicitacao = FK("Solicitação", Solicitacao)
-    file = models.ImageField()
+    file = models.FileField()
     descricao = models.CharField(max_length=255, blank=True)
     data_upload = models.DateTimeField(auto_now_add=True)
 
