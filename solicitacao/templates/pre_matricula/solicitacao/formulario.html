@@ -9,6 +9,43 @@
       <h3>Formulário de solicitação de matrícula</h3>
       {% include "pre_matricula/solicitacao/_identificacao.html" %}
       
+      <form method="post" enctype="multipart/form-data" id="formUpload">
+        {% csrf_token %}
+        {{ formFoto }}
+      </form>
+      <!-- MODAL TO CROP THE IMAGE -->
+      <div class="modal fade" id="modalCrop">
+        <div class="modal-dialog">
+          <div class="modal-content">
+            <div class="modal-header">
+              <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+              </button>
+              <h4 class="modal-title">Crop the photo</h4>
+            </div>
+            <div class="modal-body">
+              <img src="" id="image" style="max-width: 100%;">
+            </div>
+            <div class="modal-footer">
+              <div class="btn-group pull-left" role="group">
+                <button type="button" class="btn btn-default js-zoom-in">
+                  <span class="glyphicon glyphicon-zoom-in"></span>
+                </button>
+                <button type="button" class="btn btn-default js-zoom-out">
+                  <span class="glyphicon glyphicon-zoom-out"></span>
+                </button>
+              </div>
+              <button type="button" class="btn btn-default" data-dismiss="modal">Nevermind</button>
+              <button type="button" class="btn btn-primary js-crop-and-upload">Crop and upload</button>
+            </div>
+          </div>
+        </div>
+      </div>
+      <!-- CONTAINER TO DISPLAY THE CROPPED IMAGES -->
+      <div class="row" style="margin-top: 20px">
+        ...
+      </div>
+
       <form method="post">
         {% if selecionado.solicitacao.apenas_leitura %}<fieldset disabled="disabled">{% endif %}
         {% csrf_token %}

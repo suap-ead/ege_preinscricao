@@ -11,7 +11,7 @@ from django.contrib.auth import REDIRECT_FIELD_NAME
 from django.db.models import Q
 from django.contrib.auth.middleware import AuthenticationMiddleware
 from .models import Chamada, PublicAuthToken, Solicitacao, DocumentoExigido, Documento, ListaSelecao
-from .forms import EntrarForm, SolicitacaoForm, ConclusaoForm, DocumentoForm
+from .forms import EntrarForm, SolicitacaoForm, ConclusaoForm, DocumentoForm, FotoForm
 from .decorators import public_login_required
 from django.utils.timezone import now, timedelta
 
@@ -76,6 +76,7 @@ def solicitacao_formulario(request, chamada_id):
             form.messages = ["Solicitação salva com sucesso."]
     else:
         form = SolicitacaoForm(instance=solicitacao)
+        formFoto = FotoForm()
     active_tab = "form"
 
     result = render(request, 'pre_matricula/solicitacao/formulario.html', context=locals())
